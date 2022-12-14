@@ -49,3 +49,12 @@ Follow the steps below:
 * [Node Developers Guide](https://nodejs.dev/learn)
 * **.gitignore file** configuration. See [Official Docs](https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files).
 * **Git branches**. See [Official Docs](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell)
+
+### Oriol Sastre
+
+  ```
+  git revert --hard 5b914e14c3da1329d8c68b0317f799e45cac31d8
+  git push --force
+  ```
+
+Això per restorar la branca main del nodeInitialDemo. No ho hauria de fer servir en general.
