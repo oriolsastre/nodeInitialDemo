@@ -1,4 +1,5 @@
 const express = require('express');
+const request = require('request');
 const router = express.Router();
 
 router.get('/', (req,res) => {
@@ -8,7 +9,15 @@ router.get('/', (req,res) => {
 //https://github.com/everydeveloper/node-express-course/blob/master/responses/04-get-data-with-var.md
 router.get('/:id', (req,res) => {
     const pokeID = req.params.id;
-    res.send("Buscaré el Pokemon amb ID "+pokeID)
+
+    request({
+        method: "GET",
+        uri: `https://pokeapi.co/api/v2/pokemon/${pokeID}`   
+    }, (err, response, body) => {
+        if(err){res.send(err)}
+        res.send(response)
+    })
+    //res.send("Buscaré el Pokemon amb ID "+pokeID)
 })
 
 module.exports = router;
