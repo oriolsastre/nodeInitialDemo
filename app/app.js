@@ -6,15 +6,13 @@ const port = 3000
 app.set('views', './app/views');
 app.set('view engine', 'ejs');
 
+app.use('/', require('./routes'))
+
 app.get('/', (req, res) => {
   res.send("Benvingut a l'Sprint 4.1")
 })
 
-const routeUser = require('./routes/user');
-app.use('/user', routeUser);
 
-const routeUpload = require('./routes/upload')
-app.use('/upload', routeUpload)
 
 /* Nivell 2 */
 /*
@@ -24,9 +22,6 @@ app.get('/time', customMW, (req,res) => {}) també puc especificar el MW per el 
 
 */
 
-const routePokemon = require('./routes/pokemon');
-app.use('/pokemon', routePokemon);
-
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+    console.log(`Servidor corrent al port ${port}`)
 })
