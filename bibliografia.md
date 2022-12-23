@@ -11,6 +11,9 @@ Recull d'alguns recursos que he fet servir o vull fer servir per a aquest Sprint
 ### Rutes dinàmiques
 Cal que el fitxer de la ruta tingui el mateix nom que la ruta. Aleshores es carrega automàticament a routes/index.js. Com vist al video 1.
 
+### Pujar fitxer
+Per pujar el fitxer m'he basat amb https://pqina.nl/blog/upload-image-with-nodejs/ que fa servir al dependència express-fileupload. El fitxer però no l'arribo a guardar al servidor.
+
 ## Bones pràctiques
 
 - https://blog.logrocket.com/the-perfect-architecture-flow-for-your-next-node-js-project/ L'enllaç que hi ha al Moodle.
