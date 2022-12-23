@@ -3,12 +3,8 @@ const getUpload = (req,res) => {
 }
 
 const uploadImatge = (req,res) => {
-    //req.is(type)
-    //https://pqina.nl/blog/upload-image-with-nodejs/
-    console.log(req.files)
-    const fitxerPujat = req.files.fitxer;
-
-    res.render("index", {title: "Nivell 1, Exercici 2"})
+    const imatge = req.files.fitxer;
+    res.status(200).send({Nom: imatge.name, Mida: imatge.size, Tipus: imatge.mimetype, Status: "Imatge pujada correctament al servidor"})
 }
 
 module.exports = { getUpload, uploadImatge }
