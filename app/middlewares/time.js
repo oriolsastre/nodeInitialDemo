@@ -18,7 +18,8 @@ const autoritzacio = (req, res, next) => {
 }
 
 const bodyUser = (req, res, next) => {
-    next();
+    if(!req.body || !req.body.user){res.status(400).json({Error: "No s'ha enviat objecte JSON amb un user al body."})}
+    else{next();}
 }
 
 
