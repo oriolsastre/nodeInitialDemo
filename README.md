@@ -10,6 +10,8 @@ I ara podrem iniciar el servidor amb l'API amb l'ordre:
 
 Obrim un navegador com el Firefox i el Chrom i anem a l'adreça: localhost:3000
 
+Alternativament, si fos necessari, es pot canviar el port amb variables d'entorn. Només cal afegir un fitxer anomenat _.env_ a la carpeta base i definir el port d'entrada d'express "EXPRESS_PORT=####" i el port desitjat. Per defecte es tria el 3000. Es pot seguir l'estructura del fitxer _.env-template_ com a referència.
+
 
 <!-- ### Oriol Sastre
 
