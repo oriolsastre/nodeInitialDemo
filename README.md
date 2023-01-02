@@ -1,6 +1,6 @@
 # Sprint 4.1
 
-Descarregar el repo. Obrir un terminal localitzat a la carpeta del repo. Primer de tot cal instal·lar les dependències necessàries amb l'ordre:
+Descarregar el repositori. Obrir un terminal localitzat a la carpeta del repositori. Primer de tot cal instal·lar les dependències necessàries amb l'ordre:
 
     npm install
 
@@ -11,6 +11,8 @@ I ara podrem iniciar el servidor amb l'API amb l'ordre:
 Obrim un navegador com el Firefox i el Chrom i anem a l'adreça: localhost:3000
 
 Alternativament, si fos necessari, es pot canviar el port amb variables d'entorn. Només cal afegir un fitxer anomenat _.env_ a la carpeta base i definir el port d'entrada d'express "EXPRESS_PORT=####" i el port desitjat. Per defecte es tria el 3000. Es pot seguir l'estructura del fitxer _.env-template_ com a referència.
+
+Tenir en compte que la col·lecció de Postman per a provar els endpoints utilitza el Port 3000.
 
 
 <!-- ### Oriol Sastre
