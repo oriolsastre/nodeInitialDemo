@@ -1,1 +1,14 @@
-console.log('Hello World');
+const express = require('express')
+const { port } = require('./config/config')
+
+const app = express()
+
+app.use('/', require('./routes'))
+
+app.get('/', (req, res) => {
+  res.send("Sprint 4_2")
+})
+
+app.listen(port, () => {
+    console.log(`Servidor corrent al port ${port}`)
+})
