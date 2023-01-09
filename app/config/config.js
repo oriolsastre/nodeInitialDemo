@@ -1,4 +1,4 @@
-require("dotenv").config()
+require("dotenv").config({ path:__dirname+'/./../../.env'})
 
 const port = process.env.EXPRESS_PORT || 3000;
 
