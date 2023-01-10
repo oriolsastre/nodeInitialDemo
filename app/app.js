@@ -1,7 +1,10 @@
 const express = require('express')
 const { port } = require('./config/config')
+const { designDB } = require('./utils/designDB')
+
 
 const app = express()
+designDB();
 
 app.use('/', require('./routes'))
 
