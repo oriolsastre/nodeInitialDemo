@@ -1,7 +1,6 @@
-const express = require('express')
+const router = require('express').Router();
 const fs = require('fs')
 
-const router = express.Router();
 const PATH_ROUTES = __dirname;
 
 fs.readdirSync(PATH_ROUTES).filter(ruta => {
