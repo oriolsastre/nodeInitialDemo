@@ -14,14 +14,16 @@ const Player = sequelize.define("player", {
     },
     level: {
         type: Sequelize.TINYINT,
-        defaultValue: 1     //0: Administrador, 1: User normal
+        allowNull: false,
+        defaultValue: 1,
+        comment: '0: Administrador, 1: User normal'
     },
     password: {
         type: Sequelize.STRING,
         allowNull: false
     },
     email: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(100),
         allowNull: false
     }
 });
