@@ -8,6 +8,4 @@ const designDB = async () => {
     await sequelize.sync({ force: false })
 }
 
-
-
 module.exports = {designDB};

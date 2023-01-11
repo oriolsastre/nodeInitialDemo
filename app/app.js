@@ -3,13 +3,17 @@ const { port } = require('./config/config')
 const { designDB } = require('./utils/designDB')
 
 
-const app = express()
 designDB();
+const app = express()
 
 app.use('/', require('./routes'))
 
 app.get('/', (req, res) => {
   res.send("Sprint 4_2")
+})
+
+app.use((req, res) => {
+  res.status(404).json({error: "Page not found"})
 })
 
 app.listen(port, () => {
