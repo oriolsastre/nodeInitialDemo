@@ -2,42 +2,45 @@ const Player = require('../models/Player')
 //const { validationResult } = require('express-validator')
 
 const getPlayers = async (req, res) => {
-    const allPlayers = await Player.findAll({attributes: ['name']});
-    res.status(201).json(allPlayers)
+    try {
+        const allPlayers = await Player.findAll({attributes: ['id', 'name'], order: ['id']});
+        if(allPlayers.length === 0){return res.status(200).json({message: "No Players registered"})}
+        res.status(200).json(allPlayers)
+    }catch(error){res.status(500).json(error)}
 }
 
 const postPlayers = async (req,res) => {
     try{
-        const newPlayer = await Player.create({name: req.body.name, email: req.body.email, password: req.body.password})
-        res.status(200).json(newPlayer.name)
-    }catch(err){
-        const specificError = err.errors[0]
-        if(specificError.type == 'unique violation'){
-            res.status(500).send(
-            {Error: {
-                type: specificError.type,
-                message: `${specificError.message}. ${req.body[specificError.path]} already exists`
-                }
-            })
+        //console.log(req.body instanceof Array);
+        if((typeof req.body === 'array' || req.body instanceof Array)){
+            const newPlayers = req.body;
+            await Player.bulkCreate(newPlayers)
+            return res.status(200).json(req.body)
         }
-        else{res.status(500).send({Error: err})}
-    }
-    
+        const newPlayer = await Player.create({name: req.body.name, email: req.body.email, password: req.body.password})
+        res.status(201).json(newPlayer.name)
+    }catch(error){res.status(500).send(error)}
 }
 
 const putPlayers = async (req,res) => {
     const playerID = req.params.id;
-    if(!Number.isInteger(playerID)){return res.status(400).send({Error: "Invalid ID", reason: "Must be an integer."})}
-
-    const updatedPlayer = await Player.update( req.body, {
-        where: {playerID: playerID}
-    })
+    try{
+        if(req.body.name){
+            const newName = req.body.name;
+            const updatedPlayer = await Player.update( {name: newName}, {where: {id: playerID}})
+            return res.status(200).json({id: playerID, newName: newName})
+        }
+        res.status(400).json({Error: "You are only allowed to change you name", solution: "Give me your new name like this: {name: [new name]}"})
+        
+    }catch(error){
+        if(error.name == 'SequelizeUniqueConstraintError'){return res.status(409).json({Error: "This name is already in use."})}
+        res.status(500).json(error)
+    }
 }
 
 /* No és necessari aquest últim */
 const deletePlayers = async (req, res) => {
-    const playerID = Number(req.params.id);
-    if(!Number.isInteger(playerID)){return res.status(400).send({Error: "Invalid ID", reason: "Must be an integer."})}
+    const playerID = req.params.id;
     try{
         await Player.destroy({
             where: {
@@ -45,9 +48,7 @@ const deletePlayers = async (req, res) => {
             }
         })
         res.status(200).json({message: "Jugador eliminat correctament"})
-    }catch(err){
-        res.status(500).json({error: err.array()})
-    }
+    }catch(err){res.status(500).json({error: err.array()})}
 }
 
 module.exports = { getPlayers, postPlayers, putPlayers, deletePlayers }

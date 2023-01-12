@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const { sequelize } = require('../utils/database');
 
 const Player = sequelize.define("player", {
-    playerID: {
+    id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
@@ -24,7 +24,8 @@ const Player = sequelize.define("player", {
     },
     email: {
         type: Sequelize.STRING(100),
-        allowNull: false
+        allowNull: false,
+        unique: true
     }
 });
 
