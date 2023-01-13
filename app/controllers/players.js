@@ -1,9 +1,19 @@
-const Player = require('../models/Player')
+const { QueryTypes } = require('sequelize')
+const { sequelize } = require('../utils/database');
+const Player = require('../models/Player');
 //const { validationResult } = require('express-validator')
 
 const getPlayers = async (req, res) => {
     try {
-        const allPlayers = await Player.findAll({attributes: ['id', 'name'], order: ['id']});
+        const sql_allPlayers = `SELECT player.id,
+        CASE
+            WHEN player.name IS NULL THEN 'ANÒNIM'
+            ELSE player.name
+        END AS 'name', avg(game.victoria) AS 'victory_rate'
+        FROM player LEFT JOIN game ON player.id=game.player
+        GROUP BY player.id ORDER BY player.id ASC;`;
+        
+        const allPlayers = await sequelize.query(sql_allPlayers, {type: QueryTypes.SELECT});
         if(allPlayers.length === 0){return res.status(200).json({message: "No Players registered"})}
         res.status(200).json(allPlayers)
     }catch(error){res.status(500).json(error)}
@@ -27,10 +37,10 @@ const putPlayers = async (req,res) => {
     try{
         if(req.body.name){
             const newName = req.body.name;
-            const updatedPlayer = await Player.update( {name: newName}, {where: {id: playerID}})
+            await Player.update( {name: newName}, {where: {id: playerID}})
             return res.status(200).json({id: playerID, newName: newName})
         }
-        res.status(400).json({Error: "You are only allowed to change you name", solution: "Give me your new name like this: {name: [new name]}"})
+        res.status(400).json({Error: "You are only allowed to change your name", solution: "Give me your new name like this: {name: [new name]}"})
         
     }catch(error){
         if(error.name == 'SequelizeUniqueConstraintError'){return res.status(409).json({Error: "This name is already in use."})}
