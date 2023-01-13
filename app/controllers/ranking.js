@@ -5,7 +5,7 @@ const sql_ranking = `SELECT player.id,
         CASE
             WHEN player.name IS NULL THEN 'ANÒNIM'
             ELSE player.name
-        END AS 'name', avg(game.victoria) AS 'victory_rate'
+        END AS 'name', COUNT(game.id) AS 'number_games', AVG(game.victoria) AS 'victory_rate'
         FROM player LEFT JOIN game ON player.id=game.player
         GROUP BY player.id`;
 
@@ -31,7 +31,7 @@ const getLoser = async (req,res) => {
         CASE
             WHEN player.name IS NULL THEN 'ANÒNIM'
             ELSE player.name
-        END AS 'name', avg(game.victoria) AS 'victory_rate'
+        END AS 'name', COUNT(game.id) AS 'number_games', AVG(game.victoria) AS 'victory_rate'
         FROM player JOIN game ON player.id=game.player
         GROUP BY player.id ORDER BY victory_rate ASC LIMIT 1;`;
     try {
