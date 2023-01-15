@@ -28,7 +28,7 @@ const postPlayers = async (req,res) => {
             return res.status(200).json(req.body)
         }
         const newPlayer = await Player.create({name: req.body.name, email: req.body.email, password: req.body.password})
-        res.status(201).json(newPlayer.name)
+        res.status(201).json({id: newPlayer.id, name: newPlayer.name})
     }catch(error){res.status(500).send(error)}
 }
 
