@@ -19,7 +19,7 @@ const Player = sequelize.define("player", {
         comment: '0: Administrador, 1: User normal'
     },
     password: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(65),
         allowNull: false
     },
     email: {

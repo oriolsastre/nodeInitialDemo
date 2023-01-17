@@ -10,4 +10,6 @@ const db = {
     name: process.env.DATABASE_NAME || 'daus'
 }
 
-module.exports = { port, db }
+const JWT_Secret = process.env.JW_Secret || 'JocDeDaus';
+
+module.exports = { port, db, JWT_Secret }
