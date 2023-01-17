@@ -1,9 +1,11 @@
 const router = require('express').Router();
 
-const { postLogin } = require('../controllers/login');
-const { noMethod } = require('../controllers/errorHandler')
+const { postLogin, postLoginUser } = require('../controllers/login');
+const { authJWTMW } = require('../middlewares/authJWT');
+const { noMethod } = require('../controllers/errorHandler');
 
-router.post('/', postLogin);
+router.post('/', authJWTMW, postLogin)
+router.post('/user', postLoginUser);
 
 router.use(noMethod)
 

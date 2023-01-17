@@ -4,9 +4,11 @@ const { compare, basicUserPswd } = require('../helpers/password')
 const { handleErrorResponse } = require('../helpers/error')
 const { tokenSign } = require('../helpers/jwt')
 
-
-
 const postLogin = async (req,res) => {
+    res.status(200).json({token:''})
+}
+
+const postLoginUser = async (req,res) => {
     try {
         if(!req.headers.authorization){return res.status(401).json({Error: "You must provide a user and password"})}
         const [user, password] = basicUserPswd(req.headers.authorization)
@@ -21,4 +23,4 @@ const postLogin = async (req,res) => {
     } catch (error) { handleErrorResponse(res, error) }
 }
 
-module.exports = { postLogin }
+module.exports = { postLogin, postLoginUser }

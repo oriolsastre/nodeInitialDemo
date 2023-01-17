@@ -6,16 +6,15 @@ const { JWT_Secret } = require('../config/config')
  * @param {*} player Objecte Player
  */
 const tokenSign = (player) => {
-    const sign = jwt.sign({
+    return jwt.sign({
         id: player.id,
         name: player.name
     },
     JWT_Secret,
-    {expiresIn:"2h"})
-    return sign;
+    {expiresIn:"2h"});
 }
 
-const verifyToken = async (tokenJWT) => {
+const verifyToken = (tokenJWT) => {
     try {
         return jwt.verify(tokenJWT, JWT_Secret)
     } catch (error) {
