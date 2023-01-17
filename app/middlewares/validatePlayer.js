@@ -1,4 +1,4 @@
-const { check, validationResult } = require('express-validator');
+/* const { check, validationResult } = require('express-validator');
 
 const validatePlayer = [
     check('name').isLength({min: 1, max: 25}),
@@ -13,6 +13,16 @@ const validatePlayer = [
             return res.status(403).json({errors: err.array()})
         }
     }
-];
+]; */
+/**
+ * Treu els espais del nom d'usuari. Si un usuari només consiteix d'espais aleshores serà null i tractat d'anònim
+ */
+const emptyNameMW = (req,res,next) => {
+    if(req.body.name){
+        req.body.name = req.body.name.replace( /\s/g, '');
+        if(req.body.name == ''){req.body.name=null;}
+    }
+    return next();
+}
 
-module.exports = { validatePlayer }
+module.exports = { emptyNameMW }
