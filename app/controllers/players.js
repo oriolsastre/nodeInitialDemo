@@ -3,6 +3,8 @@ const { sequelize } = require('../utils/database');
 const Player = require('../models/Player');
 //const { validationResult } = require('express-validator')
 
+const { encrypt } = require('../helpers/password')
+
 const getPlayers = async (req, res) => {
     try {
         const sql_allPlayers = `SELECT player.id,
@@ -27,9 +29,11 @@ const postPlayers = async (req,res) => {
             await Player.bulkCreate(newPlayers)
             return res.status(200).json(req.body)
         }
-        const newPlayer = await Player.create({name: req.body.name, email: req.body.email, password: req.body.password})
-        res.status(201).json({id: newPlayer.id, name: newPlayer.name})
-    }catch(error){res.status(500).send(error)}
+        const pswdHash = await encrypt(req.body.password)
+        const newPlayer = await Player.create({...req.body, password: pswdHash})
+        newPlayer.set('password', undefined) //No cal retornar la contrassenya a l'output.
+        res.status(201).json(newPlayer)
+    }catch(error){res.status(500).json({errors: error.message})}
 }
 
 const putPlayers = async (req,res) => {
