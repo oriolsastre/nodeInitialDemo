@@ -4,7 +4,7 @@ const { postLogin, postLoginUser } = require('../controllers/login');
 const { authJWTMW } = require('../middlewares/authJWT');
 const { noMethod } = require('../controllers/errorHandler');
 
-router.post('/', authJWTMW, postLogin)
+router.post('/', postLogin)
 router.post('/user', postLoginUser);
 
 router.use(noMethod)

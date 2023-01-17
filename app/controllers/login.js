@@ -5,7 +5,12 @@ const { handleErrorResponse } = require('../helpers/error')
 const { tokenSign } = require('../helpers/jwt')
 
 const postLogin = async (req,res) => {
-    res.status(200).json({token:''})
+    if(!req.headers.authorization){return res.status(401).json({Error: "You must provide a user and password"})}
+    const [user, password] = basicUserPswd(req.headers.authorization)
+    if(user !== 'Admin' || password !== '1234'){return res.status(401).json({Error: "Wrong credentials"})}
+    const adminUser = {id: '0', name: 'Admin'};
+    const token = tokenSign(adminUser)
+    res.status(200).json({token})
 }
 
 const postLoginUser = async (req,res) => {
