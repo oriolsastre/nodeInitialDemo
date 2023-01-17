@@ -30,9 +30,9 @@ app.get('/', (req, res) => {
                 email: "[email del jugador]",
                 password: "[password]"
               }, restrictions: {
-                name: "Necessari. Ha de ser únic. Si és null se t'anomenarà ANÒNIM.",
+                name: "Ha de ser únic. Si és null se t'anomenarà ANÒNIM. S'eliminen els espais en blanc.",
                 email: "Necessari. Ha de ser únic.",
-                password: "Necessari. Mínim de 8 caràcters i ha de contenir lletres i nombres."
+                password: "Necessari."
               }
             }, output: "Dades del jugador creat."
           }, "PUT /:{id}": {
