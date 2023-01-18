@@ -1,51 +1,37 @@
+# Sprint 4.1
 
-# Node Initial Project
+Descarregar el repositori. Obrir un terminal localitzat a la carpeta del repositori. Primer de tot cal instal·lar les dependències necessàries amb l'ordre:
 
-### Project Structure
+    npm install
 
-Main structure of node.js project. Folders / files:
+I ara podrem iniciar el servidor amb l'API amb l'ordre:
 
-- <b>\_\_tests__</b>. Tests folder. See [Jest Docs](https://jestjs.io/es-ES/docs/configuration) and [Chai Docs](https://www.chaijs.com/)
-- <b>app</b>:
-    - <b>config</b>
-    - <b>controllers</b>
-    - <b>middlewares</b>
-    - <b>models</b>
-    - <b>routes</b>
-    - <b>helpers</b>
-    - <b>app.js</b>. Entry point.
-- <b>package.json</b>.
-- <b>.env</b>. Environment descriptor. See [dotenv doc](https://www.npmjs.com/package/dotenv).
+    npm start
 
-Extras:
-- <b>.eslintrc</b>. Linter JS, static code analyzer. See [EsLint Docs](https://eslint.org/docs/user-guide/configuring/configuration-files).
-- <b>.prettierignore</b>. Code formatter. See [Prettier Config](https://prettier.io/docs/en/configuration.html) and [Prettier Ignore](https://prettier.io/docs/en/ignore.html).
-- <b>.ecosystem.config.js</b>. Process Manage at runtime. See [PM2 Docs](https://pm2.keymetrics.io/).
+Obrim un navegador com el Firefox i el Chrome i anem a l'adreça: localhost:3000
 
-### Import project for use with Visual Studio Code
+Alternativament, si fos necessari, es pot canviar el port amb variables d'entorn. Només cal afegir un fitxer anomenat _.env_ a la carpeta base i definir el port d'entrada d'express "EXPRESS_PORT=####" i el port desitjat. Per defecte es tria el 3000. Es pot seguir l'estructura del fitxer _.env-template_ com a referència.
 
-Follow the steps below:
-* Clone the project from the Github Platform. Execute:
-  ```
-  git clone [url project]
-  ```
-* Open the project downloaded.
-  ![Open Project](img/VSC_open.png)
+Tenir en compte que la col·lecció de Postman per a provar els endpoints utilitza el port 3000.
 
+## API
 
-### Import project for use with WebStorm
+### GET /user
 
-Follow the steps below:
-* Clone the project from the Github Platform. Execute:
-  ```
-  git clone [url project]
-  ```
-* Open the project downloaded.
-![Open Project](img/webstorm_open.png)
+Retorna un JSON amb el nom, edat i URL des d'on es fa la petició.
 
+### POST /upload
 
-### Utilities
+Pujar una imatge al sevidor. El fitxer va al body amb la clau "_fitxer_". Formats acceptats són _jpg_, _png_ i _gif_.
 
-* [Node Developers Guide](https://nodejs.dev/learn)
-* **.gitignore file** configuration. See [Official Docs](https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files).
-* **Git branches**. See [Official Docs](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell)
+### POST /time
+
+És necessària una autenticació bàsica amb un usuari i contrassenya. L'usuari i contrassenya que s'han d'usar són "Admin" i "1234" respectivament. En cas que sigui correcte es reb de resposta un JSON amb la data i hora actuals.
+
+S'afageix la capçalera _"Cache-control: no-cache"_ i s'habilita _CORS_.
+
+### GET /pokemon/{id}
+
+En cas d'enviar una id vàlida, és a dir un nombre enter, es retorna les dades de nom, alçada i pes del pokémon en qüestió.
+
+L'alçada és en decímetres i el pes en hectograms.

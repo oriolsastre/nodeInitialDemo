@@ -86,3 +86,6 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+
+/upload
+#Comentari al gitignore que només s'hauria d'actualitzar a la branca sprint4_1
