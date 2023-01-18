@@ -7,20 +7,13 @@ const cacheControl = (req, res, next) => {
 
 const autoritzacio = (req, res, next) => {
     const noAutoritzat = motiu => res.status(401).json({Error: motiu});
-    if(!req.headers.authorization){noAutoritzat("No s'han rebut credencials")}
-    else{
-        const credencials = b64toasc(req.headers.authorization)
-        const [usuari, pswd] = userPswd(credencials)
-        if(credencials == ":"){noAutoritzat("No s'han rebut credencials")}
-        else if(usuari.length === 0 || pswd.length === 0){noAutoritzat("Falta l'usuari o la contrassenya")}
-        else{next();}
-    }
+    if(!req.headers.authorization){return noAutoritzat("No s'han rebut credencials")}
+    const credencials = b64toasc(req.headers.authorization)
+    const [usuari, pswd] = userPswd(credencials)
+    if(credencials == ":"){return noAutoritzat("No s'han rebut credencials")}
+    else if(usuari.length === 0 || pswd.length === 0){return noAutoritzat("Falta l'usuari o la contrassenya")}
+    else if(usuari !== 'Admin' || pswd !== '1234'){return noAutoritzat("Usuari o contrassenya incorrectes")}
+    next();
 }
 
-const bodyUser = (req, res, next) => {
-    if(!req.body || !req.body.user){res.status(400).json({Error: "No s'ha enviat objecte JSON amb un user al body."})}
-    else{next();}
-}
-
-
-module.exports = { cacheControl, autoritzacio, bodyUser }
+module.exports = { cacheControl, autoritzacio }

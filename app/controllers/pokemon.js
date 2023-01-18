@@ -5,14 +5,14 @@ const getPokemon = (req,res) => {
 }
 const getPokemonID = async (req,res) => {
     const pokeID = req.params.id;
-    if(isNaN(pokeID)){res.status(400).send({Error: "ID invàlida. Ha de ser un nombre."})}  
+    if(isNaN(pokeID)){res.status(400).json({Error: "ID invàlida. Ha de ser un nombre."})}  
     
     var pokeAPIuri = `https://pokeapi.co/api/v2/pokemon/${pokeID}`;
     const resposta = await fetch(pokeAPIuri);
     if(resposta.status === 404){ res.status(404).json({Error: "Pokemon no trobat."}) }
     else{
         const pokemonRaw = await resposta.json();
-        res.status(200).send({
+        res.status(200).json({
             nom: pokemonRaw.name,
             alçada: pokemonRaw.height,
             pes: pokemonRaw.weight
