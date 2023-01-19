@@ -12,14 +12,18 @@ const sequelize = new Sequelize(db.name, db.user, db.password, {
 })
 
 //crear la base de dades en cas que no existeixi. El sequelize només es connecta, no crea.
-const createDB = async () => {
-    const dbcnx = await mysql2.createConnection({
-        host: db.host,
-        port: db.port,
-        user: db.user,
-        password: db.password
-    })
-    await dbcnx.query(`CREATE DATABASE IF NOT EXISTS \`${db.name}\``)
+const createDB = async (lang='mysql') => {
+    if(lang==='mysql'){
+        const dbcnx = await mysql2.createConnection({
+            host: db.host,
+            port: db.port,
+            user: db.user,
+            password: db.password
+        })
+        await dbcnx.query(`CREATE DATABASE IF NOT EXISTS \`${db.name}\``)
+    }else if(lang==='mongo'){
+        //crear db de mongo
+    }
 }
 
 module.exports = { createDB, sequelize };

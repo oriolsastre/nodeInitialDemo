@@ -1,9 +1,9 @@
 const express = require('express')
-const { port } = require('./config/config')
+const { port, db } = require('./config/config')
 const { designDB } = require('./utils/designDB')
-const { pageNotFound } = require('./controllers/errorHandler')
+const { pageNotFound } = require('./controllers/errorHandler');
 
-designDB();
+designDB(db.lang)
 const app = express()
 app.use(express.json())
 
@@ -90,5 +90,5 @@ app.get('/', (req, res) => {
 app.use(pageNotFound)
 
 app.listen(port, () => {
-    console.log(`Servidor corrent al port ${port}`)
+    console.log(`Servidor corrent al port ${port} usant ${db.lang}`)
 })

@@ -6,6 +6,8 @@
   "scripts": {
     "start": "node app/app.js",
     "dev": "nodemon app/app.js",
+    "mysql": "set DB_ENV=mysql && node app/app.js",
+    "mongo": "set DB_ENV=mongo && node app/app.js",
     "test": "jest"
   },
   "author": "Oriol Sastre",

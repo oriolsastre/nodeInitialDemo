@@ -7,7 +7,8 @@ const db = {
     port: process.env.DATABASE_PORT || 3306,
     user: process.env.DATABASE_USER || 'root',
     password: process.env.DATABASE_PASSWORD || '1234',
-    name: process.env.DATABASE_NAME || 'daus'
+    name: process.env.DATABASE_NAME || 'daus',
+    lang: process.env.DB_ENV || 'mysql'
 }
 
 const JWT_Secret = process.env.JW_Secret || 'JocDeDaus';
