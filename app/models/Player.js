@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const { sequelize } = require('../utils/database');
+const { sequelize } = require('../utils/dbMySQL');
 
 const Player = sequelize.define("player", {
     id: {
@@ -24,7 +24,6 @@ const Player = sequelize.define("player", {
     },
     email: {
         type: Sequelize.STRING(100),
-        allowNull: false,
         unique: true
     }
 });

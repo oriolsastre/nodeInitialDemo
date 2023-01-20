@@ -1,9 +1,9 @@
 const express = require('express')
-const { port, db } = require('./config/config')
+const { port, dbLang } = require('./config/config')
 const { designDB } = require('./utils/designDB')
 const { pageNotFound } = require('./controllers/errorHandler');
 
-designDB(db.lang)
+designDB(dbLang)
 const app = express()
 app.use(express.json())
 
@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
   res.json({
     api: "API rest Sprint4_2.",
     description: "API que dona suport a un joc de daus. Tires dos daus de 6 cares. Si la suma és igual a 7 guanyes, si no perds.",
-    credentials: "Per a accedir als endpoints necessitaràs un token que obtindràs a l'endpoint /login, usant una Basic Authentication amb Usuari: 'Admin' i Contrassenya '1234'.",
+    credentials: "Per a accedir als endpoints necessitaràs un token que obtindràs a l'endpoint /login, usant una Basic Authentication amb Usuari: 'Admin' i la contrassenya que hagis triat al fitxer .env.",
     endpoints: {
       "/players": {
         methods: {
@@ -77,8 +77,8 @@ app.get('/', (req, res) => {
       }, "/login": {
         methods: {
           POST: {
-            description: "Identifica't com a administrador per a obtenir un token i poder accedir als endpoints anteriors. Les credencials són Usuari: 'Admin', Contrassenya: '1234'",
-            input: "Basic Authentication amb l'usuari i contrassenya 'Admin', '1234'.",
+            description: "Identifica't com a administrador per a obtenir un token i poder accedir als endpoints anteriors. Les credencials són Usuari: 'Admin' i la contrassenya que hagis triat al fitxer .env.",
+            input: "Basic Authentication amb l'usuari i contrassenya 'Admin', p.e. '1234'.",
             output: "Token per a accedir als endpoints anteriors."
           }
         }
@@ -90,5 +90,5 @@ app.get('/', (req, res) => {
 app.use(pageNotFound)
 
 app.listen(port, () => {
-    console.log(`Servidor corrent al port ${port} usant ${db.lang}`)
+    console.log(`Servidor corrent al port ${port} usant ${dbLang}`)
 })

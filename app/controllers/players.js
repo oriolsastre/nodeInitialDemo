@@ -1,5 +1,5 @@
 const { QueryTypes } = require('sequelize')
-const { sequelize } = require('../utils/database');
+const { sequelize } = require('../utils/dbMySQL');
 const Player = require('../models/Player');
 //const { validationResult } = require('express-validator')
 
