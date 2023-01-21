@@ -2,13 +2,13 @@ require("dotenv").config({ path:__dirname+'/./../../.env'})
 
 const port = process.env.EXPRESS_PORT || 3000;
 
-const dbLang = process.env.DB_ENV || 'mysql';
+const dbLang = process.env.DB_ENV;
 
 const db = {
     mysql: {
         host: process.env.MYSQL_HOST || 'localhost',
         port: process.env.MYSQL_PORT || 3306,
-        user: process.env.MYSQL_USER || 'root',
+        user: process.env.MYSQL_USER,
         password: process.env.MYSQL_PASSWORD,
         name: process.env.MYSQL_NAME || 'daus'
     },

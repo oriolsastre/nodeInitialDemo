@@ -21,10 +21,6 @@ const Player = sequelize.define("player", {
     password: {
         type: Sequelize.STRING(65),
         allowNull: false
-    },
-    email: {
-        type: Sequelize.STRING(100),
-        unique: true
     }
 });
 

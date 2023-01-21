@@ -1,6 +1,11 @@
 const Game = require('../models/Game')
-
-const getGames = async (req,res) => {
+const { dbLang } = require('../config/config')
+/**
+ * Rebre les tirades fetes per un jugador
+ * @param {*} req 
+ * @param {*} res 
+ */
+const getGamesSQL = async (req,res) => {
     const playerID = req.params.id;
     try {
         const allGames = await Game.findAll({attributes: ['dau1','dau2','victoria'], where: {player: playerID}})
@@ -10,7 +15,7 @@ const getGames = async (req,res) => {
     }catch(error) {res.status(500).json(error)}
 }
 
-const postGames = async (req,res) => {
+const postGamesSQL = async (req,res) => {
     const playerID = req.params.id;
     const dau1 = Math.ceil(Math.random()*6)
     const dau2 = Math.ceil(Math.random()*6)
@@ -20,7 +25,7 @@ const postGames = async (req,res) => {
     }catch(error){res.status(500).json(error)}  
 }
 
-const deleteGames = async (req,res) => {
+const deleteGamesSQL = async (req,res) => {
     const playerID = req.params.id;
     try {
         await Game.destroy({where: {player: playerID}})
@@ -28,4 +33,12 @@ const deleteGames = async (req,res) => {
     } catch (error) {res.status(500).json(error)}
 }
 
-module.exports = { getGames, postGames, deleteGames }
+if(dbLang === 'mysql'){
+    exports.getGames = getGamesSQL;
+    exports.postGames = postGamesSQL;
+    exports.deleteGames = deleteGamesSQL;
+}else if(dbLang === 'mongo'){
+    exports.getGames = getGamesSQL;
+    exports.postGames = postGamesSQL;
+    exports.deleteGames = deleteGamesSQL;
+}

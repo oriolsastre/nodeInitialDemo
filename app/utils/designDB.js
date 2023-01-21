@@ -1,6 +1,6 @@
 const { encrypt } = require('../helpers/password')
 
-const designDB = async (lang='mysql') => {
+const designDB = async (lang) => {
     if(lang==='mysql'){
         const { sequelize } = require('./dbMySQL');
         const Player = require('../models/Player');
@@ -21,16 +21,18 @@ const designDB = async (lang='mysql') => {
         const Players = require('../models/Mongo/Players')
         
         connectMongo()
-        console.log("S'ha fet la connexió");
-        const admin = await Players.find({name: 'Admin'})
-        if(admin.length === 0){
+        const admin = await Players.findOne({name: 'Admin'})
+        if(admin === null){
             const pswdAdmin = process.env.ADMIN_PASSWORD || '1234';
             const pswdHash = await encrypt(pswdAdmin)
-            Players.create({id:(admin.length+1), name: 'Admin', password: pswdHash, level: 0}, (err) => {
+            Players.create({id:0, name: 'Admin', password: pswdHash, level: 0}, (err) => {
                 if(err) console.log(err)
             })
             console.log("S'ha afegit un administrador");
         }
+    }else{
+        console.log("No s'ha pogut connectar a cap base de dades. Has d'iniciar l'API amb los ordres 'npm run mysql' o 'npm run mongo'");
+        process.exit(0)
     }
 }
 
