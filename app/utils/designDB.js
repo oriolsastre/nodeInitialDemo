@@ -18,14 +18,14 @@ const designDB = async (lang) => {
         }
     }else if(lang==='mongo'){
         const connectMongo = require('./dbMongo');
-        const Players = require('../models/Mongo/Players')
+        const Player = require('../models/Mongo/Player')
         
         connectMongo()
-        const admin = await Players.findOne({name: 'Admin'})
+        const admin = await Player.findOne({name: 'Admin'})
         if(admin === null){
             const pswdAdmin = process.env.ADMIN_PASSWORD || '1234';
             const pswdHash = await encrypt(pswdAdmin)
-            Players.create({id:0, name: 'Admin', password: pswdHash, level: 0}, (err) => {
+            Player.create({id:0, name: 'Admin', password: pswdHash, level: 0}, (err) => {
                 if(err) console.log(err)
             })
             console.log("S'ha afegit un administrador");

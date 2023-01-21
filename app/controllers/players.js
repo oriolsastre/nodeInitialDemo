@@ -4,7 +4,7 @@ if(dbLang === 'mysql'){
     var { sequelize } = require('../utils/dbMySQL');
     var Player = require('../models/Player');
 }else if(dbLang === 'mongo'){
-    var Players = require('../models/Mongo/Players');
+    var Player = require('../models/Mongo/Player');
 }
 
 //const { validationResult } = require('express-validator')
@@ -71,7 +71,7 @@ const deletePlayersSQL = async (req, res) => {
 /***** CONTROLADORS PER MONGO *****/
 const getPlayersMongo = async (req,res) => {
     try {
-        const allPlayers = await Players.find({id: {$gt: 0}})
+        const allPlayers = await Player.find({id: {$gt: 0}})
         if(allPlayers.length === 0){return res.status(200).json({message: "No Players registered"})}
         let showPlayers = [];
         for(let player of allPlayers){
@@ -86,9 +86,9 @@ const getPlayersMongo = async (req,res) => {
 
 const postPlayersMongo = async (req,res) => {
     try {
-        const newID = (await Players.find({})).length;
+        const newID = (await Player.find({})).length;
         const pswdHash = await encrypt(req.body.password)
-        const newPlayer = await Players.create({...req.body, id: newID, password: pswdHash})
+        const newPlayer = await Player.create({...req.body, id: newID, password: pswdHash})
         res.status(201).json({id: newPlayer.id, name: newPlayer.name, createdAt: newPlayer.createdAt})
     } catch (error) {res.status(500).json(error.message)}
 }
