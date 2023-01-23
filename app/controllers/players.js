@@ -1,16 +1,30 @@
 const { dbLang } = require('../config/config')
+let Player;
 if(dbLang === 'mysql'){
     var { QueryTypes } = require('sequelize')
     var { sequelize } = require('../utils/dbMySQL');
-    var Player = require('../models/Player');
+    Player = require('../models/Player');
 }else if(dbLang === 'mongo'){
-    var Player = require('../models/Mongo/Player');
+    Player = require('../models/Mongo/Player');
 }
-
 //const { validationResult } = require('express-validator')
 
-const { encrypt } = require('../helpers/password')
+/********** CONTROLADORS UNIFICATS **********/
+const postPlayers = async (req,res) => {
+    const { encrypt } = require('../helpers/password')
+    try{
+        const pswdHash = await encrypt(req.body.password)
+        let newPlayerQuery = {...req.body, password: pswdHash};
+        if(dbLang==='mongo'){
+            const newID = (await Player.find({})).length
+            newPlayerQuery.id = newID;
+        }
+        const newPlayer = await Player.create(newPlayerQuery)
+        res.status(201).json({id: newPlayer.id, name: newPlayer.name, createdAt: newPlayer.createdAt})
+    }catch(error){res.status(500).json({errors: error.message})}
+}
 
+/********** CONTROLADORS MySQL **********/
 const getPlayersSQL = async (req, res) => {
     try {
         const sql_allPlayers = `SELECT player.id,
@@ -26,21 +40,6 @@ const getPlayersSQL = async (req, res) => {
         if(allPlayers.length === 0){return res.status(200).json({message: "No Players registered"})}
         res.status(200).json({players: allPlayers})
     }catch(error){res.status(500).json(error)}
-}
-
-const postPlayersSQL = async (req,res) => {
-    try{
-        //console.log(req.body instanceof Array);
-        if((typeof req.body === 'array' || req.body instanceof Array)){
-            const newPlayers = req.body;
-            await Player.bulkCreate(newPlayers)
-            return res.status(200).json(req.body)
-        }
-        const pswdHash = await encrypt(req.body.password)
-        const newPlayer = await Player.create({...req.body, password: pswdHash})
-        newPlayer.set('password', undefined) //No cal retornar la contrassenya a l'output.
-        res.status(201).json(newPlayer)
-    }catch(error){res.status(500).json({errors: error.message})}
 }
 
 const putPlayersSQL = async (req,res) => {
@@ -68,7 +67,7 @@ const deletePlayersSQL = async (req, res) => {
     }catch(err){res.status(500).json({error: err.array()})}
 }
 
-/***** CONTROLADORS PER MONGO *****/
+/********** CONTROLADORS MONGO **********/
 const getPlayersMongo = async (req,res) => {
     try {
         const allPlayers = await Player.find({id: {$gt: 0}})
@@ -84,23 +83,13 @@ const getPlayersMongo = async (req,res) => {
     }
 }
 
-const postPlayersMongo = async (req,res) => {
-    try {
-        const newID = (await Player.find({})).length;
-        const pswdHash = await encrypt(req.body.password)
-        const newPlayer = await Player.create({...req.body, id: newID, password: pswdHash})
-        res.status(201).json({id: newPlayer.id, name: newPlayer.name, createdAt: newPlayer.createdAt})
-    } catch (error) {res.status(500).json(error.message)}
-}
-
+exports.postPlayers = postPlayers;
 if(dbLang === 'mysql'){
     exports.getPlayers = getPlayersSQL;
-    exports.postPlayers = postPlayersSQL;
     exports.putPlayers = putPlayersSQL;
     exports.deletePlayers = deletePlayersSQL;
 }else if(dbLang === 'mongo'){
     exports.getPlayers = getPlayersMongo;
-    exports.postPlayers = postPlayersMongo;
     exports.putPlayers = putPlayersSQL;
     exports.deletePlayers = deletePlayersSQL;
 }
