@@ -24,6 +24,23 @@ const postPlayers = async (req,res) => {
     }catch(error){res.status(500).json({errors: error.message})}
 }
 
+const putPlayers = async (req,res) => {
+    const playerID = req.params.id;
+    try{
+        if(req.body.name){
+            const newName = req.body.name;
+            if(dbLang==='mysql'){await Player.update({name: newName}, {where: {id: playerID}})}
+            else if(dbLang==='mongo'){await Player.updateOne({id: playerID}, {name: newName})}
+            return res.status(200).json({id: playerID, newName: newName})
+        }
+        res.status(400).json({Error: "You are only allowed to change your name", solution: "Give me your new name like this: {name: [new name]}"})
+        
+    }catch(error){
+        if(error.name == 'SequelizeUniqueConstraintError'){return res.status(409).json({Error: "This name is already in use."})}
+        res.status(500).json(error)
+    }
+}
+
 /********** CONTROLADORS MySQL **********/
 const getPlayersSQL = async (req, res) => {
     try {
@@ -40,22 +57,6 @@ const getPlayersSQL = async (req, res) => {
         if(allPlayers.length === 0){return res.status(200).json({message: "No Players registered"})}
         res.status(200).json({players: allPlayers})
     }catch(error){res.status(500).json(error)}
-}
-
-const putPlayersSQL = async (req,res) => {
-    const playerID = req.params.id;
-    try{
-        if(req.body.name){
-            const newName = req.body.name;
-            await Player.update( {name: newName}, {where: {id: playerID}})
-            return res.status(200).json({id: playerID, newName: newName})
-        }
-        res.status(400).json({Error: "You are only allowed to change your name", solution: "Give me your new name like this: {name: [new name]}"})
-        
-    }catch(error){
-        if(error.name == 'SequelizeUniqueConstraintError'){return res.status(409).json({Error: "This name is already in use."})}
-        res.status(500).json(error)
-    }
 }
 
 /* No és necessari aquest últim */
@@ -84,12 +85,11 @@ const getPlayersMongo = async (req,res) => {
 }
 
 exports.postPlayers = postPlayers;
+exports.putPlayers = putPlayers;
 if(dbLang === 'mysql'){
     exports.getPlayers = getPlayersSQL;
-    exports.putPlayers = putPlayersSQL;
     exports.deletePlayers = deletePlayersSQL;
 }else if(dbLang === 'mongo'){
     exports.getPlayers = getPlayersMongo;
-    exports.putPlayers = putPlayersSQL;
     exports.deletePlayers = deletePlayersSQL;
 }
