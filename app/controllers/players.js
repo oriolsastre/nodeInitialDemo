@@ -7,7 +7,6 @@ if(dbLang === 'mysql'){
 }else if(dbLang === 'mongo'){
     Player = require('../models/Mongo/Player');
 }
-//const { validationResult } = require('express-validator')
 
 /********** CONTROLADORS UNIFICATS **********/
 const postPlayers = async (req,res) => {
@@ -40,6 +39,15 @@ const putPlayers = async (req,res) => {
         res.status(500).json(error)
     }
 }
+/* Aquest no és necessari */
+const deletePlayers = async (req, res) => {
+    const playerID = req.params.id;
+    try{
+        if(dbLang==='mysql'){await Player.destroy({where: {id: playerID}})}
+        else if(dbLang==='mongo'){await Player.deleteOne({id: playerID})}
+        res.status(200).json({message: "Jugador eliminat correctament"})
+    }catch(err){res.status(500).json({err})}
+}
 
 /********** CONTROLADORS MySQL **********/
 const getPlayersSQL = async (req, res) => {
@@ -57,15 +65,6 @@ const getPlayersSQL = async (req, res) => {
         if(allPlayers.length === 0){return res.status(200).json({message: "No Players registered"})}
         res.status(200).json({players: allPlayers})
     }catch(error){res.status(500).json(error)}
-}
-
-/* No és necessari aquest últim */
-const deletePlayersSQL = async (req, res) => {
-    const playerID = req.params.id;
-    try{
-        await Player.destroy({where: {playerID: playerID}})
-        res.status(200).json({message: "Jugador eliminat correctament"})
-    }catch(err){res.status(500).json({error: err.array()})}
 }
 
 /********** CONTROLADORS MONGO **********/
@@ -86,10 +85,6 @@ const getPlayersMongo = async (req,res) => {
 
 exports.postPlayers = postPlayers;
 exports.putPlayers = putPlayers;
-if(dbLang === 'mysql'){
-    exports.getPlayers = getPlayersSQL;
-    exports.deletePlayers = deletePlayersSQL;
-}else if(dbLang === 'mongo'){
-    exports.getPlayers = getPlayersMongo;
-    exports.deletePlayers = deletePlayersSQL;
-}
+exports.deletePlayers = deletePlayers;
+if(dbLang === 'mysql'){exports.getPlayers = getPlayersSQL;}
+else if(dbLang === 'mongo'){exports.getPlayers = getPlayersMongo;}
