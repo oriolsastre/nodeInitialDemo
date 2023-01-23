@@ -1,28 +1,17 @@
-/* const { check, validationResult } = require('express-validator');
-
-const validatePlayer = [
-    check('name').isLength({min: 1, max: 25}),
-    check('level').isInt,
-    check('password').exists().notEmpty().isLength({min:7, max:30}),
-    check('email').exists().isEmail().notEmpty().isLength({max:100}),
-    (req,res,next) => {
-        try {
-            validationResult(req).throw();
-            return next();
-        } catch (error) {
-            return res.status(403).json({errors: err.array()})
-        }
-    }
-]; */
 /**
- * Treu els espais del nom d'usuari. Si un usuari només consiteix d'espais aleshores serà null i tractat d'anònim
+ * Comprova que si es vol crear un player amb rol d'admin (level=0), ha de tenir un nom i una contrassenya
+ * Treu els espais i els : del nom d'usuari. Si un usuari només consiteix d'espais i : aleshores serà null i tractat d'anònim.
  */
-const emptyNameMW = (req,res,next) => {
+const emptyValues = (req,res,next) => {
+    if(!req.body.level) req.body.level=1
     if(req.body.name){
-        req.body.name = req.body.name.replace( /\s/g, '');
-        if(req.body.name.length===0){req.body.name=null;}
+        req.body.name = req.body.name.replace( /\s|:/g, '');
+        if(req.body.name.length===0) req.body.name=null
+    }
+    if(req.body.level===0){
+        if ((!req.body.password||req.body.password===null) || (!req.body.name||req.body.name===null)) return res.status(400).json({Error: "You can not create a player with admin status without a name and a password"})
     }
     return next();
 }
 
-module.exports = { emptyNameMW }
+module.exports = { emptyValues }
