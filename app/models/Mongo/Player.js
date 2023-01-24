@@ -40,11 +40,14 @@ const playerSchema = new mongoose.Schema({
     timestamps: true,
     versionKey: false
 })
-playerSchema.methods.victory_rate = () => {
+//HAN DE SER FUNCTIONS I NO PAS ARROW FUNCTIONS!!!
+//https://medium.com/@lucasdavidferrero/dont-use-arrow-functions-when-you-use-mongoose-schema-method-190b79f1640c
+//2 hores perdent el temps amb això...
+playerSchema.methods.victory_rate = function(){
     if(this.games === undefined || this.games.length===0){return null}
-    const sumaVictoria = this.games.reduce((acc,cur) => acc+cur, 0)
+    const sumaVictoria = this.games.reduce((acc,cur) => acc+cur.victoria,0)
     return sumaVictoria/this.games.length;
 }
-playerSchema.methods.games_played = () => this.games === undefined ? 0 : this.games.length;
+playerSchema.methods.games_played = function(){this.games === undefined ? 0 : this.games.length;}
 
 module.exports = mongoose.model('players', playerSchema)

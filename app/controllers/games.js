@@ -1,5 +1,9 @@
-const Game = require('../models/Game')
+let Game, Player;
 const { dbLang } = require('../config/config')
+const tirarDaus = require('../helpers/daus')
+if(dbLang==='mysql'){ Game = require('../models/Game') }
+else if(dbLang==='mongo'){ Player = require('../models/Mongo/Player')}
+
 /**
  * Rebre les tirades fetes per un jugador
  * @param {*} req 
@@ -15,14 +19,19 @@ const getGamesSQL = async (req,res) => {
     }catch(error) {res.status(500).json(error)}
 }
 
-const postGamesSQL = async (req,res) => {
+const postGames = async (req,res) => {
     const playerID = req.params.id;
-    const dau1 = Math.ceil(Math.random()*6)
-    const dau2 = Math.ceil(Math.random()*6)
+    let tirada = tirarDaus();
     try{
-        const newGame = await Game.create({dau1: dau1, dau2: dau2, victoria: dau1+dau2===7, player: playerID})
-        res.status(201).json(newGame)
-    }catch(error){res.status(500).json(error)}  
+        if(dbLang==='mysql'){
+            tirada.player = playerID;
+            await Game.create(tirada)
+        }else if(dbLang==='mongo'){
+            await Player.findOneAndUpdate({id: playerID}, {$push: {games: tirada}})
+            tirada.player = playerID;
+        }
+        res.status(201).json(tirada)
+    }catch(error){res.status(500).json(error.message)}  
 }
 
 const deleteGamesSQL = async (req,res) => {
@@ -33,12 +42,11 @@ const deleteGamesSQL = async (req,res) => {
     } catch (error) {res.status(500).json(error)}
 }
 
+exports.postGames = postGames;
 if(dbLang === 'mysql'){
     exports.getGames = getGamesSQL;
-    exports.postGames = postGamesSQL;
     exports.deleteGames = deleteGamesSQL;
 }else if(dbLang === 'mongo'){
     exports.getGames = getGamesSQL;
-    exports.postGames = postGamesSQL;
     exports.deleteGames = deleteGamesSQL;
 }
