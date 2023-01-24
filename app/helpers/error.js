@@ -1,6 +1,7 @@
 const handleErrorResponse = (res, error, code=401) => {
-    console.log("Error", error);
-    res.status(code).json({Error: error})
+    if(typeof error === 'string'){return res.status(code).json({error: error})}
+
+    return res.status(code).json({error: error.message})
 }
 
 module.exports = { handleErrorResponse }
