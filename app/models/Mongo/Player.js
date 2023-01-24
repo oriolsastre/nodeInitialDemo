@@ -33,8 +33,10 @@ const playerSchema = new mongoose.Schema({
         },
         createdAt: {
             type: Date,
-            default: new Date()
-        }
+            default: new Date(),
+            select:false
+        },
+        _id: {select: false}
     }]
 },{
     timestamps: true,
