@@ -23,4 +23,9 @@ const Player = sequelize.define("player", {
     }
 });
 
+Player.prototype.getName = function(){
+    if(this.name === null || this.name.length===0){return "ANÒNIM/A"}
+    return this.name
+}
+
 module.exports = Player;

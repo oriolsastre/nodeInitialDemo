@@ -42,9 +42,13 @@ const playerSchema = new mongoose.Schema({
     timestamps: true,
     versionKey: false
 })
-//HAN DE SER FUNCTIONS I NO PAS ARROW FUNCTIONS!!!
+//HAN DE SER FUNCTIONS I NO PAS ARROW FUNCTIONS!!! si no, no poden llegir els this correctament.
 //https://medium.com/@lucasdavidferrero/dont-use-arrow-functions-when-you-use-mongoose-schema-method-190b79f1640c
 //2 hores perdent el temps amb això...
+playerSchema.methods.getName = function(){
+    if(this.name === null || this.name.length===0){return "ANÒNIM/A"}
+    return this.name
+}
 playerSchema.methods.victory_rate = function(){
     if(this.games === undefined || this.games.length===0){return null}
     const sumaVictoria = this.games.reduce((acc,cur) => acc+cur.victoria,0)

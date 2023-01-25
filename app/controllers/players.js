@@ -19,7 +19,7 @@ const postPlayers = async (req,res) => {
             newPlayerQuery.id = newID;
         }
         const newPlayer = await Player.create(newPlayerQuery)
-        res.status(201).json({id: newPlayer.id, name: newPlayer.name, createdAt: newPlayer.createdAt})
+        res.status(201).json({id: newPlayer.id, name: newPlayer.getName(), createdAt: newPlayer.createdAt})
     }catch(error){res.status(500).json({errors: error.message})}
 }
 
@@ -58,13 +58,12 @@ const getPlayersSQL = async (req, res) => {
             ELSE player.name
         END AS 'name', avg(game.victoria) AS 'victory_rate', player.createdAt AS 'createdAt'
         FROM player LEFT JOIN game ON player.id=game.player
-        WHERE name!='Admin'
+        WHERE name!='Admin' OR name IS NULL
         GROUP BY player.id ORDER BY player.id ASC;`;
-        
         const allPlayers = await sequelize.query(sql_allPlayers, {type: QueryTypes.SELECT});
         if(allPlayers.length === 0){return res.status(200).json({message: "No Players registered"})}
         res.status(200).json({players: allPlayers})
-    }catch(error){res.status(500).json(error)}
+    }catch(error){res.status(500).json(error.message)}
 }
 
 /********** CONTROLADORS MONGO **********/
@@ -74,13 +73,10 @@ const getPlayersMongo = async (req,res) => {
         if(allPlayers.length === 0){return res.status(200).json({message: "No Players registered"})}
         let showPlayers = [];
         for(let player of allPlayers){
-            if(player.name === null){player.name='ANÒNIM/A'}
-            showPlayers.push({id: player.id, name: player.name, victory_rate: player.victory_rate(), createdAt: player.createdAt})
+            showPlayers.push({id: player.id, name: player.getName(), victory_rate: player.victory_rate(), createdAt: player.createdAt})
         }
         res.status(200).json({players: showPlayers})
-    } catch (error) {
-        res.status(500).json(error.message)
-    }
+    } catch (error) {res.status(500).json(error.message)}
 }
 
 exports.postPlayers = postPlayers;

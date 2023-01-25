@@ -59,6 +59,7 @@ if(dbLang==='mysql'){
                     total += jugador.number_games;
                     rates += (jugador.victory_rate*jugador.number_games)
                 }
+                if(jugador.name===null || jugador.name.length===0){jugador.name="ANÒNIM/A"}
             }
             const mean_victory_rate = total===0 ? null : rates/total;
             res.status(200).send({ranking: sortedPlayers, mean_victory_rate})
@@ -70,6 +71,7 @@ if(dbLang==='mysql'){
             if(sortedPlayers.length===0) return res.status(200).json(noPlayersMessage)
             const winner = sortedPlayers[0];
             if(winner.number_games===0){return res.status(200).json(noPlayersMessage)}
+            if(winner.name===null || winner.name.length===0){winner.name="ANÒNIM/A"}
             res.status(200).json(winner)
         }catch (error){handleErrorResponse(res,error,500)}
     }
@@ -79,13 +81,16 @@ if(dbLang==='mysql'){
             if(sortedPlayers.length===0) return res.status(200).json(noPlayersMessage)
             let loser = 0;
             while(sortedPlayers.length>0){
+                //haig de mirar que hagi jugat partides
                 let possibleLoser = sortedPlayers.pop();
                 if(possibleLoser.number_games>0){
                     loser = possibleLoser;
                     break;
                 }
             }
-            loser === 0 ? res.status(200).json(noPlayersMessage) : res.status(200).json(loser)
+            if(loser===0){return res.status(200).json(noPlayersMessage)}
+            if(loser.name===null || loser.name.length===0){loser.name="ANÒNIM/A"}
+            res.status(200).json(loser)
         }catch (error){handleErrorResponse(res,error,500)}
     }
     
