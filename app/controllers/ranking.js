@@ -1,6 +1,7 @@
 const { dbLang } = require('../config/config')
 const { handleErrorResponse } = require('../helpers/error')
 const noPlayersMessage = {message: "No players registered, or no players have played a game of dice."}
+/********** CONTROLADOR PER A MYSQL **********/
 if(dbLang==='mysql'){
     const { QueryTypes } = require('sequelize')
     const { sequelize } = require('../utils/dbMySQL');
@@ -46,7 +47,9 @@ if(dbLang==='mysql'){
     }
 
     module.exports = { getRanking, getWinner, getLoser }
-}else if(dbLang==='mongo'){
+}
+/********** CONTROLADOR PER A MONGO **********/
+else if(dbLang==='mongo'){
     const getMongoRanking = require('../helpers/ranking')
     const getRanking = async (req,res) => {
         try {  
@@ -63,8 +66,9 @@ if(dbLang==='mysql'){
             }
             const mean_victory_rate = total===0 ? null : rates/total;
             res.status(200).send({ranking: sortedPlayers, mean_victory_rate})
-        }catch (error){handleErrorResponse(res,error,500)}
+        }catch(error){handleErrorResponse(res,error,500)}
     }
+
     const getWinner = async (req,res) => {
         try {
             const sortedPlayers = await getMongoRanking();
@@ -73,8 +77,9 @@ if(dbLang==='mysql'){
             if(winner.number_games===0){return res.status(200).json(noPlayersMessage)}
             if(winner.name===null || winner.name.length===0){winner.name="ANÒNIM/A"}
             res.status(200).json(winner)
-        }catch (error){handleErrorResponse(res,error,500)}
+        }catch(error){handleErrorResponse(res,error,500)}
     }
+    
     const getLoser = async (req,res) => {
         try {
             const sortedPlayers = await getMongoRanking();
@@ -91,7 +96,7 @@ if(dbLang==='mysql'){
             if(loser===0){return res.status(200).json(noPlayersMessage)}
             if(loser.name===null || loser.name.length===0){loser.name="ANÒNIM/A"}
             res.status(200).json(loser)
-        }catch (error){handleErrorResponse(res,error,500)}
+        }catch(error){handleErrorResponse(res,error,500)}
     }
     
     module.exports = { getRanking, getWinner, getLoser }

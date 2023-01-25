@@ -1,5 +1,6 @@
 let Game, Player;
 const { dbLang } = require('../config/config')
+const { handleErrorResponse } = require('../helpers/error')
 const tirarDaus = require('../helpers/daus')
 if(dbLang==='mysql'){ Game = require('../models/Game') }
 else if(dbLang==='mongo'){ Player = require('../models/Mongo/Player')}
@@ -15,7 +16,7 @@ const getGames = async (req,res) => {
         } 
         if(allGames.length===0) return res.status(400).json({error: "This Player has not played a single game of dice", solution: "Play a game at this same endpoint with a POST request!"})
         res.status(200).json(allGames)
-    }catch(error) {res.status(500).json(error)}
+    }catch(error){handleErrorResponse(res,error,500)}
 }
 
 const postGames = async (req,res) => {
@@ -30,7 +31,7 @@ const postGames = async (req,res) => {
             tirada.player = playerID;
         }
         res.status(201).json(tirada)
-    }catch(error){res.status(500).json(error.message)}  
+    }catch(error){handleErrorResponse(res,error,500)}
 }
 
 const deleteGames = async (req,res) => {
@@ -39,7 +40,7 @@ const deleteGames = async (req,res) => {
         if(dbLang==='mysql'){await Game.destroy({where: {player: playerID}})}
         else if(dbLang==='mongo'){await Player.findOneAndUpdate({id: playerID}, {games: []})}
         res.status(200).json({message: `Games of Player with ID ${playerID} where deleted succesfully`})
-    } catch (error) {res.status(500).json(error)}
+    }catch(error){handleErrorResponse(res,error,500)}
 }
 
 module.exports = { getGames, postGames, deleteGames }

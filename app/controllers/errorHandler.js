@@ -3,7 +3,7 @@ const pageNotFound = (req, res) => {
 }
 
 const noMethod = (req,res) => {
-    res.status(501).json({error: "Method not allowed at this endpoint", solution: "Look at the entry point of the API for the available endpoints and methods."})
+    res.status(405).json({error: "Method not allowed at this endpoint", solution: "Look at the entry point of the API for the available endpoints and methods."})
 }
 
 const noID = (req,res) => {

@@ -7,7 +7,7 @@ const bcryptjs = require('bcryptjs');
  */
 const encrypt =async (pswdPlain) => {
     if(pswdPlain===null || pswdPlain===undefined) return null;
-    const hash = await bcryptjs.hash(pswdPlain,5)
+    const hash = await bcryptjs.hash(pswdPlain.toString(),5)
     return hash;
 }
 /**
