@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "0afe56cd-2b83-46a4-822f-8b0df14cca51",
+		"_postman_id": "c6fd30f6-2b21-4ba7-be92-ba4ec57d30d2",
 		"name": "Sprint 4.2: Daus",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "24921908"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -155,16 +154,6 @@
 				{
 					"name": "Players",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAiLCJuYW1lIjoiQWRtaW4iLCJpYXQiOjE2NzM5NzA0NDIsImV4cCI6MTY3Mzk3NzY0Mn0.ADxW4Y5gsXdJGlVYQnalwGwZUrovQxqSIMhg3QV9sEo",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -180,7 +169,7 @@
 					},
 					"response": [
 						{
-							"name": "Quan encara no s'ha registrat cap jugador",
+							"name": "Mostro els jugadors tot just afegits. Ningú ha jugat cap partida.",
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
@@ -209,15 +198,15 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "35"
+									"value": "283"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"23-Pzq7gn/d3EGQtpBbpebg9Lv3COY\""
+									"value": "W/\"11b-yNITGK9H+n0vjHAC/o7Ov8QkzWc\""
 								},
 								{
 									"key": "Date",
-									"value": "Thu, 12 Jan 2023 15:36:22 GMT"
+									"value": "Thu, 26 Jan 2023 09:06:27 GMT"
 								},
 								{
 									"key": "Connection",
@@ -229,10 +218,10 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"message\": \"No Players registered\"\n}"
+							"body": "{\n    \"players\": [\n        {\n            \"id\": 1,\n            \"name\": \"Oriol\",\n            \"victory_rate\": null,\n            \"createdAt\": \"2023-01-26T09:01:55.308Z\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"ANÒNIM/A\",\n            \"victory_rate\": null,\n            \"createdAt\": \"2023-01-26T09:02:36.825Z\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"AdministradorSeguretat\",\n            \"victory_rate\": null,\n            \"createdAt\": \"2023-01-26T09:04:01.438Z\"\n        }\n    ]\n}"
 						},
 						{
-							"name": "Uns quants jugadors han fet alguna partida",
+							"name": "Alguns jugadors han jugat i guanyat, d'altres han jugat i perdut sempre, i d'altres encara no han jugat mai",
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
@@ -261,15 +250,15 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "167"
+									"value": "295"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"a7-9Vq4LDMklokO0Rz/MKSc6Nu7TvM\""
+									"value": "W/\"127-JwZqmU+j/VDCdUNki33gVRdMhzs\""
 								},
 								{
 									"key": "Date",
-									"value": "Thu, 12 Jan 2023 18:09:54 GMT"
+									"value": "Thu, 26 Jan 2023 09:08:23 GMT"
 								},
 								{
 									"key": "Connection",
@@ -281,80 +270,18 @@
 								}
 							],
 							"cookie": [],
-							"body": "[\n    {\n        \"name\": \"Oriol\",\n        \"victory_rate\": \"0.1290\"\n    },\n    {\n        \"name\": \"Josep\",\n        \"victory_rate\": \"0.0833\"\n    },\n    {\n        \"name\": \"Carles\",\n        \"victory_rate\": \"0.1667\"\n    },\n    {\n        \"name\": \"Albert\",\n        \"victory_rate\": \"0.0000\"\n    }\n]"
-						},
-						{
-							"name": "null != 0. N'Albert ha jugat i perdut sempre, en Lluís encara no ha jugat mai",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "localhost:3000/players",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"players"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "205"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"cd-cspc1Qpb4I32b6pQuq7lDLEjt4U\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 12 Jan 2023 18:10:49 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "[\n    {\n        \"name\": \"Oriol\",\n        \"victory_rate\": \"0.1290\"\n    },\n    {\n        \"name\": \"Josep\",\n        \"victory_rate\": \"0.0833\"\n    },\n    {\n        \"name\": \"Carles\",\n        \"victory_rate\": \"0.1667\"\n    },\n    {\n        \"name\": \"Albert\",\n        \"victory_rate\": \"0.0000\"\n    },\n    {\n        \"name\": \"Lluís\",\n        \"victory_rate\": null\n    }\n]"
+							"body": "{\n    \"players\": [\n        {\n            \"id\": 1,\n            \"name\": \"Oriol\",\n            \"victory_rate\": null,\n            \"createdAt\": \"2023-01-26T09:01:55.308Z\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"ANÒNIM/A\",\n            \"victory_rate\": 0.23809523809523808,\n            \"createdAt\": \"2023-01-26T09:02:36.825Z\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"AdministradorSeguretat\",\n            \"victory_rate\": 0,\n            \"createdAt\": \"2023-01-26T09:04:01.438Z\"\n        }\n    ]\n}"
 						}
 					]
 				},
 				{
 					"name": "Players",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAiLCJuYW1lIjoiQWRtaW4iLCJpYXQiOjE2NzM5NzA0NDIsImV4cCI6MTY3Mzk3NzY0Mn0.ADxW4Y5gsXdJGlVYQnalwGwZUrovQxqSIMhg3QV9sEo",
-									"type": "string"
-								}
-							]
-						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Oriol 3\",\r\n    \"password\": \"Contrassenya\",\r\n    \"email\": \"Oriol3@itacademy.com\" \r\n}",
+							"raw": "{\r\n    \"name\": \"Oriol\",\r\n    \"password\": \"Password\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -380,7 +307,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Oriol\",\r\n    \"password\": \"Contrassenya\",\r\n    \"email\": \"Oriol@itacademy.com\" \r\n}",
+									"raw": "{\r\n    \"name\": \"Oriol\",\r\n    \"password\": \"Contrassenya\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -412,15 +339,15 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "141"
+									"value": "62"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"8d-axl68GGjLxabz4bnCxSYykyyp2c\""
+									"value": "W/\"3e-+bpAihZkBQFU3ZCQRF0IWwMNJac\""
 								},
 								{
 									"key": "Date",
-									"value": "Tue, 17 Jan 2023 16:49:24 GMT"
+									"value": "Thu, 26 Jan 2023 09:01:55 GMT"
 								},
 								{
 									"key": "Connection",
@@ -432,16 +359,16 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"level\": 1,\n    \"id\": 1,\n    \"name\": \"Oriol\",\n    \"email\": \"Oriol@itacademy.com\",\n    \"updatedAt\": \"2023-01-17T16:49:23.834Z\",\n    \"createdAt\": \"2023-01-17T16:49:23.834Z\"\n}"
+							"body": "{\n    \"id\": 1,\n    \"name\": \"Oriol\",\n    \"createdAt\": \"2023-01-26T09:01:55.308Z\"\n}"
 						},
 						{
-							"name": "Afageixo un jugador sense nom",
+							"name": "Afageixo un jugador sense nom. Es mostra ANÒNIM/A, però a la DB es desa com a null",
 							"originalRequest": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": null,\r\n    \"password\": \"Contrassenya\",\r\n    \"email\": \"sensenom@itacademy.com\" \r\n}",
+									"raw": "{\r\n    \"name\": \"\",\r\n    \"password\": \"Password\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -473,15 +400,15 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "141"
+									"value": "66"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"8d-dTawUW6Fi5w9WyQ43Oz6hIuRgAQ\""
+									"value": "W/\"42-5T3td5feu6sLZDJJKF6PtwXRldo\""
 								},
 								{
 									"key": "Date",
-									"value": "Tue, 17 Jan 2023 16:51:26 GMT"
+									"value": "Thu, 26 Jan 2023 09:02:36 GMT"
 								},
 								{
 									"key": "Connection",
@@ -493,28 +420,140 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"level\": 1,\n    \"id\": 6,\n    \"name\": null,\n    \"email\": \"sensenom@itacademy.com\",\n    \"updatedAt\": \"2023-01-17T16:51:26.751Z\",\n    \"createdAt\": \"2023-01-17T16:51:26.751Z\"\n}"
+							"body": "{\n    \"id\": 2,\n    \"name\": \"ANÒNIM/A\",\n    \"createdAt\": \"2023-01-26T09:02:36.825Z\"\n}"
+						},
+						{
+							"name": "Intento afegir un jugador amb un nom ja existent (MongoDB)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Oriol\",\r\n    \"password\": \"Password\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/players",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"players"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "96"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"60-kE/OU8mG/DGXmjTOqjZvKOFoeWU\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 26 Jan 2023 09:04:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"Valor {\\\"name\\\":\\\"Oriol\\\"} duplicat. Tria'n un altre.\",\n    \"errorno\": \"11000\",\n    \"db\": \"mongo\"\n}"
+						},
+						{
+							"name": "Intento afegir un jugador amb un nom ja existent (MySQL)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Oriol\",\r\n    \"password\": \"Password\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/players",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"players"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "95"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5f-0m+fmEJXc/jHIi1MswpUV6UZvsE\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 26 Jan 2023 09:05:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"Valor {\\\"name\\\":\\\"Oriol\\\"} duplicat. Tria'n un altre.\",\n    \"errorno\": \"1062\",\n    \"db\": \"mysql\"\n}"
 						}
 					]
 				},
 				{
 					"name": "Players",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAiLCJuYW1lIjoiQWRtaW4iLCJpYXQiOjE2NzM5NzA0NDIsImV4cCI6MTY3Mzk3NzY0Mn0.ADxW4Y5gsXdJGlVYQnalwGwZUrovQxqSIMhg3QV9sEo",
-									"type": "string"
-								}
-							]
-						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Oriol\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Omar\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -522,14 +561,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/players/5",
+							"raw": "localhost:3000/players/2",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
 								"players",
-								"5"
+								"2"
 							]
 						}
 					},
@@ -597,13 +636,137 @@
 							"body": "{\n    \"id\": \"1\",\n    \"newName\": \"Pere\"\n}"
 						},
 						{
-							"name": "El jugador amb id=2 no es pot dir Pere perquè ja existeix.",
+							"name": "Intento editar un jugador d'una ID que no existeix",
 							"originalRequest": {
 								"method": "PUT",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Pere\"\r\n}",
+									"raw": "{\r\n    \"name\": \"Oriol\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/players/5",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"players",
+										"5"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2b-IUVWqrzdFDUf7FoCw5DwjxdwYgA\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 26 Jan 2023 09:13:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"No Player registered with ID: 5\"\n}"
+						},
+						{
+							"name": "Intento passar altres valors que no siguin el nom (veure el body d'aquesta petició)",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"password\": \"Oriol\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/players/2",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"players",
+										"2"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "117"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"75-4u6mqjPJs6+EMa6bGb+4vxk1ESQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 26 Jan 2023 09:15:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Error\": \"You are only allowed to change your name\",\n    \"solution\": \"Give me your new name like this: {name: [new name]}\"\n}"
+						},
+						{
+							"name": "Intento canviar a un nom que ja té un altre jugador (MongoDB)",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Oriol\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -636,15 +799,15 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "40"
+									"value": "96"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"28-XClSjofl1iAAFPmpXt1PJfd/m7o\""
+									"value": "W/\"60-kE/OU8mG/DGXmjTOqjZvKOFoeWU\""
 								},
 								{
 									"key": "Date",
-									"value": "Tue, 17 Jan 2023 16:42:58 GMT"
+									"value": "Thu, 26 Jan 2023 09:14:45 GMT"
 								},
 								{
 									"key": "Connection",
@@ -656,9 +819,101 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"Error\": \"This name is already in use.\"\n}"
+							"body": "{\n    \"error\": \"Valor {\\\"name\\\":\\\"Oriol\\\"} duplicat. Tria'n un altre.\",\n    \"errorno\": \"11000\",\n    \"db\": \"mongo\"\n}"
+						},
+						{
+							"name": "Intento canviar a un nom que ja té un altre jugador (MySQL)",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Carles\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/players/5",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"players",
+										"5"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "96"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"60-12PrJkhk742lVxJmlIhAG0zTTAg\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 26 Jan 2023 09:17:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"Valor {\\\"name\\\":\\\"Carles\\\"} duplicat. Tria'n un altre.\",\n    \"errorno\": \"1062\",\n    \"db\": \"mysql\"\n}"
 						}
 					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
 				}
 			]
 		},
@@ -668,27 +923,17 @@
 				{
 					"name": "Games",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAiLCJuYW1lIjoiQWRtaW4iLCJpYXQiOjE2NzM5NzA0NDIsImV4cCI6MTY3Mzk3NzY0Mn0.ADxW4Y5gsXdJGlVYQnalwGwZUrovQxqSIMhg3QV9sEo",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/games/2",
+							"raw": "localhost:3000/games/3",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
 								"games",
-								"2"
+								"3"
 							]
 						}
 					},
@@ -745,6 +990,59 @@
 							],
 							"cookie": [],
 							"body": "[\n    {\n        \"dau1\": 2,\n        \"dau2\": 1,\n        \"victoria\": false\n    },\n    {\n        \"dau1\": 1,\n        \"dau2\": 3,\n        \"victoria\": false\n    },\n    {\n        \"dau1\": 4,\n        \"dau2\": 4,\n        \"victoria\": false\n    },\n    {\n        \"dau1\": 4,\n        \"dau2\": 3,\n        \"victoria\": true\n    },\n    {\n        \"dau1\": 5,\n        \"dau2\": 2,\n        \"victoria\": true\n    },\n    {\n        \"dau1\": 1,\n        \"dau2\": 1,\n        \"victoria\": false\n    },\n    {\n        \"dau1\": 3,\n        \"dau2\": 1,\n        \"victoria\": false\n    },\n    {\n        \"dau1\": 1,\n        \"dau2\": 2,\n        \"victoria\": false\n    },\n    {\n        \"dau1\": 6,\n        \"dau2\": 2,\n        \"victoria\": false\n    },\n    {\n        \"dau1\": 2,\n        \"dau2\": 2,\n        \"victoria\": false\n    },\n    {\n        \"dau1\": 5,\n        \"dau2\": 2,\n        \"victoria\": true\n    },\n    {\n        \"dau1\": 1,\n        \"dau2\": 2,\n        \"victoria\": false\n    },\n    {\n        \"dau1\": 2,\n        \"dau2\": 6,\n        \"victoria\": false\n    },\n    {\n        \"dau1\": 3,\n        \"dau2\": 6,\n        \"victoria\": false\n    },\n    {\n        \"dau1\": 4,\n        \"dau2\": 6,\n        \"victoria\": false\n    },\n    {\n        \"dau1\": 4,\n        \"dau2\": 5,\n        \"victoria\": false\n    },\n    {\n        \"dau1\": 1,\n        \"dau2\": 2,\n        \"victoria\": false\n    },\n    {\n        \"dau1\": 6,\n        \"dau2\": 3,\n        \"victoria\": false\n    },\n    {\n        \"dau1\": 6,\n        \"dau2\": 3,\n        \"victoria\": false\n    },\n    {\n        \"dau1\": 4,\n        \"dau2\": 3,\n        \"victoria\": true\n    },\n    {\n        \"dau1\": 4,\n        \"dau2\": 5,\n        \"victoria\": false\n    },\n    {\n        \"dau1\": 2,\n        \"dau2\": 1,\n        \"victoria\": false\n    },\n    {\n        \"dau1\": 6,\n        \"dau2\": 4,\n        \"victoria\": false\n    },\n    {\n        \"dau1\": 3,\n        \"dau2\": 2,\n        \"victoria\": false\n    },\n    {\n        \"dau1\": 4,\n        \"dau2\": 4,\n        \"victoria\": false\n    },\n    {\n        \"dau1\": 5,\n        \"dau2\": 3,\n        \"victoria\": false\n    },\n    {\n        \"dau1\": 6,\n        \"dau2\": 4,\n        \"victoria\": false\n    }\n]"
+						},
+						{
+							"name": "Intento veure les tirades d'un jugador que encara no ha jugat cap partida",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/games/3",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"games",
+										"3"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "128"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"80-Q3+TOrAoPAMaMhm8H3d5y8TIYoM\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 26 Jan 2023 09:07:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"This Player has not played a single game of dice\",\n    \"solution\": \"Play a game at this same endpoint with a POST request!\"\n}"
 						}
 					]
 				},
@@ -754,32 +1052,129 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/games/6",
+							"raw": "localhost:3000/games/2",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
 								"games",
-								"6"
+								"2"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Jugador tira i perd",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/games/3",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"games",
+										"3"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "49"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"31-wtTnMZjU8b8cZtQKMSrysfbTY9I\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 26 Jan 2023 09:08:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"dau1\": 1,\n    \"dau2\": 1,\n    \"victoria\": false,\n    \"player\": \"3\"\n}"
+						},
+						{
+							"name": "Jugador tira i guanya (dau1+dau2==7)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/games/2",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"games",
+										"2"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "48"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"30-oLSk9eHHUhHHWvF3svA+zgh0OMo\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 26 Jan 2023 09:13:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"dau1\": 3,\n    \"dau2\": 4,\n    \"victoria\": true,\n    \"player\": \"2\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Games",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAiLCJuYW1lIjoiQWRtaW4iLCJpYXQiOjE2NzM5NzA0NDIsImV4cCI6MTY3Mzk3NzY0Mn0.ADxW4Y5gsXdJGlVYQnalwGwZUrovQxqSIMhg3QV9sEo",
-									"type": "string"
-								}
-							]
-						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
@@ -850,6 +1245,36 @@
 						}
 					]
 				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
 			]
 		},
 		{
@@ -858,16 +1283,6 @@
 				{
 					"name": "Ranking",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAiLCJuYW1lIjoiQWRtaW4iLCJpYXQiOjE2NzM5NzA0NDIsImV4cCI6MTY3Mzk3NzY0Mn0.ADxW4Y5gsXdJGlVYQnalwGwZUrovQxqSIMhg3QV9sEo",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -883,7 +1298,7 @@
 					},
 					"response": [
 						{
-							"name": "Ranking d'exemple",
+							"name": "Ranking d'exemple. Al final el percentatge de victòries mitjà (mean_victory_rate) de tots els jugadors",
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
@@ -933,22 +1348,64 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"ranking\": [\n        {\n            \"id\": 5,\n            \"name\": \"\",\n            \"number_games\": 10,\n            \"victory_rate\": \"0.4000\"\n        },\n        {\n            \"id\": 6,\n            \"name\": \"Albert\",\n            \"number_games\": 9,\n            \"victory_rate\": \"0.2222\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"ANÒNIM\",\n            \"number_games\": 27,\n            \"victory_rate\": \"0.1481\"\n        },\n        {\n            \"id\": 1,\n            \"name\": \"Oriol\",\n            \"number_games\": 7,\n            \"victory_rate\": \"0.1429\"\n        },\n        {\n            \"id\": 4,\n            \"name\": \"Carles\",\n            \"number_games\": 12,\n            \"victory_rate\": \"0.0833\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Josep\",\n            \"number_games\": 0,\n            \"victory_rate\": null\n        }\n    ],\n    \"mean_victory_rate\": \"0.1846\"\n}"
+						},
+						{
+							"name": "Ranking d'exemple: x>0>null",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/ranking",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"ranking"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "270"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"10e-Q/RSjxwDd56PUn3heze79xu6bHs\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 26 Jan 2023 09:09:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"ranking\": [\n        {\n            \"id\": 2,\n            \"name\": \"ANÒNIM/A\",\n            \"number_games\": 21,\n            \"victory_rate\": 0.23809523809523808\n        },\n        {\n            \"id\": 3,\n            \"name\": \"AdministradorSeguretat\",\n            \"number_games\": 2,\n            \"victory_rate\": 0\n        },\n        {\n            \"id\": 1,\n            \"name\": \"Oriol\",\n            \"number_games\": 0,\n            \"victory_rate\": null\n        }\n    ],\n    \"mean_victory_rate\": 0.21739130434782608\n}"
 						}
 					]
 				},
 				{
 					"name": "Winner",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAiLCJuYW1lIjoiQWRtaW4iLCJpYXQiOjE2NzM5NzA0NDIsImV4cCI6MTY3Mzk3NzY0Mn0.ADxW4Y5gsXdJGlVYQnalwGwZUrovQxqSIMhg3QV9sEo",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -963,21 +1420,65 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Exemple de guanyador",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/ranking/winner",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"ranking",
+										"winner"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "80"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"50-CTDXJcjFKw6ZVcbNIFP3R/0pHaM\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 26 Jan 2023 09:10:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2,\n    \"name\": \"ANÒNIM/A\",\n    \"number_games\": 21,\n    \"victory_rate\": 0.23809523809523808\n}"
+						}
+					]
 				},
 				{
 					"name": "Loser",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAiLCJuYW1lIjoiQWRtaW4iLCJpYXQiOjE2NzM5NzA0NDIsImV4cCI6MTY3Mzk3NzY0Mn0.ADxW4Y5gsXdJGlVYQnalwGwZUrovQxqSIMhg3QV9sEo",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -994,7 +1495,7 @@
 					},
 					"response": [
 						{
-							"name": "El perdedor ha d'haver jugat alguna partida, no pot ser victory_rate=null.",
+							"name": "Tot i haver un jugador amb victory_rate=null, el perdedor ha d'haver jugat alguna partida. Es mostra qui ha jugat (number_games>0)",
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
@@ -1024,15 +1525,15 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "66"
+									"value": "74"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"42-wKwNORD5gvxJtBb0y9PvKdWjYnM\""
+									"value": "W/\"4a-cAoK1ITm/X+7B6n5yBtszOkmu5s\""
 								},
 								{
 									"key": "Date",
-									"value": "Tue, 17 Jan 2023 16:39:17 GMT"
+									"value": "Thu, 26 Jan 2023 09:10:03 GMT"
 								},
 								{
 									"key": "Connection",
@@ -1044,11 +1545,67 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"id\": 4,\n    \"name\": \"Carles\",\n    \"number_games\": 12,\n    \"victory_rate\": \"0.0833\"\n}"
+							"body": "{\n    \"id\": 3,\n    \"name\": \"AdministradorSeguretat\",\n    \"number_games\": 2,\n    \"victory_rate\": 0\n}"
 						}
 					]
 				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
 			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "obtén el teu token a l'endpoint /login"
 		}
 	]
 }
