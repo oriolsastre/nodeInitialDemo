@@ -1,15 +1,7 @@
-# Sprint 4.1
+# Sprint 5 - Chat
 
-Cal instal·lar express:
+Iniciar amb
 
-  `npm install express --save`
+    npm install
 
-
-### Oriol Sastre
-
-  ```
-  git revert --hard 5b914e14c3da1329d8c68b0317f799e45cac31d8
-  git push --force
-  ```
-
-Això per restorar la branca main del nodeInitialDemo. No ho hauria de fer servir en general.
+Tant a la carpeta server com a la carpeta client.
