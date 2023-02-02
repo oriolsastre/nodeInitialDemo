@@ -5,11 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Chat</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="main.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js" integrity="sha384-/KNQL8Nu5gCHLqwqfQjA689Hhoqgi2S84SNUxC3roTe4EhJ9AfLkp8QiQcU8AMzI" crossorigin="anonymous"></script>
+    <script src="main.js" type="module"></script>
   </head>
   <body>
     <h1>Chat</h1>
+    <div id="messages"></div>
+    <div id="loginBox">
+      <form id="loginForm">
+        <input id="loginUser" type="text"><br>
+        <input id="loginPswd" type="password"><br>
+        <input type="submit" value="Entra">
+        <input type="button" value="Registra't">
+      </form>
+    </div>
+    <!-- <form id="form">
+      <input id="input-text" type="text">
+      <input type="submit">
+    </form> -->
   </body>
 </html>

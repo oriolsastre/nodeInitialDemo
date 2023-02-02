@@ -1,12 +1,8 @@
 module.exports = (socket) => {
-  console.log( socket.id );
-  console.log( 'Cliente conectado' );
+  console.log( `S'ha connectat un client amb id ${socket.id}` );
 
-  socket.on( 'message', ( message, nickname ) => {
-    // Envío al resto de clientes conectados
-    socket.broadcast.emit( 'message', {
-      body: message,
-      from: nickname
-    } );
+  socket.on( 'chat-message', ( message ) => {
+    console.log(message);
+    socket.broadcast.emit('received-message', message) //Per emetre el missatge a tots els altres sockets excepte ell mateix.
   } );
 };

@@ -1,12 +1,16 @@
-require("dotenv").config({ path: __dirname + "/./../../.env" });
-const serverConfig = {
-  host: process.env.SERVER_HOST || "localhost",
-  port: process.env.SERVER_PORT || 3000,
-};
+const socket = io.connect(`http://localhost:3000`)
 
-var socket = io.connect(`http://${serverConfig.host}:${serverConfig.port}`, { 
-  'forceNew': true 
-}); 
-socket.on('messages', function(data) { 
-  console.log(data);
+socket.on('connect', () => {
+  console.log(`Tinc l'id ${socket.id} i m'he connectat`);
+})
+
+var loginForm = document.getElementById('loginForm');
+var loginUser = document.getElementById('loginUser');
+var loginPswd = document.getElementById('loginPswd');
+
+loginForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+  if (loginUser.value && loginPswd.value) {
+    socket.emit('chat-message', {loginUser: loginUser.value, loginPswd: loginPswd.value});
+  }
 });
