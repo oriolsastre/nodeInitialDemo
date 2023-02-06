@@ -7,7 +7,7 @@ const io = require("socket.io")(server, {
     origin: [`http://${clientConfig.host}:${clientConfig.port}`]
   }
 });
-//const cors = require("cors");
+
 const socketController = require('./sockets/sockets') 
 
 
