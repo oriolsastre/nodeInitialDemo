@@ -14,6 +14,12 @@ module.exports = function(sequelize, DataTypes){
         password: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        level: {
+            type: DataTypes.TINYINT.UNSIGNED,
+            allowNull: false,
+            defaultValue: 1,
+            comment: '0: Admin, 1: Usuari normal, 2: Altres drets no especificats..., etc.'
         }
     },{
         sequelize,

@@ -7,9 +7,10 @@ const io = require("socket.io")(server, {
     origin: [`http://${clientConfig.host}:${clientConfig.port}`]
   }
 });
-
+const { initDB } = require('./database/initModels')
 const socketController = require('./sockets/sockets') 
 
+initDB()
 
 app.use(express.json(), express.urlencoded({ extended: true }));
 
