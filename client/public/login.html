@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Chat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js" integrity="sha384-/KNQL8Nu5gCHLqwqfQjA689Hhoqgi2S84SNUxC3roTe4EhJ9AfLkp8QiQcU8AMzI" crossorigin="anonymous"></script>
+    <script src="main.js" type="module"></script>
+    
+  </head>
+  <body>
+    
+    <div id="login">
+
+    </div>
+    <div id="signup">
+        <div id="signupBox">
+            <h2>Registra't</h2>
+            <form id="signupForm">
+              Username: <input id="signupUser" type="text"><br>
+              <p id="signup-validUser"></p>
+              Password: <input id="signupPswd1" type="password"><br>
+              <p id="signup-validPswd"></p>
+              Repeat password: <input id="signupPswd2" type="password"><br>
+              <input type="submit" value="Entra">
+              <input type="button" value="Registra't">
+            </form>
+        </div>
+    </div>
+    <script src="login.js"></script>
+  </body>
+</html>

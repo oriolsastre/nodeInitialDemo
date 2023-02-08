@@ -1,3 +1,0 @@
-const registerUser = async (userData) => {
-    
-}

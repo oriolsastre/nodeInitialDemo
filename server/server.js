@@ -13,6 +13,7 @@ const socketController = require('./sockets/sockets')
 initDB()
 
 app.use(express.json(), express.urlencoded({ extended: true }));
+app.use('/api', require('./routes'))
 
 io.on('connection', socket => socketController(socket));
 
