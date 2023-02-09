@@ -14,10 +14,8 @@ const encrypt =async (pswdPlain) => {
  * Comparar la contrassenya rebuda amb la versió hashejada per saber si es tracta del mateix
  * @param {String} pswdPlain Contrassenya rebuda
  * @param {Hash} pswdHash Contrassenya hashejada
- * @returns {Boolean}
+ * @returns {Promise<boolean>}
  */
-const compare = async (pswdPlain, pswdHash) => {
-    return await bcryptjs.compare(pswdPlain,pswdHash)
-}
+const compare = (pswdPlain, pswdHash) => bcryptjs.compare(pswdPlain,pswdHash)
 
 module.exports = { encrypt, compare }

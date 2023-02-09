@@ -45,6 +45,7 @@ const initDB = async () => {
             const adminPswd = await encrypt(chatAdminPswd)
             await Models.User.create({name: 'Admin', password: adminPswd, level: 0})
         }
+        console.log('Connexió a la DB satisfactòria');
     } catch (error) {
         console.log(error.message);
         console.log("There was an error connecting with the database");

@@ -20,4 +20,6 @@ const mysqlConfig = {
 
 const chatAdminPswd = process.env.CHAT_ADMIN_PSWD || 1234;
 
-module.exports = { serverConfig, clientConfig, mysqlConfig, chatAdminPswd };
+const JWT_Secret = process.env.JWT_SECRET || 'chatOSR'
+
+module.exports = { serverConfig, clientConfig, mysqlConfig, chatAdminPswd, JWT_Secret };

@@ -1,9 +1,9 @@
 const router = require('express').Router();
 
-const { getUser } = require('../controllers/user')
+const { getUserName } = require('../controllers/user')
 const { noMethod } = require('../controllers/errorHandler');
 
-router.get('/:user', getUser)
+router.get('/:user', getUserName)
 
 router.use(noMethod)
 
