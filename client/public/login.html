@@ -7,14 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
     <script src="https://cdn.socket.io/4.5.4/socket.io.min.js" integrity="sha384-/KNQL8Nu5gCHLqwqfQjA689Hhoqgi2S84SNUxC3roTe4EhJ9AfLkp8QiQcU8AMzI" crossorigin="anonymous"></script>
-    <script src="main.js" type="module"></script>
-    
   </head>
   <body>
-    
-    <div id="login">
-
-    </div>
     <div id="signup">
         <div id="signupBox">
             <h2>Registra't</h2>
@@ -23,22 +17,22 @@
               <p id="signup-validUser"></p>
               Password: <input id="signupPswd1" type="password"><br>
               <p id="signup-validPswd"></p>
-              Repeat password: <input id="signupPswd2" type="password"><br>
-              <input type="submit" value="Entra">
-              <input type="button" value="Registra't">
+              Repeat password: <input id="signupPswd2" type="password" placeholder="Repeteix la contrassenya"><br>
+              <input id="signup-button" type="submit" value="Registra't">
+              <input id="singup-clear" type="reset" value="Esborra">
             </form>
         </div>
     </div>
-    <div>
+    <div id="login">
       <div id="loginBox">
         <form id="loginForm">
           <input id="loginUser" type="text"><br>
           <input id="loginPswd" type="password"><br>
-          <input type="submit" value="Entra">
-          <input type="button" value="Registra't">
+          <input type="submit" value="Inicia sessió">
+          <input type="button" value="Esborra">
         </form>
       </div>
     </div>
-    <script src="login.js"></script>
+    <script src="js/login.js"></script>
   </body>
 </html>

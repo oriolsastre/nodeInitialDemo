@@ -5,27 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Chat</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    <link rel="stylesheet" type="text/css" media="screen" href="./css/main.css" />
     <script src="https://cdn.socket.io/4.5.4/socket.io.min.js" integrity="sha384-/KNQL8Nu5gCHLqwqfQjA689Hhoqgi2S84SNUxC3roTe4EhJ9AfLkp8QiQcU8AMzI" crossorigin="anonymous"></script>
-    <script src="main.js" type="module"></script>
+    <script src="main.js"></script>
   </head>
   <body>
     
 
     <h1>Chat</h1>
-    <div id="messages"></div>
-    
-
-    
-    <form id="form">
-      <textarea id="text-llarg" cols="50" rows="9"></textarea>
-      <input id="input-text" type="text">
-      <input type="button" value="Missatge">
-    </form>
+    <div>
+      <div id="chat-messages"></div>
+      <input id="chat-input" type="text"><input id="chat-button" type="button" value="Enviar">
+    </div>
 
 <!-- Petit div, al peu de pàgina, amb tots els usuaris connectats.-->
     <div id="connected-Users">
 
     </div>
+    <script src="js/chat.js" type="module"></script>
   </body>
 </html>

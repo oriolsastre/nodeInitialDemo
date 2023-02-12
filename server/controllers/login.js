@@ -18,7 +18,7 @@ const postLogin = async (req, res) => {
         if(!checkPswd){return res.status(401).json(new Response(401,{message: "Wrong password"}, "There was an error", null))}
         const tokenData = {userID: findUser.id, name: findUser.name}
         const token = tokenSign(tokenData);
-        return res.status(200).json(new Response(200,null,"Login OK",{token}))
+        return res.status(200).json(new Response(200,null,"Login OK",{name: findUser.name, id: findUser.id, token}))
     }catch(error) {return res.status(500).json(new Response(500, {message: error.message}, "Error connecting to server", null))}
 }
 

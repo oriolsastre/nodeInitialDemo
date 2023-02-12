@@ -15,6 +15,7 @@ app.use(cors({origin:`http://${clientConfig.host}:${clientConfig.port}`}))
 app.use(express.json(), express.urlencoded({ extended: true }));
 app.use('/api', require('./routes'))
 
+io.use(require('./middlewares/socket'))
 io.on('connection', socket => socketController(socket));
 
 server.listen(serverConfig, () => {
