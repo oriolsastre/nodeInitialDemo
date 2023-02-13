@@ -5,13 +5,14 @@ module.exports = (socket, next) => {
         const query = socket.handshake.query;
         const verified = verifyToken(query.token);
         if(verified){
-            return next()
+            //No només el token ha de ser vàlid, sinó també contenir la informacio de user correcte
+            if(verified.name===query.name){return next()}
         }
         let errorAuth = new Error("Hi ha hagut un error d'autenticaició")
         errorAuth.data = {code: 401};
         return next(errorAuth)
     } catch (error) {
-        console.log(error.message)
+        console.error(error.message)
         return next(error)
     }  
 }

@@ -40,11 +40,14 @@ const initDB = async () => {
         await sequelize.authenticate();
         await sequelize.sync({force: false})
         //Si no n'hi ha, creo d'inici un administrador
-        const Admin = await Models.User.findOne({where: {name: 'Admin'}})
-        if(Admin === null){
+        const admin = await Models.User.findOne({where: {name: 'Admin'}})
+        if(admin === null){
             const adminPswd = await encrypt(chatAdminPswd)
             await Models.User.create({name: 'Admin', password: adminPswd, level: 0})
         }
+        //Si no existeix un canal principal, el creo d'inici
+        const main = await Models.Room.findOne({where: {id: 1}})
+        if(main === null){ await Models.Room.create({id: 1, name: "Principal"}) }
         console.log('Connexió a la DB satisfactòria');
     } catch (error) {
         console.log(error.message);

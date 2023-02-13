@@ -1,8 +1,11 @@
 const { Models } = require('../database/initModels')
-module.exports = (socket) => {
+module.exports = (io, socket) => {
 
-  socket.on('chat-message2server', message => {
-    socket.emit('chat-message2client', {message})
+  //afegir usuari a room 1 joinRoom
+
+
+  socket.on('chat-message2server', (data) => {
+    io.emit('chat-message2client', data.message)
     /* Tractar i guardar el missatge. */
   })
 
