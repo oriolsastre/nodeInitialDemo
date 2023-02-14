@@ -6,7 +6,10 @@ module.exports = (socket, next) => {
         const verified = verifyToken(query.token);
         if(verified){
             //No només el token ha de ser vàlid, sinó també contenir la informacio de user correcte
-            if(verified.name===query.name){return next()}
+            if(verified.name===query.name){
+                socket.userData = verified;
+                return next()
+            }
         }
         let errorAuth = new Error("Hi ha hagut un error d'autenticaició")
         errorAuth.data = {code: 401};

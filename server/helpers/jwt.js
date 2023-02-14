@@ -1,27 +1,25 @@
 const jwt = require('jsonwebtoken')
-const { JWT_Secret } = require('../config/config') //AFEGIR!!
+const { JWT_Secret } = require('../config/config')
 
 /**
  * Returns a JWT given a username
- * @param {*} User data 
- * @returns {jwt}
+ * @param {object} userData - {id, name} 
+ * @returns {JWT}
  */
-const tokenSign = (user) => {
-    return jwt.sign({
-        id: user.id,
-        name: user.name
-    },
+const tokenSign = (userData) => {
+    return jwt.sign(userData,
     JWT_Secret,
     {expiresIn:"2h"});
 }
 
+/**
+ * Verifies a given JWT
+ * @param {JWT} tokenJWT 
+ * @returns 
+ */
 const verifyToken = (tokenJWT) => {
-    try {
-        return jwt.verify(tokenJWT, JWT_Secret)
-    }
-    catch (error) {
-        return false;
-    }
+    try { return jwt.verify(tokenJWT, JWT_Secret) }
+    catch (error) { return false; }
 }
 
 module.exports = { tokenSign, verifyToken }

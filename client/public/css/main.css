@@ -4,6 +4,9 @@ div.message{
 div.message_own{
     text-align: right;
 }
+div.message_delete{
+    text-decoration: line-through;
+}
 
 /* Classes i subclasses
 https://stackoverflow.com/questions/558721/css-classes-subclasses */

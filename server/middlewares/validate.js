@@ -2,9 +2,9 @@ const {Models} = require('../database/initModels')
 const Response = require('../models/Response')
 
 /**
- * Donada una id al req.params.room, mira si existeix algun canal amb aquesta id. Si existeix, pots seguir.
- * @param {req} req - Objecte req d'express 
- * @param {res} res - Objecte res d'express
+ * Given an id at req.params.room, it checkt if there exists a room with that id. If it exists, continue.
+ * @param {req} req - Express' req object 
+ * @param {res} res - Express' res object
  * @param {function} next
  */
 const existsRoomMW = async (req,res,next) => {
@@ -17,9 +17,9 @@ const existsRoomMW = async (req,res,next) => {
 }
 
 /**
- * Donat un nom al req.body.name, comprova si ja existeix un canal amb aquest nom. Si no existeix, pots seguir.
- * @param {req} req - Objecte req d'express 
- * @param {res} res - Objecte res d'express
+ * Given a name at req.body.name, it checks if there exists a room with that name. If not, continue.
+ * @param {req} req - Express' req object 
+ * @param {res} res - Express' res object
  * @param {function} next 
  */
 const existsNotRoomMW = async (req, res, next) => {
@@ -32,9 +32,9 @@ const existsNotRoomMW = async (req, res, next) => {
 }
 
 /**
- * Donada una id al req.params.user, comprova si existeix algun usuari amb aquesta id. Si existeix, pots seguir.
- * @param {req} req - Objecte req d'express 
- * @param {res} res - Objecte res d'express
+ * Given an id at req.params.user, it checks if there exists a user with that id. If it exists, continue.
+ * @param {req} req - Express' req object 
+ * @param {res} res - Express' res object
  * @param {function} next 
  */
 const existsUserMW = async (req, res, next) => {

@@ -5,6 +5,8 @@ const {encrypt} = require('../helpers/password')
 /**
  * Given an input user, searches for users which names equals the output.
  * Used to check if a new username can register and the chosen name is free.
+ * @param {req} req - Express' req object 
+ * @param {res} res - Express' res object
  * @returns {object} null or object {name: username} if it exists
  */
 const getUserName = async (req, res) => {
@@ -17,8 +19,8 @@ const getUserName = async (req, res) => {
 
 /**
  * Create a new user given a valid username and password
- * @param {*} req Express req object 
- * @param {*} res Express res object
+ * @param {req} req - Express' req object 
+ * @param {res} res - Express' res object
  * @returns {object} with new id and name.
  */
 const postUser = async (req, res) => {

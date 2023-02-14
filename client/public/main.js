@@ -24,3 +24,8 @@ socket.on('connect_error', (error) => {
   console.error(`Error genèric: ${error.message}`)
   window.location.assign('./login.html')
 })
+
+const joinRoom = async (room, userData) => {
+  socket.emit('join-room', {room, userData})
+  
+}

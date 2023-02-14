@@ -3,8 +3,8 @@ const { createMessage, getMessages } = require('../helpers/message')
 
 /**
  * Get the Messages by Room given its ID. If there is no limit passed as req.body.limit, a max of 20 messages will be fetched.
- * @param {req} req - Objecte req d'express 
- * @param {res} res - Objecte res d'express
+ * @param {req} req - Express' req object 
+ * @param {res} res - Express' res object
  * @returns {Array} - Array with the messages.
  */
 const getMessageR = async (req, res) => {

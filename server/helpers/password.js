@@ -1,7 +1,7 @@
 const bcryptjs = require('bcryptjs');
 
 /**
- * Rebre una contrassenya i hashejar-la
+ * Recieves a plain password to hash it
  * @param {String} pswdPlain Contrassenya a encriptar
  * @returns {Hash} Contrassenya hashejada
  */
@@ -11,7 +11,7 @@ const encrypt =async (pswdPlain) => {
     return hash;
 }
 /**
- * Comparar la contrassenya rebuda amb la versió hashejada per saber si es tracta del mateix
+ * Comapres a hashed password to its plain version
  * @param {String} pswdPlain Contrassenya rebuda
  * @param {Hash} pswdHash Contrassenya hashejada
  * @returns {Promise<boolean>}
