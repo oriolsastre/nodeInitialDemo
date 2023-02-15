@@ -13,8 +13,8 @@ class Task {
         this.id = uuidv4();
         this.task = task;
         this.created = new Date.toLocaleString();
-        this.initiated = new Date.toLocaleString();
-        this.finished = new Date.toLocaleString();
+        this.initiated = null;
+        this.finished = null;
         this.name = user;
     }
 
