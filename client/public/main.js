@@ -1,5 +1,4 @@
 const userData = JSON.parse(localStorage.getItem('userData'))
-
 if(userData===null || !userData.token){
   window.location.assign('./login.html')
 }
@@ -22,10 +21,7 @@ socket.on('connect_error', (error) => {
     }
   }
   console.error(`Error genèric: ${error.message}`)
+  localStorage.removeItem('userData')
+  localStorage.removeItem('currentRoom')
   window.location.assign('./login.html')
 })
-
-const joinRoom = async (room, userData) => {
-  socket.emit('join-room', {room, userData})
-  
-}

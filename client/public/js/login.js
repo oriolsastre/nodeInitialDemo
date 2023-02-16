@@ -1,3 +1,9 @@
+const userData = JSON.parse(localStorage.getItem('userData'))
+if(userData && userData.token){
+  //si ja tenim token ves al xat. Allà es valida si aquest token es vàlid o no.
+  window.location.assign('./index.html')
+}
+
 const api = `http://localhost:3000/api`
 
 /********** SIGNUP FORM **********/
@@ -81,10 +87,9 @@ const login = async function(user, pswd){
   })
   const responseJSON = await response.json()
   if(response.status===200){
-    console.log(JSON.stringify(responseJSON.data));
     localStorage.setItem('userData', JSON.stringify(responseJSON.data))
     localStorage.setItem('currentRoom', 1)
-    setTimeout(()=>{window.alert("Logged in")},10) //Per no haver d'esperar confirmació de l'usuari al popup.
+    //setTimeout(()=>{window.alert("Logged in")},10) //Per no haver d'esperar confirmació de l'usuari al popup.
     return window.location.assign('./index.html')
     //alert() o popup amb que ha fet login
     //console.log('success');

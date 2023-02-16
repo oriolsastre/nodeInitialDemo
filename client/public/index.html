@@ -8,11 +8,15 @@
     <link rel="stylesheet" type="text/css" media="screen" href="./css/main.css" />
     <script src="https://cdn.socket.io/4.5.4/socket.io.min.js" integrity="sha384-/KNQL8Nu5gCHLqwqfQjA689Hhoqgi2S84SNUxC3roTe4EhJ9AfLkp8QiQcU8AMzI" crossorigin="anonymous"></script>
     <script src="main.js"></script>
+    
   </head>
   <body>
     
 
     <h1>Chat</h1>
+    <div class="header">
+      <input type="button" id="logout" value="Log out" onmouseup="logout()">
+    </div>
     <div>
       <div id="chat-messages"></div>
       <input id="chat-input" type="text"><input id="chat-button" type="button" value="Enviar">
@@ -22,6 +26,8 @@
     <div id="connected-Users">
 
     </div>
-    <script src="js/chat.js" type="module"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/logout.js"></script>
+    <script src="js/chat-sockets.js"></script>
   </body>
 </html>
