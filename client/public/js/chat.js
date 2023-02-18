@@ -1,12 +1,17 @@
 let chatMessages = document.getElementById('chat-messages')
 
-const showMessage = (data) => {
+const showMessage = (data, final=true) => {
     const newMessageDiv = document.createElement('div');
   
-    data.userData.id===userData.id ? newMessageDiv.className='message_own' : newMessageDiv.className='message';
-
-    newMessageDiv.id=data.message.id
-    newMessageDiv.innerHTML = `<p><b>${data.userData.name}</b> ${data.message.text}</p>`
-    chatMessages.appendChild(newMessageDiv)
+    data.sender===userData.name ? newMessageDiv.className='message_own' : newMessageDiv.className='message';
+    if(data.message.id){newMessageDiv.id=data.message.id}
+    newMessageDiv.innerHTML = `<p><b>${data.sender}</b> ${data.message.text}</p>`
+    final ? chatMessages.append(newMessageDiv) : chatMessages.prepend(newMessageDiv)
 }
 
+const showAlert = (user, join=true) => {
+    const newChatAlertDiv = document.createElement('div');
+    newChatAlertDiv.className = 'chatAlert';
+    newChatAlertDiv.innerHTML = `<p><i>${user} ${join ? `joined` : `left`} the room</i></p>`
+    chatMessages.append(newChatAlertDiv)
+}

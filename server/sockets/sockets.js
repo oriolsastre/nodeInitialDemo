@@ -1,18 +1,22 @@
-const { createMessage } = require('../helpers/message')
+const { connection } = require('./events/connection');
+const { message2server } = require('./events/message');
+const { joinRoom, leaveRoom } = require('./events/room');
+
 module.exports = (io, socket) => {
   const usuari = socket.userData;
 
-  socket.on('chat-message2server', async (data) => {
-    const clientMessageID = Date.now().toString()+usuari.id+data.currentRoom;
-    io.emit('chat-message2client', {message: {text: data.message, id: clientMessageID}, userData: usuari})
-    /* Tractar i guardar el missatge. */
-    try {
-      await createMessage(usuari.id, data.currentRoom, data.message)
-      
-    } catch (error) {
-      io.emit('remove-message', clientMessageID)
-      console.error(error)
-    }
+  connection(io, socket, usuari)
+
+  socket.on('chat-message2server', data => {
+    message2server(io, socket, data, usuari)
+  })
+
+  socket.on('join-room', room => {
+    joinRoom(io, socket, room, usuari)
+  })
+
+  socket.on('leave-room', room => {
+    leaveRoom(io, socket, room, usuari)
   })
 
 };

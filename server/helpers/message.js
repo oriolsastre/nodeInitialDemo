@@ -18,7 +18,7 @@ const createMessage = async (user, room, message) => {
  * @returns {Array<Message>}
  */
 const getMessages = async (room, limit=20) => {
-    return await Models.Message.findAll({
+    return Models.Message.findAll({
         include: [{
             model: Models.User,
             attributes: ['name']

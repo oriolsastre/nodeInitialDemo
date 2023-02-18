@@ -1,6 +1,3 @@
-let currentRoom = localStorage.getItem('currentRoom') || 1 //Per defecte et trobes al canal main.
-
-
 let chatInput = document.getElementById('chat-input');
 let chatButton = document.getElementById('chat-button');
 let validMessage = true;
@@ -10,16 +7,31 @@ chatButton.addEventListener('click', (ev) => {
     chatInput.value = '';
 })
 
-socket.on('chat-message2client', data => showMessage(data))
+socket.on('chat-message2client', data => showMessage(data, true))
 
 socket.on('remove-message', messageID => {
   let message2delete = document.getElementById(`${messageID}`);
   message2delete.className = 'message-delete'
 })
 
-const joinRoom = async (room, userData) => {
-  //leave room
-  socket.join(room)
-  socket.emit('join-room', {room, userData})
-  
+socket.on('room-fetchMessages', data => {
+  for(let message of data){
+    let displayMessage = {message: {text: message.message}, sender:message["User.name"]}
+    showMessage(displayMessage, false)
+  }
+})
+
+socket.on('user-joinedRoom', data => {
+  showAlert(data, true)
+})
+
+socket.on('user-leftRoom', data => {
+  showAlert(data, false)
+})
+
+const joinRoom = (room) => {
+  if(currentRoom != room){
+    socket.emit('leave-room', room)
+  }
+  socket.emit('join-room', room)
 }
