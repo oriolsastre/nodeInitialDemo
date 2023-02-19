@@ -14,6 +14,8 @@ newRoomForm.addEventListener('submit', (ev) => {
   createRoom(roomName)
 })
 
+socket.on('user-connected', data => add2footer(data))
+
 socket.on('chat-message2client', data => showMessage(data, true))
 
 socket.on('remove-message', messageID => {
@@ -47,6 +49,11 @@ socket.on('user-loadRooms', data => {
 
 socket.on('user-roomCreated', data => {
   joinRoom(data.id)
+})
+
+socket.on('user-disconnected', user => {
+  console.log(`${user.name} disconnected`);
+  deleteFromFooter(user)
 })
 
 const createRoom = (newRoomName) => {

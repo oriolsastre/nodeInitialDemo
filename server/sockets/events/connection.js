@@ -2,6 +2,8 @@ const { getMessages } = require('../../helpers/message');
 const { fetchRooms } = require('../../helpers/room');
 
 const connection = async (io, socket, usuari) => {
+    io.emit('user-connected', usuari)
+    
     /* En connectar-te carregues les sales disponibles al xat */
     let chatRooms = await fetchRooms();
     chatRooms.shift();  //main ja la tenim.

@@ -2,6 +2,7 @@ let chatMessages = document.getElementById('chat-messages')
 let messageHistory = true;
 let roomsDiv = document.getElementById('rooms');
 let newRoomDiv = document.getElementById('newRoom');
+let footerDiv = document.getElementById('connected-Users')
 
 chatMessages.addEventListener('scroll', async () => {
     if(chatMessages.scrollTop===0 && messageHistory){
@@ -51,11 +52,24 @@ const addRoom = (room) => {
         addRoomDiv.className = 'room';
         addRoomDiv.id = `room${room.id}`
         addRoomDiv.onmouseup = function(){return joinRoom(room.id)}
-        addRoomDiv.innerHTML = `${room.name}`
+        addRoomDiv.innerHTML = `#${room.name}`
         roomsDiv.insertBefore(addRoomDiv, newRoomDiv)
     }
 }
 
 const scrollDown = (element2Scroll) => {
     element2Scroll.scrollTop = element2Scroll.scrollHeight;
+}
+
+const add2footer = (user) => {
+    let newUserFooter = document.createElement('span');
+    newUserFooter.className = 'connected-user';
+    newUserFooter.id = `${user.name}${user.id}`
+    newUserFooter.innerHTML = `${user.name}`
+    footerDiv.append(newUserFooter)
+}
+
+const deleteFromFooter = (user) => {
+    let deleteUserSpan = document.getElementById(`${user.name}${user.id}`)
+    deleteUserSpan.remove();
 }

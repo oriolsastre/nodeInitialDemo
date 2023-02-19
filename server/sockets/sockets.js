@@ -23,4 +23,12 @@ module.exports = (io, socket) => {
     newRoom(io, socket, name, usuari)
   })
 
+  socket.on('disconnect', data => {
+    //refrescar pàgina/tancar pestanya -> transport close
+    //logout -> client namespace disconnect
+    //altres -> transport error
+    console.log(`${data}`);
+    io.emit('user-disconnected', usuari)
+  })
+
 };
