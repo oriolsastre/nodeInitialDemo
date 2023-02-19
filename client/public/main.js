@@ -1,5 +1,6 @@
 let userData = JSON.parse(localStorage.getItem('userData'))
 let currentRoom = localStorage.getItem('currentRoom') || 1
+const api = `http://localhost:3000/api`
 
 if(userData===null || !userData.token){
   window.location.assign('./login.html')
@@ -12,7 +13,6 @@ const socket = io(`http://localhost:3000`, {
     token: userData.token
   }
 })
-
 
 socket.on('connect_error', (error) => {
   //Els ifs per si volgués gestionar errors diferents.

@@ -11,16 +11,26 @@
     
   </head>
   <body>
-    
-
-    <h1>Chat</h1>
     <div class="header">
-      <input type="button" id="logout" value="Log out" onmouseup="logout()">
-      <input type="button" id="logout" value="Room2" onmouseup="joinRoom(1)">
+      <input type="button" id="logout" value="Log out" onclick="logout()">
     </div>
-    <div>
-      <div id="chat-messages"></div>
-      <input id="chat-input" type="text"><input id="chat-button" type="button" value="Enviar">
+    <div class="chat-body">
+      <div id="rooms">
+        <div class="room selected" id="room1" onmouseup="joinRoom(1)">Main</div>
+        <div class="room create" id="newRoom">
+          <form id="newRoom-form">
+            <p>Create room</p>
+            <input type="text" name="roomName" placeholder="New Room">
+            <input type="submit" value="Create  ">
+          </form>
+        </div>
+      </div>
+      <div id="messages">
+        <div id="chat-messages"></div>
+        <input id="chat-input" type="text"><input id="chat-button" type="button" value="Enviar">
+        <!-- <div id="chat-inputbutton"></div> -->
+        
+      </div>
     </div>
 
 <!-- Petit div, al peu de pàgina, amb tots els usuaris connectats.-->

@@ -1,4 +1,5 @@
 const { getMessages } = require('../../helpers/message')
+const { createRoom, fetchRooms } = require('../../helpers/room')
 
 const joinRoom = async (io, socket, room, usuari) => {
     socket.join(`${room}`)
@@ -16,4 +17,20 @@ const leaveRoom = (io, socket, room, usuari) => {
     socket.leave(`${room}`)
 }
 
-module.exports = { joinRoom, leaveRoom }
+const newRoom = async (io, socket, name, usuari) => {
+  try {
+    const existsRoom = await fetchRooms(name)
+    if(!existsRoom){
+      const room = await createRoom(name)
+      io.emit('room-created', room)
+      return socket.emit('user-roomCreated', room)
+    }
+    return socket.emit('user-roomCreated', existsRoom)
+    
+  } catch (error) {
+    //socket.emit('error-create-room')
+    console.error(error)
+  } 
+}
+
+module.exports = { joinRoom, leaveRoom, newRoom }

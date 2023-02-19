@@ -1,5 +1,12 @@
 const Response = require('../models/Response')
-const { createRoom } = require('../helpers/room')
+const { fetchRooms, createRoom } = require('../helpers/room')
+
+const getRooms = async (req, res) => {
+    try {
+        const allRooms = await fetchRooms()
+        return res.status(200).json(new Response(200,null,null,allRooms))
+    } catch (error) { return res.status(500).json(new Response(500, {message: error.name}, "There was an error", null)) }
+}
 
 const postRoom = async (req, res) => {
     const newRoomName = req.body.name;
@@ -14,4 +21,4 @@ const deleteRoom = async (req, res) => {
 
 }
 
-module.exports = { postRoom }
+module.exports = { getRooms, postRoom }

@@ -1,6 +1,6 @@
 const { connection } = require('./events/connection');
 const { message2server } = require('./events/message');
-const { joinRoom, leaveRoom } = require('./events/room');
+const { joinRoom, leaveRoom, newRoom } = require('./events/room');
 
 module.exports = (io, socket) => {
   const usuari = socket.userData;
@@ -17,6 +17,10 @@ module.exports = (io, socket) => {
 
   socket.on('leave-room', room => {
     leaveRoom(io, socket, room, usuari)
+  })
+
+  socket.on('create-room', name => {
+    newRoom(io, socket, name, usuari)
   })
 
 };

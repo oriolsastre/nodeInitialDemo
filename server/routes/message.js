@@ -8,7 +8,7 @@ const { existsUserMW, existsRoomMW } = require('../middlewares/validate')
 router.use( authJWT )
 router.post('/:room/:user', [existsUserMW, existsRoomMW], postMessageUR)
 router.get('/:room', [existsRoomMW], getMessageR)    //retornar null si el room no existeix?
-router.get('/:room/after/:timestamp', [existsRoomMW], (req,res)=>{return null})
+router.get('/:room/before/:timestamp', [existsRoomMW], (req,res)=>{return null})
 
 router.use(noMethod)
 
