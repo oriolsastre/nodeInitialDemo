@@ -7,6 +7,7 @@ const message2server = (io, socket, data, usuari) => {
     createMessage(usuari.id, data.currentRoom, data.message)
         .catch(error => {
             io.emit('remove-message', clientMessageID)
+            console.log("Error desant missatge al BD")
             console.error(error)
         })
 }

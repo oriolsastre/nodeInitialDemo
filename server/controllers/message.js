@@ -17,6 +17,16 @@ const getMessageR = async (req, res) => {
     } catch (error) { return res.status(500).json(new Response(500, {message: error.message}, "There was an error.")) }
 }
 
+const getMessageRBefore = async (req, res) => {
+    const room = req.params.room;
+    const before = req.params.timestamp
+    try {
+        const messages = await getMessages(room, 20, before)
+        return res.status(200).json(new Response(200,null,"Messages fetched before", messages))
+    } catch (error) { return res.status(500).json(new Response(500, {message: error.message}, "There was an error.")) }
+
+}
+
 const postMessageUR = async (req, res) => {
     const user = req.params.user;
     const room = req.params.room;
@@ -29,4 +39,4 @@ const postMessageUR = async (req, res) => {
     } catch (error) { return res.status(500).json(new Response(500, {message: error.message}, "There was an error.")) }
 }
 
-module.exports = {getMessageR, postMessageUR }
+module.exports = {getMessageR, getMessageRBefore, postMessageUR }

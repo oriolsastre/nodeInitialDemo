@@ -14,9 +14,15 @@ newRoomForm.addEventListener('submit', (ev) => {
   createRoom(roomName)
 })
 
-socket.on('user-connected', data => add2footer(data))
+socket.on('user-connected', data => {
+  add2footer(data)
+  showAlert(data.name, 'chat', true)
+})
 
-socket.on('chat-message2client', data => showMessage(data, true))
+socket.on('chat-message2client', data => {
+  showMessage(data, true)
+  scrollDown(chatMessages)
+})
 
 socket.on('remove-message', messageID => {
   let message2delete = document.getElementById(`${messageID}`);
@@ -29,22 +35,24 @@ socket.on('room-fetchMessages', data => {
     showMessage(displayMessage, false)
   }
   scrollDown(chatMessages);
+  lastMessageTime = data.pop().createdAt
 })
 
 socket.on('user-joinedRoom', data => {
-  showAlert(data, true)
+  showAlert(data, 'room', true)
 })
 
 socket.on('user-leftRoom', data => {
-  showAlert(data, false)
+  showAlert(data, 'room', false)
 })
 
 socket.on('room-created', data => {
   addRoom(data)
 })
 
-socket.on('user-loadRooms', data => {
-  for(let room of data){addRoom(room)}
+socket.on('user-loadFirst', data => {
+  for(let room of data.chatRooms){addRoom(room)}
+  for(let user of data.connectedUsers){add2footer(user)}
 })
 
 socket.on('user-roomCreated', data => {
@@ -52,7 +60,7 @@ socket.on('user-roomCreated', data => {
 })
 
 socket.on('user-disconnected', user => {
-  console.log(`${user.name} disconnected`);
+  showAlert(user.name, 'chat', false)
   deleteFromFooter(user)
 })
 

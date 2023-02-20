@@ -1,5 +1,6 @@
 let userData = JSON.parse(localStorage.getItem('userData'))
 let currentRoom = localStorage.getItem('currentRoom') || 1
+let lastMessageTime = new Date()
 const api = `http://localhost:3000/api`
 
 if(userData===null || !userData.token){

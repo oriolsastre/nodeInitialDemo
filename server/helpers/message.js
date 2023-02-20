@@ -1,4 +1,5 @@
 const {Models} = require('../database/initModels')
+const { Op } = require("sequelize");
 
 /**
  * 
@@ -14,16 +15,26 @@ const createMessage = async (user, room, message) => {
 /**
  * 
  * @param {Integer} room - room ID from where the messages are fetched 
- * @param {Integer} limit - number of messages fetched
+ * @param {Integer | 20} limit - number of messages fetched
+ * @param {Date | null} before - fetch messages before this timestamp
  * @returns {Array<Message>}
  */
-const getMessages = async (room, limit=20) => {
+const getMessages = async (room, limit=20, before=null) => {
+    let whereCondition
+    if(before===null){
+        whereCondition = {room}
+    }else{
+        whereCondition = {
+            room,
+            createdAt: {[Op.lt]: Date.parse(before)}
+        }
+    }
     return Models.Message.findAll({
         include: [{
             model: Models.User,
             attributes: ['name']
         }],
-        where: {room},
+        where: whereCondition,
         order: [['createdAt','DESC']],
         limit,
         raw:true});
