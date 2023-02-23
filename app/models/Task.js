@@ -11,7 +11,7 @@ class Task {
     constructor( task, user ) {
         this.id = uuidv4();
         this.task = task;
-        this.created = new Date.now();
+        this.created = Date.now();
         this.initiated = null;
         this.finished = null;
         this.name = user;

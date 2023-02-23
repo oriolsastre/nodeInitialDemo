@@ -1,6 +1,6 @@
 import {initDB} from './database/initDB.js'
-import { listTasks } from './routes/listTasks.js';
+import { mainMenu } from './routes/main.js'
 
 initDB()
 
-listTasks();
+mainMenu()

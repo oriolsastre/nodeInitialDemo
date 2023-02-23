@@ -1,10 +1,12 @@
 import inquirer from "inquirer";
 import colors from "colors";
 
+import { listTasks } from "./listTasks.js";
+
 const preguntas = [
     {
         type: "list",
-        name: "option",
+        name: "choice",
         message: "¿Què voleu fer?",
         choices: [
             {
@@ -13,7 +15,7 @@ const preguntas = [
             },
             {
                 value: "2",
-                name: `${"2.".green} Veure tasca`,
+                name: `${"2.".green} Veure totes les tasques`,
             },
             {
                 value: "3",
@@ -39,15 +41,29 @@ const preguntas = [
     },
 ];
 
-const inquirerMenu = async () => {
+const mainMenu = async () => {
     console.clear();
     console.log("======================".brightYellow);
     console.log("Seleccioneu una opció".brightMagenta);
     console.log("======================".brightYellow);
 
     const option = await inquirer.prompt(preguntas);
+    console.log(option);
+    switch (option.choice) {
+        case "2":
+            await listTasks(null,"r")
+            break;
+        case "3":
+            await listTasks("c","r")
+            break;
+        case "4":
+            await listTasks("p","r")
+            break;
+        default:
+            break;
+    }
     return option;
 };
 
 
-export { inquirerMenu };
+export { mainMenu };

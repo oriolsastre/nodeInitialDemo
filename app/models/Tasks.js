@@ -1,6 +1,14 @@
+import { Task } from "./Task.js";
+
 class Tasks {
     constructor() {
-        this.tasks = []
+        //Singleton!
+        if (Tasks.instance instanceof Tasks) {
+            return Tasks.instance;
+        }
+        this.tasks = new Array()
+        Object.freeze(this);
+        Tasks.instance = this;
     }
 
     addTask(task) {

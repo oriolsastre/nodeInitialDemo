@@ -1,21 +1,50 @@
 import inquirer from 'inquirer'
+import { Tasks } from '../models/Tasks.js';
+import { mainMenu } from '../routes/main.js'
 
-const listTasks = async (tasks) => {
+const tasks = new Tasks()
+
+/**
+ * Llista totes les tasques en funció del seu estat i de l'acció que es vol relitzar
+ * @param {String<'p','c'>} estat - Estat de la tasca, null totes, 'p' les pendents i 'c' les completades
+ * @param {String<'c','r','u','d'>} metode - Quin mètode CRUD es vol aplicar: Crear, llegir (Read), actualitzar (Update), eliminar (Delete)
+ * @returns 
+ */
+const listTasks = async (estat = null, metode = "r") => {
     let choices = []
-    const retorn = "Tornar enrere";
-    for(let task in tasks) choices.push(task.name)
-    choices.push(retorn)
-    
-    const tasca = await inquirer.prompt({
+    for (let task in tasks.tasks) {
+        if (!estat) {
+            choices.push({
+                value: `${task.id}`,
+                name: `${task.name}`
+            })
+        } else if (estat == "p" && task.completed === null && task.pending !== null) {
+            choices.push({
+                value: `${task.id}`,
+                name: `${task.name}`
+            })
+        } else if (estat == "c" && task.completed !== null) {
+            choices.push({
+                value: `${task.id}`,
+                name: `${task.name}`
+            })
+        }
+    }
+    choices.push({ value: "0", name: "Tornar enrere" })
+
+    const listOfTasks = [{
         type: 'list',
         name: 'listTasks',
-        message: 'These are the tasks:',
+        message: 'Hi ha aquestes tasques:',
         choices
-    })
-    if(tasca==retorn){
-        //return ves al menú principal
+    }]
+
+    const chosenTask = await inquirer.prompt(listOfTasks)
+
+    if (chosenTask == "0") {
+        return mainMenu()
     }
-    return tasca
+    return chosenTask
     //return showTask(tasca)
 }
 

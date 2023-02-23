@@ -1,4 +1,6 @@
-import { readFileSync } from 'fs';
+import { readFileSync, writeFile, writeFileSync } from 'fs';
+import { Task } from '../models/Task.js'
+import { Tasks } from '../models/Tasks.js';
 
 const path = './tasks.json';
 
@@ -8,11 +10,16 @@ const path = './tasks.json';
  * @returns {Array<Tasks>} Tasks loaded from the database.
  */
 const initDB = (db='json') => {
-    let tasks;
+    const tasks = new Tasks();
     if(db==='json'){
         let tasksPlain = readFileSync(path,{encoding: 'utf-8', flag: 'as+'})
         if(tasksPlain.length===0) tasksPlain+='[]'
-        tasks = JSON.parse(tasksPlain)
+        writeFileSync(path,tasksPlain)
+        const tasksJSON = JSON.parse(tasksPlain)
+        for(let importedTaskJSON of tasksJSON){
+            const importedTask = new Task(importedTaskJSON)
+            tasks.addTask(importedTask)
+        }
     }
     return tasks
 }
