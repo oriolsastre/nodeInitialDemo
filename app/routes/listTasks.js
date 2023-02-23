@@ -1,6 +1,6 @@
 import inquirer from 'inquirer'
 
-const listTasks = async (tasks) => {
+const listTasks = async (tasks, estat) => {
     let choices = []
     const retorn = "Tornar enrere";
     for(let task in tasks) choices.push(task.name)
