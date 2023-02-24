@@ -1,4 +1,5 @@
 import { Task } from "./Task.js";
+import { writeFileSync } from 'fs';
 
 class Tasks {
     constructor() {
@@ -7,29 +8,46 @@ class Tasks {
             return Tasks.instance;
         }
         this.tasks = new Array()
-        Object.freeze(this);
+        this.user = 'Anònim/a';
         Tasks.instance = this;
     }
 
-    addTask(task) {
-        this.tasks.push(task)
+    setName(name) {
+        this.user = name;
     }
 
-    getAllTasks(){
+    addTask(task) {
+        const newTask = new Task(task, this.user)
+        this.tasks.push(newTask)
+        this.#exportTasks()
+    }
+
+    importTask(taskJSON) {
+        const importedTask = new Task('blank', 'blank');
+        Object.assign(importedTask, taskJSON);
+        this.tasks.push(importedTask)
+    }
+
+    getAllTasks() {
         return this.tasks
     }
 
-    getFinishedTasks(){
-        return this.tasks.filter(task=>task.finished !== null)
+    getFinishedTasks() {
+        return this.tasks.filter(task => task.finished !== null)
     }
 
-    getUnfinishedTasks(){
-        return this.tasks.filter(task=>task.finished == null)
+    getUnfinishedTasks() {
+        return this.tasks.filter(task => task.finished == null)
     }
 
-    deleteTask (task) {
+    deleteTask(task) {
         const i = this.tasks.indexOf(task)
         this.tasks.splice(i, 1)
+    }
+
+    #exportTasks(){
+        const path = `./app/database/tasks.json`;
+        writeFileSync(path, JSON.stringify(this.tasks))
     }
 }
 

@@ -89,3 +89,4 @@ typings/
 
 # Persistència JSON
 app/database/tasks.json
+tasks.json
