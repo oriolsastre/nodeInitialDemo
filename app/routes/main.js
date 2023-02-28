@@ -1,6 +1,6 @@
 import inquirer from "inquirer";
 import colors from "colors";
-
+import { updateTaskInq } from "../controllers/updateTask.js";
 import { getTasks } from "../controllers/getTasks.js";
 import { addTaskInq } from "../controllers/addTaskInq.js";
 import { listTasks } from "./listTasks.js";
@@ -32,7 +32,7 @@ const mainMenu = async (name) => {
         },
         {
           value: 5,
-          name: `${"5.".green} Iniciar tasca`,
+          name: `${"5.".green} Editar, iniciar o completar tasques`,
         },
         {
           value: 6,
@@ -52,7 +52,7 @@ const mainMenu = async (name) => {
 
   console.clear();
   console.log("======================".brightYellow);
-  console.log("Seleccioneu una opció".brightMagenta);
+  console.log("Selecciona una opció".brightMagenta);
   console.log("======================".brightYellow);
 
   const answer = await inquirer.prompt(preguntas)

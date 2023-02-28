@@ -8,7 +8,7 @@ export const addTaskInq = async () => {
   const question = [{
     type: "input",
     name: "task",
-    message: "Quina tasca vols afegir?"
+    message: `${"Quina tasca vols afegir?".bgCyan}`
   }]
   
   const answer = await inquirer.prompt(question)
