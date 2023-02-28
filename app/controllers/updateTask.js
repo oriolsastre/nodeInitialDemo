@@ -1,29 +1,13 @@
 import inquirer from "inquirer";
 import { confirmar } from "../helpers/pausa.js";
 import { Tasks } from "../models/Tasks.js";
+import { listTasks } from "../routes/listTasks.js";
 import { mainMenu } from "../routes/main.js";
 
-export const pickTask = async (tasks) => {
-  let choices = [];
-  const question = [
-    {
-      type: "list",
-      name: "task",
-      message: "Quina tasca vols editar?",
-      choices,
-    },
-  ];
-  tasks.tasks.forEach((task) => {
-    choices.push({
-      value: `${task.id}`,
-      name: `${task.task}`,
-    });
-  });
-  const answer = await inquirer.prompt(question);
-  return answer;
-};
-
-const editTask = async (task, tasks) => {
+export const editTask = async (task) => {
+  let tasks;
+  if(global.db === 'json'){tasks = new Tasks()}
+  
   const question = [
     {
       type: "list",
@@ -60,20 +44,9 @@ const editTask = async (task, tasks) => {
       confirmar("S'ha canviat el nom de la tasca", mainMenu);
       break;
     case 0:
-      updateTaskInq();
-      break;
+      return listTasks(null,'u')
 
     default:
       break;
   }
-};
-
-export const updateTaskInq = async () => {
-  let tasks;
-  if (global.db === "json") {
-    tasks = new Tasks();
-  }
-  let task_id = await pickTask(tasks);
-  let task = tasks.tasks.find((task) => task.id === task_id.task);
-  editTask(task, tasks);
 };

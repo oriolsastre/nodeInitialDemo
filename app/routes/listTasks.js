@@ -1,51 +1,58 @@
 import inquirer from 'inquirer'
-import { Tasks } from '../models/Tasks.js';
-import { mainMenu } from '../routes/main.js'
+import colors from "colors";
 
-const tasks = new Tasks()
+import { mainMenu } from '../routes/main.js'
+import { showTask } from '../controllers/showTask.js';
+import { getTasks } from '../controllers/getTasks.js';
+import { editTask } from "../controllers/updateTask.js";
 
 /**
  * Llista totes les tasques en funció del seu estat i de l'acció que es vol relitzar
  * @param {String<'p','c'>} estat - Estat de la tasca, null totes, 'p' les pendents i 'c' les completades
- * @param {String<'c','r','u','d'>} metode - Quin mètode CRUD es vol aplicar: Crear, llegir (Read), actualitzar (Update), eliminar (Delete)
+ * @param {String<'r','u','d'>} metode - Quin mètode CRUD es vol aplicar: Crear, llegir (Read), actualitzar (Update), eliminar (Delete)
  * @returns 
  */
-const listTasks = async (estat = null, metode = "r") => {
+const listTasks = async (estat = null, metode = "u") => {
+    const tasks = getTasks(estat);
+
     let choices = []
-    for (let task in tasks.tasks) {
-        if (!estat) {
-            choices.push({
-                value: `${task.id}`,
-                name: `${task.name}`
-            })
-        } else if (estat == "p" && task.completed === null && task.pending !== null) {
-            choices.push({
-                value: `${task.id}`,
-                name: `${task.name}`
-            })
-        } else if (estat == "c" && task.completed !== null) {
-            choices.push({
-                value: `${task.id}`,
-                name: `${task.name}`
-            })
-        }
+    for (let task of tasks) {
+        choices.push({
+            value: task,
+            name: `${task.task}`
+        })
     }
-    choices.push({ value: "0", name: "Tornar enrere" })
+    choices.push({ value: 0, name: `${"Tornar enrere".red}` })
 
     const listOfTasks = [{
         type: 'list',
-        name: 'listTasks',
+        name: 'task',
         message: 'Hi ha aquestes tasques:',
         choices
     }]
-
+    console.clear()
     const chosenTask = await inquirer.prompt(listOfTasks)
 
-    if (chosenTask == "0") {
+    if (chosenTask.task === 0) {
         return mainMenu()
     }
-    return chosenTask
-    //return showTask(tasca)
+    switch (metode) {
+        case 'u':
+            editTask(chosenTask.task)
+            break;
+
+        case 'd':
+            //delete task
+            break;
+
+        case 'r':
+            showTask(chosenTask.task)
+            break;
+
+        default:
+            //si algun error
+            return mainMenu();
+    }
 }
 
 export { listTasks }

@@ -12,7 +12,8 @@ const introMenu = async () => {
     }]
     console.clear();
     const yourName = await inquirer.prompt(intro);
-    if (yourName.name.length > 0) { tasks.setName(yourName.name) }
+    global.username="Anònim/a";
+    if (yourName.name.length > 0) { global.username = yourName.name }
     return choseDB();
 }
 
@@ -20,7 +21,7 @@ const choseDB = async () => {
     const question = [{
         type: "list",
         name: "db",
-        message: `Hola ${tasks.user}, quina persistència vols usar?`,
+        message: `Hola ${global.username}, quina persistència vols usar?`,
         choices: [{
             value: 'json',
             name: 'JSON'
