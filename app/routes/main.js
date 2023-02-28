@@ -1,6 +1,6 @@
 import inquirer from "inquirer";
 import colors from "colors";
-import { updateTaskInq } from "../controllers/updateTask.js";
+
 import { getTasks } from "../controllers/getTasks.js";
 import { addTaskInq } from "../controllers/addTaskInq.js";
 import { listTasks } from "./listTasks.js";

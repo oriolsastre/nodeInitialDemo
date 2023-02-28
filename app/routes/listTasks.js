@@ -4,6 +4,7 @@ import colors from "colors";
 import { mainMenu } from '../routes/main.js'
 import { showTask } from '../controllers/showTask.js';
 import { getTasks } from '../controllers/getTasks.js';
+import { editTask } from "../controllers/updateTask.js";
 
 /**
  * Llista totes les tasques en funció del seu estat i de l'acció que es vol relitzar
@@ -37,7 +38,7 @@ const listTasks = async (estat = null, metode = "u") => {
     }
     switch (metode) {
         case 'u':
-            //update task
+            editTask(chosenTask.task)
             break;
 
         case 'd':

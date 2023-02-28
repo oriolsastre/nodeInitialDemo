@@ -3,27 +3,7 @@ import { confirmar } from "../helpers/pausa.js";
 import { Tasks } from "../models/Tasks.js";
 import { mainMenu } from "../routes/main.js";
 
-const pickTask = async (tasks) => {
-  let choices = [];
-  const question = [
-    {
-      type: "list",
-      name: "task",
-      message: "Quina tasca vols editar?",
-      choices,
-    },
-  ];
-  tasks.tasks.forEach((task) => {
-    choices.push({
-      value: `${task.id}`,
-      name: `${task.task}`,
-    });
-  });
-  const answer = await inquirer.prompt(question);
-  return answer;
-};
-
-const editTask = async (task, tasks) => {
+export const editTask = async (task, tasks) => {
   const question = [
     {
       type: "list",
@@ -66,14 +46,4 @@ const editTask = async (task, tasks) => {
     default:
       break;
   }
-};
-
-export const updateTaskInq = async () => {
-  let tasks;
-  if (global.db === "json") {
-    tasks = new Tasks();
-  }
-  let task_id = await pickTask(tasks);
-  let task = tasks.tasks.find((task) => task.id === task_id.task);
-  editTask(task, tasks);
 };
