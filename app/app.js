@@ -1,8 +1,7 @@
-import {initDB} from './database/initDB.js'
-import { listTasks } from './routes/listTasks.js';
-import { inquirerMenu } from './routes/main.js';
-import { Tasks } from './models/Tasks.js';
+import { initDB } from './database/initDB.js'
+import { introMenu } from './routes/intro.js'
+import { mainMenu } from './routes/main.js'
 
-export let myTasks = new Tasks(initDB())
+initDB()
 
-inquirerMenu();
+introMenu()
