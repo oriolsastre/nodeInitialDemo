@@ -1,54 +1,11 @@
-# Node Initial Demo Omar
+GESTOR DE TASQUES
 
-Aquest repo l'estic fent servir per ensenyar com s'han de fer les entregues per pull request (14/3/22).
+Utilitizar el comando "npm i" per instalar les dependències i "npm start" per executar el programa. A partir d'aquest moment, es podrà introduïr totes les dades a travès d'un inquirer a la consola.
 
-### Project Structure
+Es demana el nom de l'usuari. Això permet veure quin usuari ha creat cada tasca. Si no s'introdueix res, el nom d'usuari per defecte es "Anònim/a".
 
-Main structure of node.js project. Folders / files:
+Es demana al usuari quina persistència vol utilitzar. De moment, l'única opció es usar un JSON, però l'arquitectura de l'aplicació permet afegir una altra opció per a desar les dades més endavant.
 
-- <b>\_\_tests__</b>. Tests folder. See [Jest Docs](https://jestjs.io/es-ES/docs/configuration) and [Chai Docs](https://www.chaijs.com/)
-- <b>app</b>:
-    - <b>config</b>
-    - <b>controllers</b>
-    - <b>middlewares</b>
-    - <b>models</b>
-    - <b>routes</b>
-    - <b>helpers</b>
-    - <b>app.js</b>. Entry point.
-- <b>package.json</b>.
-- <b>.env</b>. Environment descriptor. See [dotenv doc](https://www.npmjs.com/package/dotenv).
+Des del menú principal es pot accedir a totes les accions del programa. En primer lloc, es pot crear tasques. L'usuari ha de posar el nom de la tasca, i el programa el guarda amb un timestamp i el nom de l'usuari que l'ha creada. Una altra opcions és veure totes les tasques desades, també filtrades per "iniciades" o "completades". El menú també permet fer modificacions a les tasques desades, ja sigui marcant-les com a iniciades, com a fetes o canviant-li el nom. Finalment, hi ha una opció per eliminar tasques.
 
-Extras:
-- <b>.eslintrc</b>. Linter JS, static code analyzer. See [EsLint Docs](https://eslint.org/docs/user-guide/configuring/configuration-files).
-- <b>.prettierignore</b>. Code formatter. See [Prettier Config](https://prettier.io/docs/en/configuration.html) and [Prettier Ignore](https://prettier.io/docs/en/ignore.html).
-- <b>.ecosystem.config.js</b>. Process Manage at runtime. See [PM2 Docs](https://pm2.keymetrics.io/).
-
-### Import project for use with Visual Studio Code
-
-Follow the steps below:
-* Fork the project from https://github.com/IT-Academy-BCN/nodeInitialDemo
-* Clone your fork of the project from the Github Platform. Execute:
-  ```
-  git clone https://github.com/your_username_here/nodeInitialDemo
-  ```
-* Open the project downloaded
-  ![Open Project](img/VSC_open.png)
-
-
-### Import project for use with WebStorm
-
-Follow the steps below:
-* Fork the project from https://github.com/IT-Academy-BCN/nodeInitialDemo
-* Clone your fork of the project from the Github Platform. Execute:
-  ```
-  git clone https://github.com/your_username_here/nodeInitialDemo
-  ```
-* Open the project downloaded
-![Open Project](img/webstorm_open.png)
-
-
-### Utilities
-
-* [Node Developers Guide](https://nodejs.dev/learn)
-* **.gitignore file** configuration. See [Official Docs](https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files).
-* **Git branches**. See [Official Docs](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell)
+Al final de cada operació, l'usuari veu un missatge informant-li que operació s'ha fet amb èxit. Desrpès, necessitarà premer "Enter" per tornar al menú principal.

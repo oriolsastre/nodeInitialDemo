@@ -1,6 +1,6 @@
 import inquirer from 'inquirer'
 import colors from "colors";
-
+import { deleteTaskInq } from '../controllers/deleteTask.js';
 import { mainMenu } from '../routes/main.js'
 import { showTask } from '../controllers/showTask.js';
 import { getTasks } from '../controllers/getTasks.js';
@@ -42,7 +42,7 @@ const listTasks = async (estat = null, metode = "u") => {
             break;
 
         case 'd':
-            //delete task
+            deleteTaskInq(chosenTask.task)
             break;
 
         case 'r':

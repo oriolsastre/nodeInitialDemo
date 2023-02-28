@@ -12,7 +12,7 @@ const mainMenu = async (name) => {
     {
       type: "list",
       name: "option",
-      message: `Hola ${global.username}, què vols fer?`,
+      message: `Hola, ${global.username}. Què vols fer?`,
       choices: [
         {
           value: 1,
@@ -24,7 +24,7 @@ const mainMenu = async (name) => {
         },
         {
           value: 3,
-          name: `${"3.".green} Veure tasques pendents`,
+          name: `${"3.".green} Veure tasques iniciades`,
         },
         {
           value: 4,
@@ -36,10 +36,6 @@ const mainMenu = async (name) => {
         },
         {
           value: 6,
-          name: `${"6.".green} Completar tasca`,
-        },
-        {
-          value: 7,
           name: `${"7.".green} Esborrar tasca`,
         },
         {
@@ -79,10 +75,6 @@ const mainMenu = async (name) => {
       break;
 
     case 6:
-      listTasks(null, 'u')
-      break;
-    
-    case 7:
       listTasks(null, 'd')
       break;
 

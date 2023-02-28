@@ -21,7 +21,7 @@ const choseDB = async () => {
     const question = [{
         type: "list",
         name: "db",
-        message: `Hola ${global.username}, quina persistència vols usar?`,
+        message: `Hola, ${global.username}. Quina persistència vols usar?`,
         choices: [{
             value: 'json',
             name: 'JSON'
