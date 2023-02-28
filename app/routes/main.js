@@ -1,7 +1,7 @@
 import inquirer from "inquirer";
 import colors from "colors";
 import { Tasks } from "../models/Tasks.js";
-
+import { updateTaskInq } from "../controllers/updateTask.js";
 import { addTaskInq } from "../controllers/addTaskInq.js";
 import { listTasks } from "./listTasks.js";
 import { confirmar } from "../helpers/pausa.js";
@@ -13,7 +13,7 @@ const mainMenu = async (name) => {
     {
       type: "list",
       name: "option",
-      message: `Hola ${tasks.user}, què vols fer?`,
+      message: `Hola, ${tasks.user}. Què vols fer?`,
       choices: [
         {
           value: 1,
@@ -33,7 +33,7 @@ const mainMenu = async (name) => {
         },
         {
           value: 5,
-          name: `${"5.".green} Completar tasques`,
+          name: `${"5.".green} Editar, iniciar o completar tasques`,
         },
         {
           value: 6,
@@ -49,7 +49,7 @@ const mainMenu = async (name) => {
 
   console.clear();
   console.log("======================".brightYellow);
-  console.log("Seleccioneu una opció".brightMagenta);
+  console.log("Selecciona una opció".brightMagenta);
   console.log("======================".brightYellow);
 
   const answer = await inquirer.prompt(preguntas)
@@ -64,15 +64,17 @@ const mainMenu = async (name) => {
       confirmar('Aquestes són totes les tasques',mainMenu)
       break;
     case 3:
-      console.log(tasks.getFinishedTasks());
+      console.table(tasks.getFinishedTasks());
+      confirmar('Aquestes són les tasques completades',mainMenu)
       break;
 
     case 4:
-      console.log(tasks.getUnfinishedTasks());
+      console.table(tasks.getUnfinishedTasks());
+      confirmar('Aquestes són les tasques per fer',mainMenu)
       break;
 
     case 5:
-      //Mark as done
+      updateTaskInq()
       break;
 
     case 6:
