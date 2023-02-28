@@ -1,9 +1,13 @@
 import inquirer from "inquirer";
 import { confirmar } from "../helpers/pausa.js";
 import { Tasks } from "../models/Tasks.js";
+import { listTasks } from "../routes/listTasks.js";
 import { mainMenu } from "../routes/main.js";
 
-export const editTask = async (task, tasks) => {
+export const editTask = async (task) => {
+  let tasks;
+  if(global.db === 'json'){tasks = new Tasks()}
+  
   const question = [
     {
       type: "list",
@@ -40,8 +44,7 @@ export const editTask = async (task, tasks) => {
       confirmar("S'ha canviat el nom de la tasca", mainMenu);
       break;
     case 0:
-      updateTaskInq();
-      break;
+      return listTasks(null,'u')
 
     default:
       break;
