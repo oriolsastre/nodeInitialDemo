@@ -1,8 +1,9 @@
 import inquirer from 'inquirer'
 import colors from "colors";
-import { Tasks } from '../models/Tasks.js';
+
 import { mainMenu } from '../routes/main.js'
 import { showTask } from '../controllers/showTask.js';
+import { getTasks } from '../controllers/getTasks.js';
 
 /**
  * Llista totes les tasques en funció del seu estat i de l'acció que es vol relitzar
@@ -11,23 +12,7 @@ import { showTask } from '../controllers/showTask.js';
  * @returns 
  */
 const listTasks = async (estat = null, metode = "u") => {
-    let tasks;
-    if (global.db === 'json') {
-        const allTasks = new Tasks();
-        switch (estat) {
-            case 'c':
-                tasks = allTasks.getFinishedTasks();
-                break;
-
-            case 'p':
-                tasks = allTasks.getPendingTasks();
-                break;
-
-            default:
-                tasks = allTasks.getAllTasks();
-                break;
-        }
-    }
+    const tasks = getTasks(estat);
 
     let choices = []
     for (let task of tasks) {
@@ -54,7 +39,7 @@ const listTasks = async (estat = null, metode = "u") => {
         case 'u':
             //update task
             break;
-        
+
         case 'd':
             //delete task
             break;

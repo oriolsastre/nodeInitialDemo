@@ -1,19 +1,18 @@
 import inquirer from "inquirer";
 import colors from "colors";
-import { Tasks } from "../models/Tasks.js";
 
+import { getTasks } from "../controllers/getTasks.js";
 import { addTaskInq } from "../controllers/addTaskInq.js";
 import { listTasks } from "./listTasks.js";
 import { confirmar } from "../helpers/pausa.js";
-
+import { displayTasks } from "../helpers/displayTask.js";
 
 const mainMenu = async (name) => {
-  const tasks = new Tasks();
   const preguntas = [
     {
       type: "list",
       name: "option",
-      message: `Hola ${tasks.user}, què vols fer?`,
+      message: `Hola ${global.username}, què vols fer?`,
       choices: [
         {
           value: 1,
@@ -25,19 +24,23 @@ const mainMenu = async (name) => {
         },
         {
           value: 3,
-          name: `${"3.".green} Veure tasques completades`,
+          name: `${"3.".green} Veure tasques pendents`,
         },
         {
           value: 4,
-          name: `${"4.".green} Veure tasques pendents`,
+          name: `${"4.".green} Veure tasques completades`,
         },
         {
           value: 5,
-          name: `${"5.".green} Completar tasques`,
+          name: `${"5.".green} Iniciar tasca`,
         },
         {
           value: 6,
-          name: `${"6.".green} Esborrar tasca`,
+          name: `${"6.".green} Completar tasca`,
+        },
+        {
+          value: 7,
+          name: `${"7.".green} Esborrar tasca`,
         },
         {
           value: 0,
@@ -60,23 +63,27 @@ const mainMenu = async (name) => {
       break;
 
     case 2:
-      console.table(tasks.getAllTasks(), ["task", "created", "initiated", "finished","user"]);
-      confirmar('Aquestes són totes les tasques',mainMenu)
-      break;
+      displayTasks(getTasks())
+      return confirmar('Aquestes són totes les tasques.', mainMenu)
+
     case 3:
-      console.log(tasks.getFinishedTasks());
-      break;
+      displayTasks(getTasks('p'))
+      return confirmar('Aquestes són totes les tasques pendents.', mainMenu)
 
     case 4:
-      console.log(tasks.getUnfinishedTasks());
-      break;
+      displayTasks(getTasks('c'))
+      return confirmar('Aquestes són totes les tasques completades.', mainMenu)
 
     case 5:
-      listTasks(null, 'r')
+      listTasks(null, 'u')
       break;
 
     case 6:
-      //Delete task
+      listTasks(null, 'u')
+      break;
+    
+    case 7:
+      listTasks(null, 'd')
       break;
 
     default:
