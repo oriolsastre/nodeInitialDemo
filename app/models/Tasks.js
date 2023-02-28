@@ -37,7 +37,11 @@ class Tasks {
     }
 
     getUnfinishedTasks() {
-        return this.tasks.filter(task => task.finished == null)
+        return this.tasks.filter(task => (task.finished === null && task.initiated !== null))
+    }
+
+    getPendingTasks(){
+        return this.tasks.filter(task => (task.finished === null && task.initiated === null))
     }
 
     deleteTask(task) {

@@ -41,7 +41,7 @@ const mainMenu = async (name) => {
         },
         {
           value: 0,
-          name: `${"0.".green} Sortir`,
+          name: `${"0.".green} ${"Sortir".red}`,
         },
       ],
     },
@@ -72,7 +72,7 @@ const mainMenu = async (name) => {
       break;
 
     case 5:
-      //Mark as done
+      listTasks(null, 'r')
       break;
 
     case 6:

@@ -11,5 +11,6 @@ export async function confirmar(missatge='', desti) {
     }];
     console.log('\n');
     await inquirer.prompt(enter);
+    if(desti.name === 'listTasks') return desti(arguments[2], arguments[3])
     desti()
 }
