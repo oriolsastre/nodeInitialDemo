@@ -6,21 +6,19 @@ import { mainMenu } from "../routes/main.js";
 
 export const editTask = async (task) => {
   let tasks;
-  if(global.db === 'json'){tasks = new Tasks()}
-  
-  const question = [
-    {
-      type: "list",
-      name: "action",
-      message: "Què vols fer?",
-      choices: [
-        { value: 1, name: "Iniciar" },
-        { value: 2, name: "Marcar com a feta" },
-        { value: 3, name: "Canviar el nom de la tasca" },
-        { value: 0, name: "Tornar enrere" },
-      ],
-    },
-  ];
+  if (global.db === 'json') { tasks = new Tasks() }
+
+  const question = [{
+    type: "list",
+    name: "action",
+    message: "Què vols fer?",
+    choices: [
+      { value: 1, name: "Iniciar" },
+      { value: 2, name: "Marcar com a feta" },
+      { value: 3, name: "Canviar el nom de la tasca" },
+      { value: 0, name: "Tornar enrere" },
+    ]
+  }];
   const answer = await inquirer.prompt(question);
   switch (answer.action) {
     case 1:
@@ -29,7 +27,7 @@ export const editTask = async (task) => {
       break;
 
     case 2:
-        tasks.finishTask(task);
+      tasks.finishTask(task);
       confirmar("La tasca s'ha marcat com a feta", mainMenu);
       break;
     case 3:
@@ -44,7 +42,7 @@ export const editTask = async (task) => {
       confirmar("S'ha canviat el nom de la tasca", mainMenu);
       break;
     case 0:
-      return listTasks(null,'u')
+      return listTasks(null, 'u')
 
     default:
       break;

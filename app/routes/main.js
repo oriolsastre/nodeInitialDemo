@@ -2,7 +2,7 @@ import inquirer from "inquirer";
 import colors from "colors";
 
 import { getTasks } from "../controllers/getTasks.js";
-import { addTaskInq } from "../controllers/addTaskInq.js";
+import { addTask } from "../controllers/addTask.js";
 import { listTasks } from "./listTasks.js";
 import { confirmar } from "../helpers/pausa.js";
 import { displayTasks } from "../helpers/displayTask.js";
@@ -55,7 +55,7 @@ const mainMenu = async (name) => {
   console.clear()
   switch (answer.option) {
     case 1:
-      addTaskInq()
+      addTask()
       break;
 
     case 2:

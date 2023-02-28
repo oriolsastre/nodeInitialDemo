@@ -5,7 +5,7 @@ import colors from "colors";
  * @param {*} tasks 
  */
 export function displayTasks(tasks) {
-    if(tasks.length===0) return console.log(`${"No hi ha tasques.".red}`);
+    if (tasks.length === 0) return console.log(`${"No hi ha tasques.".red}`);
     let displayedTasks = [...tasks]
     displayedTasks.forEach(task => {
         task.created = new Date(task.created).toISOString()

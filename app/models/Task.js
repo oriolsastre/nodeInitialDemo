@@ -3,27 +3,27 @@ import { v4 as uuidv4 } from 'uuid';
 class Task {
     id;
     task;
-    created = null ;
+    created = null;
     initiated = null;
     finished = null;
     user = 'Anònim/a';
 
-    constructor( task, user ) {
+    constructor(task, user) {
         this.id = uuidv4();
         this.task = task;
         this.created = Date.now();
-        this.user=user;
+        this.user = user;
     }
 
-    initiate () {
+    initiate() {
         this.initiated = Date.now();
     }
 
-    finish () {
+    finish() {
         this.finished = Date.now()
     }
 
-    changeName (newName) {
+    changeName(newName) {
         this.task = newName
     }
 }

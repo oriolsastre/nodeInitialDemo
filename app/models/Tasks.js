@@ -35,21 +35,21 @@ class Tasks {
         return this.tasks.filter(task => (task.finished === null && task.initiated !== null))
     }
 
-    getPendingTasks(){
+    getPendingTasks() {
         return this.tasks.filter(task => (task.finished === null && task.initiated === null))
     }
 
-    initiateTask(task){
+    initiateTask(task) {
         task.initiate()
         this.#exportTasks()
     }
 
-    finishTask (task){
+    finishTask(task) {
         task.finish()
         this.#exportTasks()
     }
 
-    changeTaskName (task, newName) {
+    changeTaskName(task, newName) {
         task.changeName(newName)
         this.#exportTasks()
     }
@@ -60,7 +60,7 @@ class Tasks {
         this.#exportTasks()
     }
 
-    #exportTasks(){
+    #exportTasks() {
         const path = `./app/database/tasks.json`;
         writeFileSync(path, JSON.stringify(this.tasks))
     }

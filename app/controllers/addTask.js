@@ -4,15 +4,15 @@ import { Tasks } from "../models/Tasks.js";
 import { mainMenu } from "../routes/main.js";
 
 
-export const addTaskInq = async () => {
+export const addTask = async () => {
   const question = [{
     type: "input",
     name: "task",
     message: `${"Quina tasca vols afegir?".bgCyan}`
   }]
-  
+
   const answer = await inquirer.prompt(question)
-  if(global.db==='json'){
+  if (global.db === 'json') {
     const tasks = new Tasks();
     tasks.addTask(answer.task)
   }

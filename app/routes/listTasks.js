@@ -1,10 +1,11 @@
 import inquirer from 'inquirer'
 import colors from "colors";
-import { deleteTaskInq } from '../controllers/deleteTask.js';
+
 import { mainMenu } from '../routes/main.js'
 import { showTask } from '../controllers/showTask.js';
 import { getTasks } from '../controllers/getTasks.js';
 import { editTask } from "../controllers/updateTask.js";
+import { deleteTask } from '../controllers/deleteTask.js';
 
 /**
  * Llista totes les tasques en funció del seu estat i de l'acció que es vol relitzar
@@ -42,7 +43,7 @@ const listTasks = async (estat = null, metode = "u") => {
             break;
 
         case 'd':
-            deleteTaskInq(chosenTask.task)
+            deleteTask(chosenTask.task)
             break;
 
         case 'r':
