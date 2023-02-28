@@ -13,12 +13,13 @@ let validUserMsg = document.getElementById('signup-validUser')
 let signupPswd1 = document.getElementById('signupPswd1')
 let signupPswd2 = document.getElementById('signupPswd2')
 let validPswdMsg = document.getElementById('signup-validPswd')
+let validPswdMsg2 = document.getElementById('signup-validPswd2')
 let validUser, validPswd, validPswd2 = false;
 
 /* Comprova que la contrassenya tingui format correcte (min 7 char, conté núm i lletres) */
 signupPswd1.addEventListener('input', pswd => {
-  if(pswd.target.value.length<8){validPswdMsg.textContent='pswd too short'; validPswd=false;}
-  else if(pswd.target.value.length>7){validPswdMsg.textContent = ''; validPswd = true;}
+  if(pswd.target.value.length<8){validPswdMsg.textContent='Mínim 8 caràcters'; validPswd=false;}
+  else if(pswd.target.value.length>7){validPswdMsg.textContent = String.fromCharCode(160); validPswd = true;}
 })
 
 /* Comprova que les dues contrassenyes introduïdes són iguals */
@@ -27,10 +28,13 @@ signupPswd2.addEventListener('input', e => {
   clearTimeout(confirmPswdTimeout)
   if(validPswd){
     confirmPswdTimeout = setTimeout(()=>{
-      if(signupPswd1.value===signupPswd2.value){validPswd2=true;}
+      if(signupPswd1.value===signupPswd2.value){
+        validPswd2=true;
+        validPswdMsg2.textContent = String.fromCharCode(160);
+      }
       else{
         validPswd2=false;
-        console.log("Mostrar missatge que contrassenyes no són iguals");
+        validPswdMsg2.textContent = "Les contrassenyes no coincideixen";
       }
     },1500)
   }
@@ -49,10 +53,10 @@ signupUser.addEventListener('input', async user => {
       })
       const responseJSON = await response.json()
       if(responseJSON.status===500){validUserMsg.textContent='Error connecting to server'; validUser=false;}
-      if(responseJSON.data === null){validUserMsg.textContent=''; validUser=true;}
-      else{validUserMsg.textContent='This user already exists'; validUser=false;}
+      if(responseJSON.data === null){validUserMsg.textContent= String.fromCharCode(160); validUser=true;}
+      else{validUserMsg.textContent='Aquest usuari ja existeix'; validUser=false;}
     },1500)    
-  }
+  }else{validUser=false;}
 })
 
 const registrat_button = document.getElementsByClassName('gira-carta-boto')
@@ -65,8 +69,9 @@ for(let i=0;i<registrat_button.length;i++){
 
 signupForm.addEventListener('submit', async function(e){
   e.preventDefault();
-  //if(!validPswd  || !validUser){return null;/* Dir que hi ha un error amb user o password */}
-  signup(signupUser.value, signupPswd1.value);
+  if(validUser && validPswd && validPswd2){
+    signup(signupUser.value, signupPswd1.value);
+  }
 })
 
 /********** LOGIN FORM **********/
