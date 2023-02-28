@@ -54,6 +54,15 @@ signupUser.addEventListener('input', async user => {
     },1500)    
   }
 })
+
+const registrat_button = document.getElementsByClassName('gira-carta-boto')
+const flipCard = document.querySelector('.card');
+for(let i=0;i<registrat_button.length;i++){
+  registrat_button[i].addEventListener('click', function(){
+    flipCard.classList.toggle('card-active')
+  })
+}
+
 signupForm.addEventListener('submit', async function(e){
   e.preventDefault();
   //if(!validPswd  || !validUser){return null;/* Dir que hi ha un error amb user o password */}

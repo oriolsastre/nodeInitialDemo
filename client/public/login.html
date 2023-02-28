@@ -13,15 +13,33 @@
 </head>
 
 <body>
-  <div class="flip-card">
-    <div class="flip-card-inner">
-      <div class="flip-card-front">
-        <p class="title">FLIP CARD</p>
-        <p>Hover Me</p>
+  <div class="card-container">
+    <div class="card">
+      <div class="card-face card-front">
+        <div id="login">
+            <form id="loginForm">
+              <input id="loginUser" type="text"><br>
+              <input id="loginPswd" type="password"><br>
+              <input type="submit" value="Inicia sessió">
+              <input type="button" value="Esborra">
+              <input type="button" class="gira-carta-boto" value="Registra't">
+            </form>
+        </div>
       </div>
-      <div class="flip-card-back">
-        <p class="title">BACK</p>
-        <p>Leave Me</p>
+      <div class="card-face card-back">
+        <div id="signup">
+            <h2>Registra't</h2>
+            <form id="signupForm">
+              Username: <input id="signupUser" type="text"><br>
+              <p id="signup-validUser"></p>
+              Password: <input id="signupPswd1" type="password"><br>
+              <p id="signup-validPswd"></p>
+              Repeat password: <input id="signupPswd2" type="password" placeholder="Repeteix la contrassenya"><br>
+              <input id="signup-button" type="submit" value="Registra't">
+              <input id="singup-clear" type="reset" value="Esborra">
+              <input type="button" class="gira-carta-boto" value="Registra't">
+            </form>
+        </div>
       </div>
     </div>
   </div>
@@ -70,30 +88,7 @@
 
 
 
-  <div id="signup">
-    <div id="signupBox">
-      <h2>Registra't</h2>
-      <form id="signupForm">
-        Username: <input id="signupUser" type="text"><br>
-        <p id="signup-validUser"></p>
-        Password: <input id="signupPswd1" type="password"><br>
-        <p id="signup-validPswd"></p>
-        Repeat password: <input id="signupPswd2" type="password" placeholder="Repeteix la contrassenya"><br>
-        <input id="signup-button" type="submit" value="Registra't">
-        <input id="singup-clear" type="reset" value="Esborra">
-      </form>
-    </div>
-  </div>
-  <div id="login">
-    <div id="loginBox">
-      <form id="loginForm">
-        <input id="loginUser" type="text"><br>
-        <input id="loginPswd" type="password"><br>
-        <input type="submit" value="Inicia sessió">
-        <input type="button" value="Esborra">
-      </form>
-    </div>
-  </div>
+  
   <script src="js/login.js"></script>
 </body>
 
