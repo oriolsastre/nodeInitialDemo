@@ -40,12 +40,12 @@ const editTask = async (task, tasks) => {
   const answer = await inquirer.prompt(question);
   switch (answer.action) {
     case 1:
-      task.initiate();
+      tasks.initiateTask(task);
       confirmar("La tasca s'ha marcat com a iniciada", mainMenu);
       break;
 
     case 2:
-      task.finish();
+        tasks.finishTask(task);
       confirmar("La tasca s'ha marcat com a feta", mainMenu);
       break;
     case 3:
@@ -56,7 +56,7 @@ const editTask = async (task, tasks) => {
           message: `${"Escriu el nou nom de la tasca".bgCyan}`,
         },
       ]);
-      task.changeName(new_name.new_name);
+      tasks.changeTaskName(task, new_name.new_name);
       confirmar("S'ha canviat el nom de la tasca", mainMenu);
       break;
     case 0:
