@@ -39,9 +39,25 @@ class Tasks {
         return this.tasks.filter(task => (task.finished === null && task.initiated === null))
     }
 
+    initiateTask(task){
+        task.initiate()
+        this.#exportTasks()
+    }
+
+    finishTask (task){
+        task.finish()
+        this.#exportTasks()
+    }
+
+    changeTaskName (task, newName) {
+        task.changeName(newName)
+        this.#exportTasks()
+    }
+
     deleteTask(task) {
         const i = this.tasks.indexOf(task)
         this.tasks.splice(i, 1)
+        this.#exportTasks()
     }
 
     #exportTasks(){
