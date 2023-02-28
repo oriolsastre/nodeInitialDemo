@@ -1,4 +1,5 @@
 import inquirer from "inquirer";
+import { inquirerMenu } from "./main.js";
 import { myTasks } from "../app.js";
 import { Task } from "../models/Task.js";
 export const addTaskInq = () => {
@@ -9,5 +10,6 @@ export const addTaskInq = () => {
     console.log(new_task)
     myTasks.addTask(new_task);
     console.log(`S'ha afegit ${new_task.task} a la llista de tasques`);
+    
   });
 };
