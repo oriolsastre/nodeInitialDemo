@@ -6,6 +6,7 @@ const _Room = require('../models/Room')
 const _Message = require('../models/Message')
 
 const { encrypt } = require('../helpers/password')
+const { designDB } = require('./designDB')
 
 function initModels (sequelize){
     const User = _User(sequelize, Sequelize.DataTypes)
@@ -37,6 +38,7 @@ const Models = initModels(sequelize)
 
 const initDB = async () => {
     try {
+        await designDB()
         await sequelize.authenticate();
         await sequelize.sync({force: false})
         //Si no n'hi ha, creo d'inici un administrador
