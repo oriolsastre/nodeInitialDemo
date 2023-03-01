@@ -10,8 +10,10 @@ chatButton.addEventListener('click', (ev) => {
 
 newRoomForm.addEventListener('submit', (ev) => {
   ev.preventDefault();
-  const roomName = ev.target.elements["roomName"].value
-  createRoom(roomName)
+  if(ev.target.elements["roomName"].value.length>0){
+    const roomName = ev.target.elements["roomName"].value
+    createRoom(roomName)
+  }
 })
 
 socket.on('user-connected', data => {
@@ -31,7 +33,7 @@ socket.on('remove-message', messageID => {
 
 socket.on('room-fetchMessages', data => {
   for(let message of data){
-    let displayMessage = {message: {text: message.message}, sender:message["User.name"]}
+    let displayMessage = {message: {text: message.message, id: message.id, createdAt: message.createdAt}, sender:message["User.name"]}
     showMessage(displayMessage, false)
   }
   scrollDown(chatMessages);

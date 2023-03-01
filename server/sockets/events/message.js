@@ -2,7 +2,7 @@ const {createMessage} = require('../../helpers/message')
 
 const message2server = (io, socket, data, usuari) => {
     const clientMessageID = Date.now().toString()+usuari.id+data.currentRoom;
-    io.in(`${data.currentRoom}`).emit('chat-message2client', {message: {text: data.message, id: clientMessageID}, sender: usuari.name})
+    io.in(`${data.currentRoom}`).emit('chat-message2client', {message: {text: data.message, id: clientMessageID, createdAt: new Date()}, sender: usuari.name})
     /* Tractar i guardar el missatge. */
     createMessage(usuari.id, data.currentRoom, data.message)
         .catch(error => {

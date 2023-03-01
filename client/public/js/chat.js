@@ -20,7 +20,7 @@ chatMessages.addEventListener('scroll', async () => {
         const historyJSON = await history.json()
         if(historyJSON.data.length>0){
             for(let message of historyJSON.data){
-                let displayMessage = {message: {text: message.message}, sender:message["User.name"]}
+                let displayMessage = {message: {text: message.message, id: message.id, createdAt: message.createdAt}, sender:message["User.name"]}
                 showMessage(displayMessage, false)
             }
             lastMessageTime = historyJSON.data.pop().createdAt
@@ -32,12 +32,18 @@ chatMessages.addEventListener('scroll', async () => {
 })
 
 const showMessage = (data, final=true) => {
+    const newMessageBoxDiv = document.createElement('div');
     const newMessageDiv = document.createElement('div');
   
-    data.sender===userData.name ? newMessageDiv.className='message_own' : newMessageDiv.className='message';
-    if(data.message.id){newMessageDiv.id=data.message.id}
-    newMessageDiv.innerHTML = `<p><b>${data.sender}</b> ${data.message.text}</p>`
-    final ? chatMessages.append(newMessageDiv) : chatMessages.prepend(newMessageDiv)
+    data.sender===userData.name ? newMessageBoxDiv.className='message-box own' : newMessageBoxDiv.className='message-box';
+    newMessageDiv.className='message';
+    if(data.message.id){newMessageBoxDiv.id=data.message.id}
+    newMessageBoxDiv.innerHTML = `<p class="message-sender"><b>${data.sender}</b></p>`
+    const horaMissatge = `${String(new Date(data.message.createdAt).getHours()).padStart(2,"0")}:${String(new Date(data.message.createdAt).getMinutes()).padStart(2,"0")}`
+    newMessageDiv.innerHTML = `<p class="message-text">${data.message.text}</p><p class="message-hora">${horaMissatge}</p>`
+
+    newMessageBoxDiv.append(newMessageDiv)
+    final ? chatMessages.append(newMessageBoxDiv) : chatMessages.prepend(newMessageBoxDiv)
 }
 
 const showAlert = (user, room='room', join=true) => {

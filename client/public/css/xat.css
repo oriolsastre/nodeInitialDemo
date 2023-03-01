@@ -1,8 +1,15 @@
 body{
-    max-width:750px;
+    max-width:850px;
     margin-left: auto;
     margin-right: auto;
     overflow: hidden;
+}
+
+div.header {
+    height: 75px;
+    margin: 5px;
+    text-align: right;
+    vertical-align: bottom;
 }
 
 ::-webkit-scrollbar{
@@ -20,6 +27,8 @@ div.chat-body{
     width: 100%;
     display: flex;
     flex-direction: row;
+    min-height: calc(100vh - 130px);
+    margin: 5px;
 }
     .chat-body div{
         display: flex;
@@ -27,24 +36,38 @@ div.chat-body{
     }
 
 /* ROOMS */
-div#rooms{
-    width:20%;
+div.rooms{
+    width:22%;
+    margin-right: 10px;
+    border: none;
 }
 
 div.room{
     border-style: solid;
-    border-color: black;
+    border-color: maroon;
     border-width: 1px;
+    border-radius: 5px;
+    margin: 5px;
+    margin-right: 10px;
+    background-color: bisque;
+    color: maroon;
+    padding: 8px;
+    justify-content: center;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    overflow-x: hidden;
 }
 
 div.room.selected{
-    background-color: aqua;
+    background-color: coral;
 }
 
 /* MESSAGES */
 div#messages{
-   width: 85%;
-   max-height: 90vh;
+   min-width: 80%;
+   max-width: 85%;
+   height: 100%;
 }
 
 div#chat-messages{
@@ -53,18 +76,49 @@ div#chat-messages{
     overflow-x: hidden;
 }
 
-div.message{
+div.message-box{
     float: left;
     width: 75%;
     margin-right: 25%;
     text-align: left;
+    color: maroon;
 }
-div.message_own{
+
+div.message-box.own{
     float: right;
     width: 75%;
     text-align: right;
-    margin-left: 25%;
+    margin-left: 24%;
 }
+
+    div.message-box p.message-sender{
+        margin-right: 8px;
+        margin-bottom: 1px;
+        margin-left: 2px;
+    }
+
+div.message{
+    border-style: solid;
+    border-color: maroon;
+    border-width: 1px;
+    border-radius: 15px;
+    background-color: bisque;
+    margin-top: 2px;
+    padding: 5px;
+}
+    div.message p.message-text{
+        margin-bottom: 10px;
+        margin-top: 7px;
+        font-size: 18px;
+    }
+
+    div.message p.message-hora{
+        font-size: small;
+        font-style: italic;
+        line-height: 8px;
+        margin-top: 0px;
+        margin-bottom: 4px;
+    }
 
 div.chatAlert{
     width: 100%;
@@ -80,6 +134,16 @@ div.chatAlert{
 
 div.message_delete{
     text-decoration: line-through;
+}
+
+#chat-intpu{
+    position: absolute;
+    bottom: 0%;
+}
+
+
+div.footer {
+    height: 50px;
 }
 
 /* Classes i subclasses
