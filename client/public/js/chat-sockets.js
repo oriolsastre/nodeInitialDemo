@@ -4,15 +4,18 @@ let validMessage = true;
 let newRoomForm = document.getElementById('newRoom-form')
 
 chatButton.addEventListener('click', (ev) => {
-    socket.emit('chat-message2server', {message: chatInput.value, currentRoom})
-    chatInput.value = '';
+    if(chatInput.value.length>0){
+      socket.emit('chat-message2server', {message: chatInput.value, currentRoom})
+      chatInput.value = '';
+    }
 })
 
 newRoomForm.addEventListener('submit', (ev) => {
   ev.preventDefault();
   if(ev.target.elements["roomName"].value.length>0){
-    const roomName = ev.target.elements["roomName"].value
-    createRoom(roomName)
+    const roomName = ev.target.elements["roomName"].value;
+    createRoom(roomName);
+    ev.target.elements["roomName"].value='';
   }
 })
 
@@ -37,7 +40,7 @@ socket.on('room-fetchMessages', data => {
     showMessage(displayMessage, false)
   }
   scrollDown(chatMessages);
-  lastMessageTime = data.pop().createdAt
+  //lastMessageTime = data.pop().createdAt
 })
 
 socket.on('user-joinedRoom', data => {
