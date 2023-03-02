@@ -1,4 +1,5 @@
 let headerDiv = document.getElementsByClassName('header')[0];
+let headerUser = document.getElementById('header-user')
 let chatMessages = document.getElementById('chat-messages')
 let messageHistory = true;
 let roomsDiv = document.getElementById('rooms');
@@ -7,7 +8,7 @@ let footerDiv = document.getElementById('connected-Users')
 
 let userInHeader = document.createElement('div');
 userInHeader.innerHTML = `Benvingut <b>${userData.name}</b>`
-headerDiv.prepend(userInHeader)
+headerUser.prepend(userInHeader)
 
 chatMessages.addEventListener('scroll', async () => {
     if (chatMessages.scrollTop === 0 && messageHistory) {
@@ -38,6 +39,7 @@ const showMessage = (data, final = true) => {
     const newMessageDiv = document.createElement('div');
 
     data.sender === userData.name ? newMessageBoxDiv.className = 'message-box own' : newMessageBoxDiv.className = 'message-box';
+    if(final) newMessageBoxDiv.classList.add('nou')
     newMessageDiv.className = 'message';
     if (data.message.id) { newMessageBoxDiv.id = data.message.id }
     newMessageBoxDiv.innerHTML = `<p class="message-sender"><b>${data.sender}</b></p>`

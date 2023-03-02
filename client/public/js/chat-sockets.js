@@ -3,8 +3,16 @@ let chatButton = document.getElementById('chat-button');
 let validMessage = true;
 let newRoomForm = document.getElementById('newRoom-form')
 
-chatButton.addEventListener('click', (ev) => {
-    if(chatInput.value.length>0){
+chatInput.addEventListener('keyup', ev => {
+  if (ev.key == "Enter") {
+    ev.preventDefault();
+    chatButton.click();
+  }
+})
+
+chatButton.addEventListener('click', (ev) => {  
+  ev.preventDefault()
+  if(chatInput.value.length>0){
       socket.emit('chat-message2server', {message: chatInput.value, currentRoom})
       chatInput.value = '';
     }
