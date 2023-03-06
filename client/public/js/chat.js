@@ -89,7 +89,7 @@ const scrollDown = (element2Scroll) => {
 }
 
 const add2footer = (user) => {
-    let newUserFooter = document.createElement('span');
+    let newUserFooter = document.createElement('div');
     newUserFooter.className = 'connected-user';
     newUserFooter.id = `${user.name}${user.id}`
     newUserFooter.innerHTML = `${user.name}`

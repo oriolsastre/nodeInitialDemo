@@ -73,6 +73,7 @@ div.rooms{
 }
 
 div.room{
+    position: relative;
     border-style: solid;
     border-color: maroon;
     border-width: 1px;
@@ -94,6 +95,20 @@ div.room.selected{
     background-color: coral;
 }
 
+div.room div.room-unread{
+    position: absolute;
+    top: -8px;
+    right: 10px;
+    padding: 1px 2px;
+    font-size: x-small;
+    margin: 0%;
+    border: 1px solid maroon;
+    border-radius: 100%;
+    z-index: 10;
+    background-color: maroon;
+    color: white
+}
+
 .room.create{
     cursor: default;
 }
@@ -101,6 +116,8 @@ div.room.selected{
 .room:hover {
     box-shadow: 0px 0px 8px 1px rgba(0, 30, 255, 0.426);
 }
+
+
 
 /* MESSAGES */
 div#messages{
@@ -153,7 +170,7 @@ div.message-box{
 
 div.message-box.own{
     float: right;
-    width: 75%;
+    /*width: 75%;*/
     text-align: right;
     margin-left: 24%;
 }
@@ -241,6 +258,21 @@ div.message_delete{
 
 div.footer {
     height: 50px;
+}
+
+div#connected-Users{
+    display: flex;
+    flex-direction: row;
+}
+
+div#connected-Users div.connected-user{
+    margin: 4px;
+    padding: 4px 8px;
+    border: 1px solid maroon;
+    border-radius: 10px;
+    width: fit-content;
+    background-color: bisque;
+    font-weight: bold;
 }
 
 
