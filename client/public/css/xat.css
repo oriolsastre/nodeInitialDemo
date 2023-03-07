@@ -2,7 +2,7 @@ body{
     max-width:850px;
     margin-left: auto;
     margin-right: auto;
-    overflow: hidden;
+    overflow-y: auto;
     color: maroon;
     font-family: 'Roboto', sans-serif;
 }
@@ -57,7 +57,7 @@ div.chat-body{
     width: 100%;
     display: flex;
     flex-direction: row;
-    min-height: calc(100vh - 160px);
+    height: calc(100vh - 160px);
     margin: 5px;
 }
     .chat-body div{
@@ -70,10 +70,13 @@ div.rooms{
     width:22%;
     margin-right: 10px;
     border: none;
+    height: 100%;
+    overflow-y: auto;
 }
 
 div.room{
     position: relative;
+    min-height: fit-content;
     border-style: solid;
     border-color: maroon;
     border-width: 1px;
@@ -87,8 +90,9 @@ div.room{
     text-align: center;
     text-transform: uppercase;
     font-weight: bold;
-    overflow-x: hidden;
+    overflow: hidden;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
 div.room.selected{
@@ -123,16 +127,21 @@ div.room div.room-unread{
 div#messages{
    min-width: 80%;
    max-width: 85%;
-   height: max-content;
+   height: 100%;
    margin-top: auto;
    margin-bottom: 0px;
 }
 
 div#chat-messages{
-    max-height: 75vh;
-    overflow: scroll;
+    height: 100%;
+    overflow-y: auto;
     overflow-x: hidden;
 }
+    /* https://stackoverflow.com/questions/36130760/use-justify-content-flex-end-and-to-have-vertical-scrollbar */
+    div#chat-messages > :first-child {
+        margin-top: auto !important;
+        /* use !important to prevent breakage from child margin settings */
+    }
 
 /* @keyframes vibrar {
     0% { transform: translate(0, 0); }
