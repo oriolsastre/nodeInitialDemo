@@ -51,7 +51,13 @@ div.header {
 ::-webkit-scrollbar-thumb {
     background-color: maroon; /* color de la barra */
     border-radius: 5px; /* radi dels cantons */
-  }
+}
+
+/* SCROLLBAR PER A FIREFOX*/
+div{
+    scrollbar-color: maroon bisque;
+    scrollbar-width: thin;
+}
 
 div.chat-body{
     width: 100%;
