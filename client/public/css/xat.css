@@ -55,7 +55,7 @@ div.header {
 
 /* SCROLLBAR PER A FIREFOX*/
 div{
-    scrollbar-color: maroon bisque;
+    scrollbar-color: maroon rgb(254, 240, 223);
     scrollbar-width: thin;
 }
 
