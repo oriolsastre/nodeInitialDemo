@@ -43,13 +43,13 @@ Per la consola del client veurem en quina direcció està el servidor i ens hi p
 
 ## TO DO
 
--Crec que si fas joinRoom a la sala que ja hi ets... no acaba d'anar bé? Descactivar el click suposo de la sala on ja hi sóc...
-
 -Treure espais en blanc dels noms de les sales. Tractar altres caràcters especials?
 
--El nom d'usuari no hauria de tenir caràcters especials. Només lletres i números.
+-El nom d'usuari no hauria de tenir caràcters especials. Només lletres i números. Fet al front. Limitar-ho al back, també límit de llarg!
 
 -Els missatges del xat codificar i descodificar quan han de viatjar al servidor o tornen del servidor.
+
+-Limitar nom de la sala a 10. Tant al front com al back.
 
 ## Coses a tenir en compte?
 https://stackoverflow.com/questions/3391242/should-i-hash-the-password-before-sending-it-to-the-server-side

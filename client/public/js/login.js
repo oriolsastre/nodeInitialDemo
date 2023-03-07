@@ -46,19 +46,22 @@ signupUser.addEventListener('input', async user => {
   clearTimeout(newUserTimeout);
   const newUser = encodeURIComponent(user.target.value)
   if(newUser.length>0){
-    newUserTimeout = setTimeout(async ()=>{
-      const response = await fetch(`${api}/user/${newUser}`, {
-        method: 'GET',
-        headers: {"Content-Type": "application/json"}
-      })
-      const responseJSON = await response.json()
-      if(responseJSON.status===500){validUserMsg.textContent='Error connecting to server'; validUser=false;}
-      if(responseJSON.data === null){validUserMsg.textContent= String.fromCharCode(160); validUser=true;}
-      else{validUserMsg.textContent='Aquest usuari ja existeix'; validUser=false;}
-    },1500)    
+    if(validUserFn(newUser)){
+      newUserTimeout = setTimeout(async ()=>{
+        const response = await fetch(`${api}/user/${newUser}`, {
+          method: 'GET',
+          headers: {"Content-Type": "application/json"}
+        })
+        const responseJSON = await response.json()
+        if(responseJSON.status===500){validUserMsg.textContent='Error connecting to server'; validUser=false;}
+        if(responseJSON.data === null){validUserMsg.textContent= String.fromCharCode(160); validUser=true;}
+        else{validUserMsg.textContent='Aquest usuari ja existeix'; validUser=false;}
+      },1500)   
+    }else{validUserMsg.textContent='Només lletres i números'; validUser=false;}
   }else{validUser=false;}
 })
 
+/* Gira el formular en fer click a registra't o inicia sessio */
 const registrat_button = document.getElementsByClassName('gira-carta-boto')
 const flipCard = document.querySelector('.card');
 for(let i=0;i<registrat_button.length;i++){
@@ -67,10 +70,11 @@ for(let i=0;i<registrat_button.length;i++){
   })
 }
 
+/* Si es donen les condicions correctes de nom d'usuari i format de contrassenya, crear compte i inicia sessió */
 signupForm.addEventListener('submit', async function(e){
   e.preventDefault();
   if(validUser && validPswd && validPswd2){
-    signup(signupUser.value, signupPswd1.value);
+    signup(encodeURIComponent(signupUser.value), encodeURIComponent(signupPswd1.value));
   }
 })
 
@@ -82,7 +86,7 @@ var loginPswd = document.getElementById('loginPswd');
 /* Formulari d'inscripcio */
 loginForm.addEventListener('submit', function(e){
   e.preventDefault();
-  login(loginUser.value.toString(), loginPswd.value.toString())
+  login(encodeURIComponent(loginUser.value.toString()), encodeURIComponent(loginPswd.value.toString()))
 })
 
 /**
@@ -129,4 +133,12 @@ const signup = async function(user,pswd){
     if(responseJSON.status===201){return login(user,pswd)}
     else{alert(`Server error creating you user: ${responseJSON.error.message}`)}  
   }catch (error){alert("There was an error with your signin in."+error.message)  }
+}
+/**
+ * Comprova que el nom d'usuari només contingui lletres i números.
+ * @param {String} user 
+ * @returns {Boolean}
+ */
+const validUserFn = (user) => {
+    return /^[a-z0-9]+$/i.test(user);
 }

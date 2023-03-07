@@ -20,9 +20,10 @@ chatButton.addEventListener('click', (ev) => {
 
 newRoomForm.addEventListener('submit', (ev) => {
   ev.preventDefault();
-  if(ev.target.elements["roomName"].value.length>0){
-    const roomName = ev.target.elements["roomName"].value;
-    createRoom(roomName);
+  const roomNameBrut = ev.target.elements["roomName"].value;
+  const roomName = roomNameBrut.replace(/[^a-zA-Z0-9]/g, '');
+  if(roomName.length>0 && roomName.length<11){
+    createRoom(encodeURIComponent(roomName));
     ev.target.elements["roomName"].value='';
   }
 })
