@@ -39,7 +39,7 @@ const showMessage = (data, final = true) => {
     const newMessageDiv = document.createElement('div');
 
     data.sender === userData.name ? newMessageBoxDiv.className = 'message-box own' : newMessageBoxDiv.className = 'message-box';
-    if(final) newMessageBoxDiv.classList.add('nou')
+    if (final) newMessageBoxDiv.classList.add('nou')
     newMessageDiv.className = 'message';
     if (data.message.id) { newMessageBoxDiv.id = data.message.id }
     newMessageBoxDiv.innerHTML = `<p class="message-sender"><b>${data.sender}</b></p>`
@@ -51,23 +51,23 @@ const showMessage = (data, final = true) => {
 }
 
 const addUnreadAlert = (data) => {
-    if(data.room!==currentRoom){
+    if (data.room !== currentRoom) {
         let unreadDiv = document.getElementById(`unread${data.room}`);
-        if(unreadDiv===null){
+        if (unreadDiv === null) {
             const unreadRoomDiv = document.getElementById(`room${data.room}`)
             let newUnreadDiv = document.createElement('div');
-            newUnreadDiv.className="room-unread";
+            newUnreadDiv.className = "room-unread";
             newUnreadDiv.id = `unread${data.room}`
-            newUnreadDiv.innerHTML=1;
+            newUnreadDiv.innerHTML = 1;
             unreadRoomDiv.prepend(newUnreadDiv)
 
-        }else{
+        } else {
             let i = unreadDiv.innerHTML;
-            if(i === '+') return
-            if(i == 19) return unreadDiv.innerHTML='+';
+            if (i === '+') return
+            if (i == 19) return unreadDiv.innerHTML = '+';
             let j = parseInt(i);
-            j++;            
-            return unreadDiv.innerHTML=j;
+            j++;
+            return unreadDiv.innerHTML = j;
         }
     }
 }
@@ -83,7 +83,7 @@ const showAlert = (user, room = 'room', join = true) => {
 const joinRoom = (room) => {
     if (currentRoom != room) {
         socket.emit('leave-room', currentRoom)
-    
+
         localStorage.setItem('currentRoom', room)
         currentRoom = room;
         messageHistory = true;
@@ -94,7 +94,7 @@ const joinRoom = (room) => {
         let joinRoomDiv = document.getElementById(`room${room}`)
         joinRoomDiv.className = 'room selected'
         let unreadRoomAlters = document.getElementById(`unread${room}`);
-        if(unreadRoomAlters !== null) unreadRoomAlters.remove()
+        if (unreadRoomAlters !== null) unreadRoomAlters.remove()
     }
 }
 

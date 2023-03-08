@@ -1,4 +1,4 @@
-const {Models} = require('../database/initModels')
+const { Models } = require('../database/initModels')
 const Response = require('../models/Response')
 
 /**
@@ -7,13 +7,13 @@ const Response = require('../models/Response')
  * @param {res} res - Express' res object
  * @param {function} next
  */
-const existsRoomMW = async (req,res,next) => {
+const existsRoomMW = async (req, res, next) => {
     const roomID = req.params.room;
     try {
-        const room = await Models.Room.findOne({where: {id: roomID}})
-        if(room === null || !roomID){return res.status(400).json(new Response(400,{message: "This room does not exist."}, "There was an error"))}
+        const room = await Models.Room.findOne({ where: { id: roomID } })
+        if (room === null || !roomID) { return res.status(400).json(new Response(400, { message: "This room does not exist." }, "There was an error")) }
         return next();
-    } catch (error) { return res.status(500).json(new Response(500, {message: error.message}, "There was an error.")) }
+    } catch (error) { return res.status(500).json(new Response(500, { message: error.message }, "There was an error.")) }
 }
 
 /**
@@ -25,10 +25,10 @@ const existsRoomMW = async (req,res,next) => {
 const existsNotRoomMW = async (req, res, next) => {
     const newRoom = req.body.name;
     try {
-        const existsRoom = await Models.Room.findOne({where: {name: newRoom}});
-        if(existsRoom === null){ return next(); }
-        return res.status(400).json(new Response(400, {message: "There already exists a room with this name"}, "There was an error"));
-    } catch (error) { return res.status(500).json(new Response(500, {message: error.message}, "There was an error.")) }
+        const existsRoom = await Models.Room.findOne({ where: { name: newRoom } });
+        if (existsRoom === null) { return next(); }
+        return res.status(400).json(new Response(400, { message: "There already exists a room with this name" }, "There was an error"));
+    } catch (error) { return res.status(500).json(new Response(500, { message: error.message }, "There was an error.")) }
 }
 
 /**
@@ -39,14 +39,14 @@ const existsNotRoomMW = async (req, res, next) => {
  */
 const validRoomNameMW = (req, res, next) => {
     let roomName = req.body.name;
-    if(roomName){
+    if (roomName) {
         let treatedRoomName = roomName.trim().replace(/[^a-zA-Z0-9]/g, '');
-        if(treatedRoomName.length>0 && treatedRoomName.length<11){
+        if (treatedRoomName.length > 0 && treatedRoomName.length < 11) {
             req.body.name = treatedRoomName;
             return next();
         }
     }
-    return res.status(400).json(new Response(400, {message: "Room name is invalid"}, "There was an error"));
+    return res.status(400).json(new Response(400, { message: "Room name is invalid" }, "There was an error"));
 }
 
 /**
@@ -58,10 +58,10 @@ const validRoomNameMW = (req, res, next) => {
 const existsUserMW = async (req, res, next) => {
     const checkUser = req.params.user;
     try {
-        const user = await Models.User.findOne({where: {id: checkUser}});
-        if(user === null || !checkUser){return res.status(400).json(new Response(400,{message: "This user does not exist."}, "There was an error"))}
+        const user = await Models.User.findOne({ where: { id: checkUser } });
+        if (user === null || !checkUser) { return res.status(400).json(new Response(400, { message: "This user does not exist." }, "There was an error")) }
         return next();
-    } catch (error) { return res.status(500).json(new Response(500, {message: error.message}, "There was an error.")) }
+    } catch (error) { return res.status(500).json(new Response(500, { message: error.message }, "There was an error.")) }
 }
 
 /**
@@ -72,10 +72,10 @@ const existsUserMW = async (req, res, next) => {
  */
 const validUserMW = (req, res, next) => {
     const checkUser = req.body.user;
-    if(/^[a-z0-9]+$/i.test(checkUser) && checkUser.length>0 && checkUser.length<=20){
+    if (/^[a-z0-9]+$/i.test(checkUser) && checkUser.length > 0 && checkUser.length <= 20) {
         return next();
     }
-    return res.status(400).json(new Response(400, {message: "User name is invalid. Only alphanumeric characters."}, "There was an error"));
+    return res.status(400).json(new Response(400, { message: "User name is invalid. Only alphanumeric characters." }, "There was an error"));
 }
 
 module.exports = { existsRoomMW, existsNotRoomMW, validRoomNameMW, existsUserMW, validUserMW }

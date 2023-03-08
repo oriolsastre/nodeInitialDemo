@@ -10,22 +10,22 @@ chatInput.addEventListener('keyup', ev => {
   }
 })
 
-chatButton.addEventListener('click', (ev) => {  
+chatButton.addEventListener('click', (ev) => {
   ev.preventDefault()
   let message2send = encodeURIComponent(chatInput.value.trim())
-  if(message2send.length>0){
-      socket.emit('chat-message2server', {message: message2send, currentRoom})
-      chatInput.value = '';
-    }
+  if (message2send.length > 0) {
+    socket.emit('chat-message2server', { message: message2send, currentRoom })
+    chatInput.value = '';
+  }
 })
 
 newRoomForm.addEventListener('submit', (ev) => {
   ev.preventDefault();
   const roomNameBrut = ev.target.elements["roomName"].value;
   const roomName = roomNameBrut.replace(/[^a-zA-Z0-9]/g, '');
-  if(roomName.length>0 && roomName.length<11){
+  if (roomName.length > 0 && roomName.length < 11) {
     createRoom(encodeURIComponent(roomName));
-    ev.target.elements["roomName"].value='';
+    ev.target.elements["roomName"].value = '';
   }
 })
 
@@ -49,8 +49,8 @@ socket.on('remove-message', messageID => {
 })
 
 socket.on('room-fetchMessages', data => {
-  for(let message of data){
-    let displayMessage = {message: {text: message.message, id: message.id, createdAt: message.createdAt}, sender:message["User.name"]}
+  for (let message of data) {
+    let displayMessage = { message: { text: message.message, id: message.id, createdAt: message.createdAt }, sender: message["User.name"] }
     showMessage(displayMessage, false)
   }
   scrollDown(chatMessages);
@@ -70,8 +70,8 @@ socket.on('room-created', data => {
 })
 
 socket.on('user-loadFirst', data => {
-  for(let room of data.chatRooms){addRoom(room)}
-  for(let user of data.connectedUsers){add2footer(user)}
+  for (let room of data.chatRooms) { addRoom(room) }
+  for (let user of data.connectedUsers) { add2footer(user) }
 })
 
 socket.on('user-roomCreated', data => {

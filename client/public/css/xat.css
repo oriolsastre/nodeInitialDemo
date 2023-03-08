@@ -253,8 +253,9 @@ div.chatAlert{
 }
 
     .chatAlert p{
-        font-size: 14px;
+        font-size: 12px;
         text-align: center;
+        margin: 4px auto;
     }
 
 div.message_delete{

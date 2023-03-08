@@ -1,4 +1,4 @@
-const {Models} = require('../database/initModels')
+const { Models } = require('../database/initModels')
 const { Op } = require("sequelize");
 
 /**
@@ -9,7 +9,7 @@ const { Op } = require("sequelize");
  * @returns {Message}
  */
 const createMessage = async (user, room, message) => {
-    return await Models.Message.create({message, user, room});
+    return await Models.Message.create({ message, user, room });
 }
 
 /**
@@ -19,14 +19,14 @@ const createMessage = async (user, room, message) => {
  * @param {Date | null} before - fetch messages before this timestamp
  * @returns {Array<Message>}
  */
-const getMessages = async (room, limit=20, before=null) => {
+const getMessages = async (room, limit = 20, before = null) => {
     let whereCondition
-    if(before===null){
-        whereCondition = {room}
-    }else{
+    if (before === null) {
+        whereCondition = { room }
+    } else {
         whereCondition = {
             room,
-            createdAt: {[Op.lt]: Date.parse(before)}
+            createdAt: { [Op.lt]: Date.parse(before) }
         }
     }
     return Models.Message.findAll({
@@ -35,9 +35,10 @@ const getMessages = async (room, limit=20, before=null) => {
             attributes: ['name']
         }],
         where: whereCondition,
-        order: [['createdAt','DESC']],
+        order: [['createdAt', 'DESC']],
         limit,
-        raw:true});
+        raw: true
+    });
 }
 
 module.exports = { createMessage, getMessages }

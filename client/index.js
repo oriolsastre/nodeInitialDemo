@@ -8,6 +8,9 @@ const clientConfig = {
 };
 const app = express();
 app.use(express.static(path.join(__dirname, "public")));
+app.get('*', ( req, res ) => {
+  res.sendFile( path.join( __dirname, 'public', 'NotFound.html' ) );
+} );
 
 app.listen(clientConfig, () => {
   console.log(`Client listening on ${clientConfig.host}:${clientConfig.port}`);
