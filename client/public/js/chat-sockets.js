@@ -12,8 +12,9 @@ chatInput.addEventListener('keyup', ev => {
 
 chatButton.addEventListener('click', (ev) => {  
   ev.preventDefault()
-  if(chatInput.value.length>0){
-      socket.emit('chat-message2server', {message: chatInput.value, currentRoom})
+  let message2send = encodeURIComponent(chatInput.value.trim())
+  if(message2send.length>0){
+      socket.emit('chat-message2server', {message: message2send, currentRoom})
       chatInput.value = '';
     }
 })
@@ -36,6 +37,10 @@ socket.on('user-connected', data => {
 socket.on('chat-message2client', data => {
   showMessage(data, true)
   scrollDown(chatMessages)
+})
+
+socket.on('new-unreadMessage', data => {
+  addUnreadAlert(data)
 })
 
 socket.on('remove-message', messageID => {

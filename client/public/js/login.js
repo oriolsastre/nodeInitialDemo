@@ -107,10 +107,7 @@ const login = async function(user, pswd){
   if(response.status===200){
     localStorage.setItem('userData', JSON.stringify(responseJSON.data))
     localStorage.setItem('currentRoom', 1)
-    //setTimeout(()=>{window.alert("Logged in")},10) //Per no haver d'esperar confirmació de l'usuari al popup.
     return window.location.assign('./index.html')
-    //alert() o popup amb que ha fet login
-    //console.log('success');
   }
   alert("Wrong credentials")
 }

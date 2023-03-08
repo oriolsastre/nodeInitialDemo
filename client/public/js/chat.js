@@ -44,10 +44,32 @@ const showMessage = (data, final = true) => {
     if (data.message.id) { newMessageBoxDiv.id = data.message.id }
     newMessageBoxDiv.innerHTML = `<p class="message-sender"><b>${data.sender}</b></p>`
     const horaMissatge = `${String(new Date(data.message.createdAt).getHours()).padStart(2, "0")}:${String(new Date(data.message.createdAt).getMinutes()).padStart(2, "0")}`
-    newMessageDiv.innerHTML = `<p class="message-text">${data.message.text}</p><p class="message-hora">${horaMissatge}</p>`
+    newMessageDiv.innerHTML = `<p class="message-text">${decodeURIComponent(data.message.text)}</p><p class="message-hora">${horaMissatge}</p>`
 
     newMessageBoxDiv.append(newMessageDiv)
     final ? chatMessages.append(newMessageBoxDiv) : chatMessages.prepend(newMessageBoxDiv)
+}
+
+const addUnreadAlert = (data) => {
+    if(data.room!==currentRoom){
+        let unreadDiv = document.getElementById(`unread${data.room}`);
+        if(unreadDiv===null){
+            const unreadRoomDiv = document.getElementById(`room${data.room}`)
+            let newUnreadDiv = document.createElement('div');
+            newUnreadDiv.className="room-unread";
+            newUnreadDiv.id = `unread${data.room}`
+            newUnreadDiv.innerHTML=1;
+            unreadRoomDiv.prepend(newUnreadDiv)
+
+        }else{
+            let i = unreadDiv.innerHTML;
+            if(i === '+') return
+            if(i == 19) return unreadDiv.innerHTML='+';
+            let j = parseInt(i);
+            j++;            
+            return unreadDiv.innerHTML=j;
+        }
+    }
 }
 
 const showAlert = (user, room = 'room', join = true) => {
@@ -61,16 +83,19 @@ const showAlert = (user, room = 'room', join = true) => {
 const joinRoom = (room) => {
     if (currentRoom != room) {
         socket.emit('leave-room', currentRoom)
+    
+        localStorage.setItem('currentRoom', room)
+        currentRoom = room;
+        messageHistory = true;
+        chatMessages.innerHTML = '';
+        socket.emit('join-room', room)
+        let currentRoomDiv = document.getElementsByClassName('room selected')[0];
+        currentRoomDiv.className = 'room';
+        let joinRoomDiv = document.getElementById(`room${room}`)
+        joinRoomDiv.className = 'room selected'
+        let unreadRoomAlters = document.getElementById(`unread${room}`);
+        if(unreadRoomAlters !== null) unreadRoomAlters.remove()
     }
-    localStorage.setItem('currentRoom', room)
-    currentRoom = room;
-    messageHistory = true;
-    chatMessages.innerHTML = '';
-    socket.emit('join-room', room)
-    let currentRoomDiv = document.getElementsByClassName('room selected')[0];
-    currentRoomDiv.className = 'room';
-    let joinRoomDiv = document.getElementById(`room${room}`)
-    joinRoomDiv.className = 'room selected'
 }
 
 const addRoom = (room) => {

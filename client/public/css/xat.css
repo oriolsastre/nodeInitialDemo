@@ -121,6 +121,19 @@ div.room div.room-unread{
     z-index: 10;
     background-color: rgba(0, 18, 151, 0.8);
     color: white;
+    animation: newMessageAni 0.5s linear;
+}
+    div.room-unread.toggleAni{
+        animation: newMessageAni 0.5s linear;
+    }
+
+@keyframes newMessageAni{
+    0% { scale: 1; }
+  20% { scale: 1.1225 }
+  40% { scale: 1.25  }
+  60% { scale: 1.1225  }
+  80% { scale: 1.30   }
+  100% { scale: 1 }
 }
 
 .room.create{
@@ -135,8 +148,8 @@ div.room div.room-unread{
 
 /* MESSAGES */
 div#messages{
-   min-width: 80%;
-   max-width: 85%;
+   /* min-width: 80%; */
+   width: 85%;
    height: 100%;
    margin-top: auto;
    margin-bottom: 0px;
