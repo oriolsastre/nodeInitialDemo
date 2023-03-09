@@ -1,16 +1,16 @@
 import { readFileSync, writeFileSync } from 'fs';
-import { Tasks } from '../models/Tasks.js';
+import { Tasks as TasksJSON } from '../models/JSON/Tasks.js';
+import { connectMongo } from './connectMongo.js';
 
 const path = `./app/database/tasks.json`;
 
 /**
  * Starts de database to read and load its contents to use them.
- * @param {String} db - What dependency you want to use: [json: default, mysql, mongo] 
  * @returns {Array<Tasks>} Tasks loaded from the database.
  */
-const initDB = (db = 'json') => {
-    if (db === 'json') {
-        const tasks = new Tasks();
+export const initDB = async () => {
+    if (global.db === 'json') {
+        const tasks = new TasksJSON();
         let tasksPlain = readFileSync(path, { encoding: 'utf-8', flag: 'as+' })
         if (tasksPlain.length === 0) tasksPlain += '[]'
         writeFileSync(path, tasksPlain)
@@ -18,7 +18,12 @@ const initDB = (db = 'json') => {
         for (let importedTaskJSON of tasksJSON) {
             tasks.importTask(importedTaskJSON)
         }
+    } else if (global.db === 'mongo') {
+        try {
+            connectMongo();
+        } catch (error) {
+            console.log("Error connectant-se a la base de dades de Mongo.");
+            process.exit(0)
+        }
     }
 }
-
-export { initDB }

@@ -14,7 +14,7 @@ import { deleteTask } from '../controllers/deleteTask.js';
  * @returns 
  */
 const listTasks = async (estat = null, metode = "u") => {
-    const tasks = getTasks(estat);
+    const tasks = await getTasks(estat);
 
     let choices = []
     for (let task of tasks) {

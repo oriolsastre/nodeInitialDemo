@@ -59,15 +59,15 @@ const mainMenu = async (name) => {
       break;
 
     case 2:
-      displayTasks(getTasks())
+      displayTasks(await getTasks())
       return confirmar('Aquestes són totes les tasques.', mainMenu)
 
     case 3:
-      displayTasks(getTasks('p'))
+      displayTasks(await getTasks('p'))
       return confirmar('Aquestes són totes les tasques pendents.', mainMenu)
 
     case 4:
-      displayTasks(getTasks('c'))
+      displayTasks(await getTasks('c'))
       return confirmar('Aquestes són totes les tasques completades.', mainMenu)
 
     case 5:
@@ -79,6 +79,7 @@ const mainMenu = async (name) => {
       break;
 
     default:
+      process.exit(0)
       break;
   }
 };

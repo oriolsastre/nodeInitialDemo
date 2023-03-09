@@ -1,13 +1,11 @@
 import inquirer from "inquirer";
 import { confirmar } from "../helpers/pausa.js";
-import { Tasks } from "../models/Tasks.js";
+import { Tasks as TasksJSON } from "../models/JSON/Tasks.js";
+import { Tasks as TasksMongo } from "../models/Mongo/Tasks.js";
 import { listTasks } from "../routes/listTasks.js";
 import { mainMenu } from "../routes/main.js";
 
 export const editTask = async (task) => {
-  let tasks;
-  if (global.db === 'json') { tasks = new Tasks() }
-
   const question = [{
     type: "list",
     name: "action",
@@ -20,31 +18,62 @@ export const editTask = async (task) => {
     ]
   }];
   const answer = await inquirer.prompt(question);
-  switch (answer.action) {
-    case 1:
-      tasks.initiateTask(task);
-      confirmar("La tasca s'ha marcat com a iniciada", mainMenu);
-      break;
+  if (global.db === 'json') {
+    const tasks = new TasksJSON()
+    switch (answer.action) {
+      case 1:
+        tasks.initiateTask(task);
+        confirmar("La tasca s'ha marcat com a iniciada", mainMenu);
+        break;
 
-    case 2:
-      tasks.finishTask(task);
-      confirmar("La tasca s'ha marcat com a feta", mainMenu);
-      break;
-    case 3:
-      const new_name = await inquirer.prompt([
-        {
-          type: "input",
-          name: "new_name",
-          message: `${"Escriu el nou nom de la tasca".bgCyan}`,
-        },
-      ]);
-      tasks.changeTaskName(task, new_name.new_name);
-      confirmar("S'ha canviat el nom de la tasca", mainMenu);
-      break;
-    case 0:
-      return listTasks(null, 'u')
+      case 2:
+        tasks.finishTask(task);
+        confirmar("La tasca s'ha marcat com a feta", mainMenu);
+        break;
+      case 3:
+        const new_name = await inquirer.prompt([
+          {
+            type: "input",
+            name: "new_name",
+            message: `${"Escriu el nou nom de la tasca".bgCyan}`,
+          },
+        ]);
+        tasks.changeTaskName(task, new_name.new_name);
+        confirmar("S'ha canviat el nom de la tasca", mainMenu);
+        break;
+      case 0:
+        return listTasks(null, 'u')
 
-    default:
-      break;
+      default:
+        break;
+    }
+  } else if (global.db === 'mongo') {
+    switch (answer.action) {
+      case 1:
+        await TasksMongo.updateOne({ _id: task._id }, { initiated: Date.now() })
+        confirmar("La tasca s'ha marcat com a iniciada", mainMenu);
+        break;
+
+      case 2:
+        await TasksMongo.updateOne({ _id: task._id }, { finished: Date.now() })
+        confirmar("La tasca s'ha marcat com a feta", mainMenu);
+        break;
+      case 3:
+        const new_name = await inquirer.prompt([
+          {
+            type: "input",
+            name: "new_name",
+            message: `${"Escriu el nou nom de la tasca".bgCyan}`,
+          },
+        ]);
+        await TasksMongo.updateOne({ _id: task._id }, { task: new_name.new_name })
+        confirmar("S'ha canviat el nom de la tasca", mainMenu);
+        break;
+      case 0:
+        return listTasks(null, 'u')
+
+      default:
+        break;
+    }
   }
 };

@@ -1,4 +1,5 @@
 import inquirer from "inquirer";
+import { initDB } from "../database/initDB.js";
 import { mainMenu } from "./main.js";
 
 const introMenu = async () => {
@@ -22,14 +23,14 @@ const choseDB = async () => {
         choices: [{
             value: 'json',
             name: 'JSON'
-        }//Es podrien afegir altres persitències.
-        /* ,{
+        }, {
             value: 'mongo',
             name: 'MongoDB'
-        } */]
+        }]
     }]
     const answer = await inquirer.prompt(question)
     global.db = answer.db;
+    initDB()
     return mainMenu()
 }
 
