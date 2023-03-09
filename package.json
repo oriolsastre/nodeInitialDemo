@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "sample project for node",
   "main": "app.js",
+  "type": "module",
   "scripts": {
     "start": "node app/app.js",
     "dev": "nodemon app/app.js",
@@ -11,10 +12,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^9.0.2"
+    "colors": "^1.4.0",
+    "dotenv": "^9.0.2",
+    "inquirer": "^9.1.4",
+    "mongoose": "^7.0.1",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7",
-    "jest": "^28.1.1"
+    "jest": "^28.1.1",
+    "nodemon": "^2.0.7"
   }
 }

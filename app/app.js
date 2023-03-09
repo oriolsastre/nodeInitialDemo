@@ -1,1 +1,3 @@
-console.log('Hello World');
+import { introMenu } from './routes/intro.js'
+
+introMenu()

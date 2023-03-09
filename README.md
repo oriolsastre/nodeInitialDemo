@@ -1,51 +1,35 @@
+# GESTOR DE TASQUES
 
-# Node Initial Project
+## Requeriments
 
-### Project Structure
+Cal tenir NodeJS instal·lat (https://nodejs.org/ca/)
 
-Main structure of node.js project. Folders / files:
+### Opcionalment
 
-- <b>\_\_tests__</b>. Tests folder. See [Jest Docs](https://jestjs.io/es-ES/docs/configuration) and [Chai Docs](https://www.chaijs.com/)
-- <b>app</b>:
-    - <b>config</b>
-    - <b>controllers</b>
-    - <b>middlewares</b>
-    - <b>models</b>
-    - <b>routes</b>
-    - <b>helpers</b>
-    - <b>app.js</b>. Entry point.
-- <b>package.json</b>.
-- <b>.env</b>. Environment descriptor. See [dotenv doc](https://www.npmjs.com/package/dotenv).
+Si es vol fer servir MongoDB com a persitència, cal tenir-lo instal·lat al sistema (https://www.mongodb.com).
 
-Extras:
-- <b>.eslintrc</b>. Linter JS, static code analyzer. See [EsLint Docs](https://eslint.org/docs/user-guide/configuring/configuration-files).
-- <b>.prettierignore</b>. Code formatter. See [Prettier Config](https://prettier.io/docs/en/configuration.html) and [Prettier Ignore](https://prettier.io/docs/en/ignore.html).
-- <b>.ecosystem.config.js</b>. Process Manage at runtime. See [PM2 Docs](https://pm2.keymetrics.io/).
+## Instal·lació
 
-### Import project for use with Visual Studio Code
+Descarrega't localment aquesta branca `development` del repositori. Si tens GIT instal·lat pots fer-ho des d'una consola amb l'ordre:
 
-Follow the steps below:
-* Clone the project from the Github Platform. Execute:
-  ```
-  git clone [url project]
-  ```
-* Open the project downloaded.
-  ![Open Project](img/VSC_open.png)
+    git clone -b development https://github.com/oriolsastre/nodeInitialDemo --single-branch
 
+Des de la mateixa consola, sitaut al directori que t'acabes de descarregar, exectua l'ordre:
 
-### Import project for use with WebStorm
+    npm install
 
-Follow the steps below:
-* Clone the project from the Github Platform. Execute:
-  ```
-  git clone [url project]
-  ```
-* Open the project downloaded.
-![Open Project](img/webstorm_open.png)
+per instal·lar les dependències necessàries. Per a aquest projecte és especialment important l'`inquirer` per a poder interactuar amb la consola.
 
+Un cop instal·lades podem iniciar el programa amb l'ordre:
 
-### Utilities
+    npm start
 
-* [Node Developers Guide](https://nodejs.dev/learn)
-* **.gitignore file** configuration. See [Official Docs](https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files).
-* **Git branches**. See [Official Docs](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell)
+## Funcionament
+
+Es demana el nom de l'usuari. Això permet veure quin usuari ha creat cada tasca. Si no s'introdueix res, el nom d'usuari per defecte es "`Anònim/a`".
+
+Es demana al usuari quina persistència vol utilitzar. Es pot triar JSON o Mongo, però l'arquitectura de l'aplicació permet afegir una altra opció, com podria ser MySQl, per a desar les dades més endavant usant aquests altres sistemes com a persistència. Per tenir una idea del que això significa: S'haurien de crear els models, adaptar les variables d'entorn i establir la connexió amb el servidor MySQL en la funció `initDB`. Un cop fet això, __NOMÉS__ cal adaptar els controladors per a definir com actuen amb el servidor MySQL, la resta de fitxers, en aquest cas rutes i helpers, no caldria tocar-los.
+
+Des del menú principal es pot accedir a totes les accions del programa. En primer lloc, es pot crear tasques. L'usuari ha de posar el nom de la tasca, i el programa el guarda amb un timestamp i el nom de l'usuari que l'ha creada. Una altra opcions és veure totes les tasques desades, també filtrades per "iniciades" o "completades". El menú també permet fer modificacions a les tasques desades, ja sigui marcant-les com a iniciades, com a fetes o canviant-li el nom. Finalment, hi ha una opció per eliminar tasques.
+
+Al final de cada operació, l'usuari veu un missatge informant-li que operació s'ha fet amb èxit. Desrpès, necessitarà premer "Enter" per tornar al menú principal.
