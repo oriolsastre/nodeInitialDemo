@@ -16,10 +16,17 @@ let validPswdMsg = document.getElementById('signup-validPswd')
 let validPswdMsg2 = document.getElementById('signup-validPswd2')
 let validUser, validPswd, validPswd2 = false;
 
-/* Comprova que la contrassenya tingui format correcte (min 7 char, conté núm i lletres) */
+/* Comprova que la contrassenya tingui format correcte (min 8 char, conté núm i lletres) */
 signupPswd1.addEventListener('input', pswd => {
-  if (pswd.target.value.length < 8) { validPswdMsg.textContent = 'Mínim 8 caràcters'; validPswd = false; }
-  else if (pswd.target.value.length > 7) { validPswdMsg.textContent = String.fromCharCode(160); validPswd = true; }
+  const pswdSignup = pswd.target.value;
+  if (pswdSignup.length < 8) { validPswdMsg.textContent = 'Mínim 8 caràcters'; validPswd = false; }
+  else { 
+    if(!(/[a-z]+/i.test(pswdSignup) && /[0-9]+/.test(pswdSignup))){ validPswdMsg.textContent = 'Ha de contenir números i lletres'; validPswd = false; }
+    else{
+      validPswdMsg.textContent = String.fromCharCode(160);
+      validPswd = true;
+  }
+  }
 })
 
 /* Comprova que les dues contrassenyes introduïdes són iguals */
@@ -44,11 +51,11 @@ signupPswd2.addEventListener('input', e => {
 let newUserTimeout;
 signupUser.addEventListener('input', async user => {
   clearTimeout(newUserTimeout);
-  const newUser = encodeURIComponent(user.target.value)
+  const newUser = user.target.value
   if (newUser.length > 0) {
     if (validUserFn(newUser)) {
       newUserTimeout = setTimeout(async () => {
-        const response = await fetch(`${api}/user/${newUser}`, {
+        const response = await fetch(`${api}/user/${encodeURIComponent(newUser)}`, {
           method: 'GET',
           headers: { "Content-Type": "application/json" }
         })
@@ -112,7 +119,7 @@ const login = async function (user, pswd) {
   alert("Wrong credentials")
 }
 /**
- * Create a new user. If it's created succesfully, logs in.
+ * Crea un nou usuari. Si es crea correctament, es fa log in.
  * @param {String} user 
  * @param {String} pswd 
  */
