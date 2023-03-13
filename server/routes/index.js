@@ -6,7 +6,7 @@ const PATH_ROUTES = __dirname;
 
 fs.readdirSync(PATH_ROUTES).filter(ruta => {
     const nomRuta = ruta.split(".").shift();
-    if(nomRuta !== 'index'){router.use(`/${nomRuta}`, require(`./${ruta}`))}
+    if(nomRuta !== 'index'){router.use(`/api/${nomRuta}`, require(`./${ruta}`))}
 })
 
 router.use('/', pageNotFound)
