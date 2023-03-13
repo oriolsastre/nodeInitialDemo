@@ -5,11 +5,13 @@
 El servidor de back usa les següents dependències:
 
 - `express` Per aixecar el servidor.
+- `dotenv` Per gestionar les variables d'entorn.
+- `cors` Per habilitar CORS amb el servidor client.
 - `bcryptjs` Per encriptar les contrassenyes dels usuaris.
 - `jsonwebtoke` Per generar els tokens de validació dels usuaris.
 - `mysql2` Per connectar amb el servidor MySQL
 - `sequelieze` ORM per interactuar amb les bases de dades del servidor MySQL
-- `socket.io` Per establir i mantenir les connexions a temps real que permeten el xat.
+- `socket.io` Per establir i mantenir les connexions a temps real amb el servidor client que permeten el xat.
 
 ## Arquitectura
 
@@ -22,7 +24,7 @@ El servidor usa un Model Vista Controlador (MVC) i està separat de la següent 
 * __Middlewares__  Middlewares d'autentificació i validació.
 * __Models__
 * __Routes__ Rutes de l'API
-* __Sockets__ Lògica dels sockets
+* __Sockets__ Lògica dels sockets que interactuen amb el servidor client.
 
 ## API
 
@@ -40,6 +42,9 @@ Tots els endpoints de l'API retornen una resposta JSON amb la següent estructur
 ```
 
 ### Endpoints
+
+En aquest mateix director hi ha una col·lecció de POSTMAN (_Xat.postman_collection.json_) per testejar els següents endpoints:
+
 * /api/login
     * POST login
     
@@ -93,14 +98,14 @@ Tots els endpoints de l'API retornen una resposta JSON amb la següent estructur
             pswd: String [required]
         }
         ```
-        El user només pot contenir caràcters alfanumèrics (a-zA-Z0-9)
+        El user només pot contenir caràcters alfanumèrics (a-zA-Z0-9) i ha de tenir menys de 20 caràcters.
 
         Response:
         ```javascript
         {
             status: 201,
             error: null,
-            message: "New user create",
+            message: "New user created",
             data: {
                 id: Integer,
                 name: String,
@@ -127,7 +132,7 @@ Tots els endpoints de l'API retornen una resposta JSON amb la següent estructur
             status: 200,
             error: null,
             message: null,
-            data: [ Room {
+            data: [ {
                 id: Integer,
                 name: String,
                 createdAt: timestamp,
@@ -145,7 +150,7 @@ Tots els endpoints de l'API retornen una resposta JSON amb la següent estructur
             name: String [required],
         }
         ```
-        No pot existir cap altra sala amb el mateix nom i el nom de la sala només pot contenir caràcters alfanumèrics i una llargada màxima de 10.
+        No pot existir cap altra sala amb el mateix nom i el nom de la sala només pot contenir caràcters alfanumèrics i una llargada màxima de 10. Els espais en blanc són eliminats.
 
         Response:
         ```javascript
@@ -176,7 +181,7 @@ Tots els endpoints de l'API retornen una resposta JSON amb la següent estructur
         Body al request:
         ```javascript
         {
-            limit: 20|Integer [not required]
+            limit: Integer [not required]
         }
         ```
         Si no s'especifica un limit al body, se n'obtindran 20.
