@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize')
 const { mysqlConfig, chatAdminPswd } = require('../config/config')
 
-const _User = require('../models/User')
-const _Room = require('../models/Room')
-const _Message = require('../models/Message')
+const _User = require('../database/models/User')
+const _Room = require('../database/models/Room')
+const _Message = require('../database/models/Message')
 
 const { encrypt } = require('../helpers/password')
 const { designDB } = require('./designDB')

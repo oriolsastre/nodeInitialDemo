@@ -5,7 +5,7 @@ const bcryptjs = require('bcryptjs');
  * @param {String} pswdPlain Contrassenya a encriptar
  * @returns {Hash} Contrassenya hashejada
  */
-const encrypt =async (pswdPlain) => {
+const encrypt = async (pswdPlain) => {
     if(pswdPlain===null || pswdPlain===undefined) return null;
     const hash = await bcryptjs.hash(pswdPlain.toString(),5)
     return hash;
