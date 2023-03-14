@@ -1,5 +1,5 @@
 {
-  "name": "chat-server",
+  "name": "xatserver",
   "version": "1.0.0",
   "description": "Chat using sockets.io",
   "main": "server.js",

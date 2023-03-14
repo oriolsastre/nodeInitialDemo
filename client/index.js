@@ -12,6 +12,6 @@ app.get('*', ( req, res ) => {
   res.sendFile( path.join( __dirname, 'public', 'NotFound.html' ) );
 } );
 
-app.listen(clientConfig, () => {
-  console.log(`Client listening on ${clientConfig.host}:${clientConfig.port}`);
+app.listen(clientConfig.port, () => {
+  console.log(`Client listening on  port ${clientConfig.port}`);
 });

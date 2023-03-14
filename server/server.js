@@ -18,6 +18,6 @@ app.use('/', require('./routes'))
 io.use(require('./middlewares/socket'))
 io.on('connection', socket => socketController(io, socket));
 
-server.listen(serverConfig, () => {
-  console.log(`Server listening on ${serverConfig.host}:${serverConfig.port}`);
+server.listen(serverConfig.port, () => {
+  console.log(`Server listening on port ${serverConfig.port}`);
 });

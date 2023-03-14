@@ -7,15 +7,15 @@ const serverConfig = {
 
 const clientConfig = {
   host: process.env.CLIENT_HOST || "localhost",
-  port: process.env.CLIENT_PORT || 3001,
+  port: process.env.CLIENT_PORT || 5000,
 };
 
 const mysqlConfig = {
-  host: process.env.DATABASE_HOST || "localhost",
-  port: process.env.DATABASE_PORT || 3306,
-  user: process.env.DATABASE_USER,
-  password: process.env.DATABASE_PASSWORD || null,
-  name: process.env.DATABASE_NAME || "chat",
+  host: process.env.MYSQL_HOST || "localhost",
+  port: process.env.MYSQL_PORT || 3306,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD || null,
+  name: process.env.MYSQL_NAME || "chat",
 };
 
 const chatAdminPswd = process.env.CHAT_ADMIN_PSWD || 1234;
