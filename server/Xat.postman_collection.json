@@ -1,0 +1,1834 @@
+{
+	"info": {
+		"_postman_id": "0bf8f48c-0efd-4284-b62e-172086e11beb",
+		"name": "Xat",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": \"Admin\",\r\n    \"pswd\": \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Valid login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user\": \"Admin\",\r\n    \"pswd\": \"1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3001"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "247"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f7-sMO5I+OGV4nOEOBTjq7mquAdR4w\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Mar 2023 11:13:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"error\": null,\n    \"message\": \"Login OK\",\n    \"data\": {\n        \"name\": \"Admin\",\n        \"id\": 1,\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkFkbWluIiwiaWF0IjoxNjc4NzA2MDIxLCJleHAiOjE2Nzg3MTMyMjF9.ECkWYDT2cTfMFPiIGXRwreIQNu1n4-MwdMpCqlbWoeQ\"\n    }\n}"
+						},
+						{
+							"name": "Invalid login, wrong password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user\": \"Admin\",\r\n    \"pswd\": \"4321\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3001"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "94"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5e-eAnG+ALJ87VmRt0y3ncqE3aBkXI\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Mar 2023 11:14:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 401,\n    \"error\": {\n        \"message\": \"Wrong password\"\n    },\n    \"message\": \"There was an error\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Invalid login, username not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user\": \"Administrador\",\r\n    \"pswd\": \"1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3001"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "94"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5e-O1I3m/wdQ+EJLMP4oKlvYcNRN8I\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Mar 2023 11:14:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 401,\n    \"error\": {\n        \"message\": \"User not found\"\n    },\n    \"message\": \"There was an error\",\n    \"data\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "user/{user}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/user/Administrador",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user",
+								"Administrador"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "User exists",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/user/Admin",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"user",
+										"Admin"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3001"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "66"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"42-wf8nvMfMWWzbyt1pow87Ns/4IQw\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Mar 2023 11:17:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"error\": null,\n    \"message\": null,\n    \"data\": {\n        \"name\": \"Admin\"\n    }\n}"
+						},
+						{
+							"name": "User does not exist",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/user/Administrador",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"user",
+										"Administrador"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3001"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"36-q3Yh0uAzV+rSDnW09dC3S0Tqeyc\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Mar 2023 11:18:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"error\": null,\n    \"message\": null,\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": \"Postman\",\r\n    \"pswd\": \"123456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "User created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user\": \"Postman\",\r\n    \"pswd\": \"123456789\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/user",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"user"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3001"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "89"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"59-Ei1nNIRwoELl9WyWwQbWxQGrTwI\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Mar 2023 11:22:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 201,\n    \"error\": null,\n    \"message\": \"New user created\",\n    \"data\": {\n        \"id\": 6,\n        \"name\": \"Postman\"\n    }\n}"
+						},
+						{
+							"name": "Invalid username, contains space",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user\": \"New User\",\r\n    \"pswd\": \"123456789\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/user",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"user"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3001"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "131"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"83-uY/LiRdxyz8XOO9sGwnT7jr6w9U\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Mar 2023 11:20:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"error\": {\n        \"message\": \"User name is invalid. Only alphanumeric characters.\"\n    },\n    \"message\": \"There was an error\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Invalid username, too long",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user\": \"AUserNameWithMoreThan20Characters\",\r\n    \"pswd\": \"123456789\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/user",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"user"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3001"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "131"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"83-uY/LiRdxyz8XOO9sGwnT7jr6w9U\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Mar 2023 11:21:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"error\": {\n        \"message\": \"User name is invalid. Only alphanumeric characters.\"\n    },\n    \"message\": \"There was an error\",\n    \"data\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Room",
+			"item": [
+				{
+					"name": "room",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/room",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"room"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get all exisiting rooms",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/room",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"room"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3001"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1092"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"444-6B5suqTd7V1ZPEQehjYsRntxjK0\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Mar 2023 11:25:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"error\": null,\n    \"message\": null,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Principal\",\n            \"createdAt\": \"2023-02-13T08:45:59.000Z\",\n            \"updatedAt\": \"2023-02-13T08:45:59.000Z\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"canal\",\n            \"createdAt\": \"2023-02-13T09:40:22.000Z\",\n            \"updatedAt\": \"2023-02-13T09:40:22.000Z\"\n        },\n        {\n            \"id\": 4,\n            \"name\": \"main\",\n            \"createdAt\": \"2023-03-01T09:33:52.000Z\",\n            \"updatedAt\": \"2023-03-01T09:33:52.000Z\"\n        },\n        {\n            \"id\": 5,\n            \"name\": \"Menjador\",\n            \"createdAt\": \"2023-03-01T11:51:16.000Z\",\n            \"updatedAt\": \"2023-03-01T11:51:16.000Z\"\n        },\n        {\n            \"id\": 6,\n            \"name\": \"Cuina\",\n            \"createdAt\": \"2023-03-01T11:53:52.000Z\",\n            \"updatedAt\": \"2023-03-01T11:53:52.000Z\"\n        },\n        {\n            \"id\": 7,\n            \"name\": \"Sala156\",\n            \"createdAt\": \"2023-03-06T08:41:40.000Z\",\n            \"updatedAt\": \"2023-03-06T08:41:40.000Z\"\n        },\n        {\n            \"id\": 8,\n            \"name\": \"Novasala\",\n            \"createdAt\": \"2023-03-06T09:07:48.000Z\",\n            \"updatedAt\": \"2023-03-06T09:07:48.000Z\"\n        },\n        {\n            \"id\": 10,\n            \"name\": \"Itacademy\",\n            \"createdAt\": \"2023-03-08T09:54:23.000Z\",\n            \"updatedAt\": \"2023-03-08T09:54:23.000Z\"\n        },\n        {\n            \"id\": 11,\n            \"name\": \"divertida\",\n            \"createdAt\": \"2023-03-08T10:33:54.000Z\",\n            \"updatedAt\": \"2023-03-08T10:33:54.000Z\"\n        },\n        {\n            \"id\": 12,\n            \"name\": \"Dani\",\n            \"createdAt\": \"2023-03-08T10:44:25.000Z\",\n            \"updatedAt\": \"2023-03-08T10:44:25.000Z\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "No token provided",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/room",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"room"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3001"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "92"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5c-pNNIKV094Nwfp3G71kgZRjhQW3Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Mar 2023 11:25:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 401,\n    \"error\": {\n        \"message\": \"Wrong token\"\n    },\n    \"message\": \"There was an error.\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Invalid token provided",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/room",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"room"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3001"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "92"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5c-pNNIKV094Nwfp3G71kgZRjhQW3Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Mar 2023 11:26:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 401,\n    \"error\": {\n        \"message\": \"Wrong token\"\n    },\n    \"message\": \"There was an error.\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "room",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Garden\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/room",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"room"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Room created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Garden\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/room",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"room"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3001"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "81"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"51-65HDN+/uVXtmO/arGEIVEBXepTg\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Mar 2023 11:29:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 201,\n    \"error\": null,\n    \"message\": \"New room created\",\n    \"data\": {\n        \"name\": \"Garden\"\n    }\n}"
+						},
+						{
+							"name": "Room created, blank space deleted",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"New Room\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/room",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"room"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3001"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "82"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"52-Dn0Mw/ULn9qiD5RNo1uBIS78KBE\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Mar 2023 11:28:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 201,\n    \"error\": null,\n    \"message\": \"New room created\",\n    \"data\": {\n        \"name\": \"NewRoom\"\n    }\n}"
+						},
+						{
+							"name": "Invalid room name, it already exists",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"NewRoom\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/room",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"room"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3001"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "122"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7a-rNyFm7p9qe5wuXVObO3J5AdsVPY\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Mar 2023 11:29:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"error\": {\n        \"message\": \"There already exists a room with this name\"\n    },\n    \"message\": \"There was an error\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "No name provided",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/room",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"room"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3001"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "100"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"64-K7xaNC/Vv5ukmxVmecKKYb7Ogtw\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Mar 2023 11:27:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"error\": {\n        \"message\": \"Room name is invalid\"\n    },\n    \"message\": \"There was an error\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Invalid room name, too long",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"ALongRoomNameWithMoreThan10\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/room",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"room"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3001"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "100"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"64-K7xaNC/Vv5ukmxVmecKKYb7Ogtw\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Mar 2023 11:27:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"error\": {\n        \"message\": \"Room name is invalid\"\n    },\n    \"message\": \"There was an error\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "No token provided",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Garden\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/room",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"room"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3001"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "92"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5c-pNNIKV094Nwfp3G71kgZRjhQW3Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Mar 2023 11:30:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 401,\n    \"error\": {\n        \"message\": \"Wrong token\"\n    },\n    \"message\": \"There was an error.\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Invalid token provided",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Garden\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/room",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"room"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3001"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "92"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5c-pNNIKV094Nwfp3G71kgZRjhQW3Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Mar 2023 11:30:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 401,\n    \"error\": {\n        \"message\": \"Wrong token\"\n    },\n    \"message\": \"There was an error.\",\n    \"data\": null\n}"
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Message",
+			"item": [
+				{
+					"name": "message/{room}",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/message/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"message",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Messages fetched",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/message/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"message",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3001"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "3249"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"cb1-NxKg9ibKxMHKDoKEJW6iLYPLk+Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Mar 2023 11:33:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"error\": null,\n    \"message\": \"Messages fetched\",\n    \"data\": [\n        {\n            \"id\": 192,\n            \"message\": \"Escric\",\n            \"user\": 1,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-08T11:32:34.000Z\",\n            \"updatedAt\": \"2023-03-08T11:32:34.000Z\",\n            \"User.name\": \"Admin\"\n        },\n        {\n            \"id\": 189,\n            \"message\": \"S%C3%B3c%20un%20nou%20usuari\",\n            \"user\": 5,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-08T10:41:47.000Z\",\n            \"updatedAt\": \"2023-03-08T10:41:47.000Z\",\n            \"User.name\": \"Nouusuari\"\n        },\n        {\n            \"id\": 185,\n            \"message\": \"S%C3%AD..\",\n            \"user\": 1,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-08T10:33:44.000Z\",\n            \"updatedAt\": \"2023-03-08T10:33:44.000Z\",\n            \"User.name\": \"Admin\"\n        },\n        {\n            \"id\": 184,\n            \"message\": \"%C3%89s%20cosa%20del%20refresh%3F\",\n            \"user\": 1,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-08T10:33:37.000Z\",\n            \"updatedAt\": \"2023-03-08T10:33:37.000Z\",\n            \"User.name\": \"Admin\"\n        },\n        {\n            \"id\": 183,\n            \"message\": \"%C3%89s%20cosa%20del%20refresh...\",\n            \"user\": 1,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-08T10:33:26.000Z\",\n            \"updatedAt\": \"2023-03-08T10:33:26.000Z\",\n            \"User.name\": \"Admin\"\n        },\n        {\n            \"id\": 178,\n            \"message\": \"puc%20escriure%20el%20missatge%20normal\",\n            \"user\": 1,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-08T10:09:10.000Z\",\n            \"updatedAt\": \"2023-03-08T10:09:10.000Z\",\n            \"User.name\": \"Admin\"\n        },\n        {\n            \"id\": 119,\n            \"message\": \"Escric que li surti una alerta\\n\",\n            \"user\": 2,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-08T09:34:18.000Z\",\n            \"updatedAt\": \"2023-03-08T09:34:18.000Z\",\n            \"User.name\": \"Oriol\"\n        },\n        {\n            \"id\": 118,\n            \"message\": \"Sí que escric al principal.\\n\",\n            \"user\": 2,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-08T09:32:27.000Z\",\n            \"updatedAt\": \"2023-03-08T09:32:27.000Z\",\n            \"User.name\": \"Oriol\"\n        },\n        {\n            \"id\": 117,\n            \"message\": \"Ah, sñi!\\n\",\n            \"user\": 2,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-08T09:30:47.000Z\",\n            \"updatedAt\": \"2023-03-08T09:30:47.000Z\",\n            \"User.name\": \"Oriol\"\n        },\n        {\n            \"id\": 116,\n            \"message\": \"però la principal no.. ?\\n\",\n            \"user\": 2,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-08T09:30:44.000Z\",\n            \"updatedAt\": \"2023-03-08T09:30:44.000Z\",\n            \"User.name\": \"Oriol\"\n        },\n        {\n            \"id\": 98,\n            \"message\": \"Nou missatge\",\n            \"user\": 1,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-06T08:38:22.000Z\",\n            \"updatedAt\": \"2023-03-06T08:38:22.000Z\",\n            \"User.name\": \"Admin\"\n        },\n        {\n            \"id\": 94,\n            \"message\": \"Ara sí!\",\n            \"user\": 2,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-02T09:55:32.000Z\",\n            \"updatedAt\": \"2023-03-02T09:55:32.000Z\",\n            \"User.name\": \"Oriol\"\n        },\n        {\n            \"id\": 93,\n            \"message\": \"Puc enviar missatge amb l'enter?\",\n            \"user\": 2,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-02T09:55:26.000Z\",\n            \"updatedAt\": \"2023-03-02T09:55:26.000Z\",\n            \"User.name\": \"Oriol\"\n        },\n        {\n            \"id\": 92,\n            \"message\": \"Sorolls d'x-files, sí\",\n            \"user\": 2,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-02T09:48:42.000Z\",\n            \"updatedAt\": \"2023-03-02T09:48:42.000Z\",\n            \"User.name\": \"Oriol\"\n        },\n        {\n            \"id\": 91,\n            \"message\": \"Sons estranys\",\n            \"user\": 1,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-02T09:48:13.000Z\",\n            \"updatedAt\": \"2023-03-02T09:48:13.000Z\",\n            \"User.name\": \"Admin\"\n        },\n        {\n            \"id\": 85,\n            \"message\": \"Ombra\",\n            \"user\": 1,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-02T09:26:17.000Z\",\n            \"updatedAt\": \"2023-03-02T09:26:17.000Z\",\n            \"User.name\": \"Admin\"\n        },\n        {\n            \"id\": 84,\n            \"message\": \"Un missatge nou\",\n            \"user\": 1,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-02T09:24:35.000Z\",\n            \"updatedAt\": \"2023-03-02T09:24:35.000Z\",\n            \"User.name\": \"Admin\"\n        },\n        {\n            \"id\": 83,\n            \"message\": \"Vibra amb ombra, tot..\",\n            \"user\": 1,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-02T09:22:06.000Z\",\n            \"updatedAt\": \"2023-03-02T09:22:06.000Z\",\n            \"User.name\": \"Admin\"\n        },\n        {\n            \"id\": 82,\n            \"message\": \"V\",\n            \"user\": 1,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-02T09:21:49.000Z\",\n            \"updatedAt\": \"2023-03-02T09:21:49.000Z\",\n            \"User.name\": \"Admin\"\n        },\n        {\n            \"id\": 78,\n            \"message\": \"nou missatge\",\n            \"user\": 1,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-02T08:57:27.000Z\",\n            \"updatedAt\": \"2023-03-02T08:57:27.000Z\",\n            \"User.name\": \"Admin\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Unexisting room ID given",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/message/9",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"message",
+										"9"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3001"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "105"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"69-GiItSZU6ld+5mWyqfV0X2Zly0MU\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Mar 2023 11:33:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"error\": {\n        \"message\": \"This room does not exist.\"\n    },\n    \"message\": \"There was an error\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "No token provided",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/message/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"message",
+										"1"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3001"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "92"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5c-pNNIKV094Nwfp3G71kgZRjhQW3Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Mar 2023 11:34:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 401,\n    \"error\": {\n        \"message\": \"Wrong token\"\n    },\n    \"message\": \"There was an error.\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Invalid token provided",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/message/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"message",
+										"1"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3001"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "92"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5c-pNNIKV094Nwfp3G71kgZRjhQW3Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Mar 2023 11:34:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 401,\n    \"error\": {\n        \"message\": \"Wrong token\"\n    },\n    \"message\": \"There was an error.\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "message/{room}/before/{timestamp}",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "Messages fetched before 2023-03-08T11:32:34.000Z",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/message/1/before/2023-03-08T11:32:34.000Z",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"message",
+										"1",
+										"before",
+										"2023-03-08T11:32:34.000Z"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3001"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "3261"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"cbd-gs/cUib1S+f4Yxnz8oN+2dU4PXI\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Mar 2023 11:39:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"error\": null,\n    \"message\": \"Messages fetched before\",\n    \"data\": [\n        {\n            \"id\": 189,\n            \"message\": \"S%C3%B3c%20un%20nou%20usuari\",\n            \"user\": 5,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-08T10:41:47.000Z\",\n            \"updatedAt\": \"2023-03-08T10:41:47.000Z\",\n            \"User.name\": \"Nouusuari\"\n        },\n        {\n            \"id\": 185,\n            \"message\": \"S%C3%AD..\",\n            \"user\": 1,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-08T10:33:44.000Z\",\n            \"updatedAt\": \"2023-03-08T10:33:44.000Z\",\n            \"User.name\": \"Admin\"\n        },\n        {\n            \"id\": 184,\n            \"message\": \"%C3%89s%20cosa%20del%20refresh%3F\",\n            \"user\": 1,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-08T10:33:37.000Z\",\n            \"updatedAt\": \"2023-03-08T10:33:37.000Z\",\n            \"User.name\": \"Admin\"\n        },\n        {\n            \"id\": 183,\n            \"message\": \"%C3%89s%20cosa%20del%20refresh...\",\n            \"user\": 1,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-08T10:33:26.000Z\",\n            \"updatedAt\": \"2023-03-08T10:33:26.000Z\",\n            \"User.name\": \"Admin\"\n        },\n        {\n            \"id\": 178,\n            \"message\": \"puc%20escriure%20el%20missatge%20normal\",\n            \"user\": 1,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-08T10:09:10.000Z\",\n            \"updatedAt\": \"2023-03-08T10:09:10.000Z\",\n            \"User.name\": \"Admin\"\n        },\n        {\n            \"id\": 119,\n            \"message\": \"Escric que li surti una alerta\\n\",\n            \"user\": 2,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-08T09:34:18.000Z\",\n            \"updatedAt\": \"2023-03-08T09:34:18.000Z\",\n            \"User.name\": \"Oriol\"\n        },\n        {\n            \"id\": 118,\n            \"message\": \"Sí que escric al principal.\\n\",\n            \"user\": 2,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-08T09:32:27.000Z\",\n            \"updatedAt\": \"2023-03-08T09:32:27.000Z\",\n            \"User.name\": \"Oriol\"\n        },\n        {\n            \"id\": 117,\n            \"message\": \"Ah, sñi!\\n\",\n            \"user\": 2,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-08T09:30:47.000Z\",\n            \"updatedAt\": \"2023-03-08T09:30:47.000Z\",\n            \"User.name\": \"Oriol\"\n        },\n        {\n            \"id\": 116,\n            \"message\": \"però la principal no.. ?\\n\",\n            \"user\": 2,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-08T09:30:44.000Z\",\n            \"updatedAt\": \"2023-03-08T09:30:44.000Z\",\n            \"User.name\": \"Oriol\"\n        },\n        {\n            \"id\": 98,\n            \"message\": \"Nou missatge\",\n            \"user\": 1,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-06T08:38:22.000Z\",\n            \"updatedAt\": \"2023-03-06T08:38:22.000Z\",\n            \"User.name\": \"Admin\"\n        },\n        {\n            \"id\": 94,\n            \"message\": \"Ara sí!\",\n            \"user\": 2,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-02T09:55:32.000Z\",\n            \"updatedAt\": \"2023-03-02T09:55:32.000Z\",\n            \"User.name\": \"Oriol\"\n        },\n        {\n            \"id\": 93,\n            \"message\": \"Puc enviar missatge amb l'enter?\",\n            \"user\": 2,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-02T09:55:26.000Z\",\n            \"updatedAt\": \"2023-03-02T09:55:26.000Z\",\n            \"User.name\": \"Oriol\"\n        },\n        {\n            \"id\": 92,\n            \"message\": \"Sorolls d'x-files, sí\",\n            \"user\": 2,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-02T09:48:42.000Z\",\n            \"updatedAt\": \"2023-03-02T09:48:42.000Z\",\n            \"User.name\": \"Oriol\"\n        },\n        {\n            \"id\": 91,\n            \"message\": \"Sons estranys\",\n            \"user\": 1,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-02T09:48:13.000Z\",\n            \"updatedAt\": \"2023-03-02T09:48:13.000Z\",\n            \"User.name\": \"Admin\"\n        },\n        {\n            \"id\": 85,\n            \"message\": \"Ombra\",\n            \"user\": 1,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-02T09:26:17.000Z\",\n            \"updatedAt\": \"2023-03-02T09:26:17.000Z\",\n            \"User.name\": \"Admin\"\n        },\n        {\n            \"id\": 84,\n            \"message\": \"Un missatge nou\",\n            \"user\": 1,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-02T09:24:35.000Z\",\n            \"updatedAt\": \"2023-03-02T09:24:35.000Z\",\n            \"User.name\": \"Admin\"\n        },\n        {\n            \"id\": 83,\n            \"message\": \"Vibra amb ombra, tot..\",\n            \"user\": 1,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-02T09:22:06.000Z\",\n            \"updatedAt\": \"2023-03-02T09:22:06.000Z\",\n            \"User.name\": \"Admin\"\n        },\n        {\n            \"id\": 82,\n            \"message\": \"V\",\n            \"user\": 1,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-02T09:21:49.000Z\",\n            \"updatedAt\": \"2023-03-02T09:21:49.000Z\",\n            \"User.name\": \"Admin\"\n        },\n        {\n            \"id\": 78,\n            \"message\": \"nou missatge\",\n            \"user\": 1,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-02T08:57:27.000Z\",\n            \"updatedAt\": \"2023-03-02T08:57:27.000Z\",\n            \"User.name\": \"Admin\"\n        },\n        {\n            \"id\": 76,\n            \"message\": \"Nou missatge\",\n            \"user\": 1,\n            \"room\": 1,\n            \"createdAt\": \"2023-03-02T08:56:04.000Z\",\n            \"updatedAt\": \"2023-03-02T08:56:04.000Z\",\n            \"User.name\": \"Admin\"\n        }\n    ]\n}"
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkFkbWluIiwiaWF0IjoxNjc4NzA3NDMyLCJleHAiOjE2Nzg3MTQ2MzJ9.SWrrNB6whX-H1eNeNin4xDGOVAz2Ns8dzV6dnJFjAe0",
+			"type": "default"
+		}
+	]
+}

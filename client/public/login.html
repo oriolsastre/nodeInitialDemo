@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Xat - Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" type="text/css" media="screen" href="./css/login.css" />
+</head>
+
+<body>
+  <div class="card-container">
+    <div class="card">
+      <div class="card-face card-front">
+        <h2>Log In</h2>
+        <div id="login">
+          <form id="loginForm">
+            <div class="form-control">
+              <input id="loginUser" type="text" maxlength="15" required="">
+              <label>
+                  <span style="transition-delay:0ms">U</span><span style="transition-delay:50ms">s</span><span style="transition-delay:100ms">e</span><span style="transition-delay:150ms">r</span><span style="transition-delay:200ms">n</span><span style="transition-delay:250ms">a</span><span style="transition-delay:300ms">m</span><span style="transition-delay:350ms">e</span>
+              </label>
+            </div>
+            <div class="form-control">
+              <input id="loginPswd" type="password" required="">
+              <label>
+                  <span style="transition-delay:0ms">P</span><span style="transition-delay:50ms">a</span><span style="transition-delay:100ms">s</span><span style="transition-delay:150ms">s</span><span style="transition-delay:200ms">w</span><span style="transition-delay:250ms">o</span><span style="transition-delay:300ms">r</span><span style="transition-delay:350ms">d</span>
+              </label>
+            </div>
+            <br>
+            <input type="submit" class="button" value="Inicia sessió">
+            <input type="button" class="button gira-carta-boto" value="Registra't">
+          </form>
+        </div>
+      </div>
+      <div class="card-face card-back">
+        <h2>Registra't</h2>
+        <div id="signup" style="margin-top: 75px;">
+            <form id="signupForm">
+              <div class="form-control">
+                <input id="signupUser" type="text" required="" maxlength="15">
+                <label>
+                  <span style="transition-delay:0ms">U</span><span style="transition-delay:50ms">s</span><span style="transition-delay:100ms">e</span><span style="transition-delay:150ms">r</span><span style="transition-delay:200ms">n</span><span style="transition-delay:250ms">a</span><span style="transition-delay:300ms">m</span><span style="transition-delay:350ms">e</span>
+                </label>
+              </div>
+              <p class="signup-error" id="signup-validUser">&nbsp;</p>
+              <div class="form-control">
+                <input id="signupPswd1" type="password" required="">
+                <label>
+                    <span style="transition-delay:0ms">P</span><span style="transition-delay:50ms">a</span><span style="transition-delay:100ms">s</span><span style="transition-delay:150ms">s</span><span style="transition-delay:200ms">w</span><span style="transition-delay:250ms">o</span><span style="transition-delay:300ms">r</span><span style="transition-delay:350ms">d</span>
+                </label>
+              </div>
+              <p class="signup-error" id="signup-validPswd">&nbsp;</p>
+              <div class="form-control">
+                <input id="signupPswd2" type="password" required="">
+                <label>
+                  <span style="transition-delay:0ms">R</span><span style="transition-delay:25ms">e</span><span style="transition-delay:50ms">p</span><span style="transition-delay:75ms">e</span><span style="transition-delay:100ms">a</span><span style="transition-delay:125ms">t</span><span style="transition-delay:125ms"> </span><span style="transition-delay:150ms">p</span><span style="transition-delay:175ms">a</span><span style="transition-delay:200ms">s</span><span style="transition-delay:225ms">s</span><span style="transition-delay:250ms">w</span><span style="transition-delay:275ms">o</span><span style="transition-delay:300ms">r</span><span style="transition-delay:325ms">d</span>
+                </label>
+              </div>
+              <p class="signup-error" id="signup-validPswd2">&nbsp;</p>
+              <input type="submit" class="button" id="signup-button" value="Registra't">
+              <input type="reset" class="button" value="Esborra"><br>
+              <input type="button" class="button gira-carta-boto" value="Inicia sessió">
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/login.js"></script>
+</body>
+
+</html>

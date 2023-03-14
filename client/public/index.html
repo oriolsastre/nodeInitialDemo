@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Xat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"
+    integrity="sha384-/KNQL8Nu5gCHLqwqfQjA689Hhoqgi2S84SNUxC3roTe4EhJ9AfLkp8QiQcU8AMzI"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" media="screen" href="./css/xat.css" />
+  <script src="main.js"></script>
+</head>
+
+<body>
+  <div class="header">
+    <div class="xat-logo">XAT AMB SOCKETS</div>
+    <div id="header-user"></div>
+    <div id="header-logout">
+      <input type="button" class="button" id="logout" value="Tanca sessió" onclick="logout()">
+    </div>
+  </div>
+  <div class="chat-body">
+    <div class="rooms" id="rooms">
+      <div class="room selected" id="room1" onmouseup="joinRoom(1)" style="margin-top: 7px;">Principal</div>
+      <div class="room create" id="newRoom">
+        <form id="newRoom-form">
+          <p>Crear sala</p>
+          <input type="text" name="roomName" maxlength="10" placeholder="Nova sala" style="width: 100%; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; margin-bottom: 10px; border-radius: 8px; padding: 3px; border-color: maroon;">
+          <input type="submit" class="button" value="Crear">
+        </form>
+      </div>
+    </div>
+    <div class="messages" id="messages">
+      <div id="chat-messages"></div>
+      <br>
+      <div style="width: 100%; text-align: center;">
+        <!-- <input id="chat-input" type="text" autocomplete="off"> -->
+        <textarea rows="1" id="chat-input"></textarea>
+        <input id="chat-button" class="button" type="button" value="Enviar">
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div id="connected-Users-room" style="margin-left: 8px;">Usuaris connectats</div>
+    <div id="connected-Users"></div>
+  </div>
+  <script src="js/chat.js"></script>
+  <script src="js/logout.js"></script>
+  <script src="js/chat-sockets.js"></script>
+</body>
+
+</html>

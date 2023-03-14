@@ -1,51 +1,77 @@
+# Sprint 5 - Xat
 
-# Node Initial Project
+Xat usant _[socket.io](https://socket.io/)_ separant el client i back-end en dos servidors diferents.
 
-### Project Structure
+## Tecnologia usada
 
-Main structure of node.js project. Folders / files:
+<div align="center">
+<a href="https://nodejs.org/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/nodejs-original-wordmark.svg" alt="Node.js" height="50" /></a>
+<a href="https://expressjs.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/express-original-wordmark.svg" alt="Express.js" height="50" /></a>
+<a href="https://socket.io/" target="_blank"><img style="margin: 10px" src="https://socket.io/images/logo.svg" alt="Socket.io" height="50" /></a>
+<a href="https://www.mysql.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/mysql-original-wordmark.svg" alt="MySQL" height="50" /></a>
+<a href="https://www.docker.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/docker-original-wordmark.svg" alt="Docker" height="50" /></a>
+</div>
 
-- <b>\_\_tests__</b>. Tests folder. See [Jest Docs](https://jestjs.io/es-ES/docs/configuration) and [Chai Docs](https://www.chaijs.com/)
-- <b>app</b>:
-    - <b>config</b>
-    - <b>controllers</b>
-    - <b>middlewares</b>
-    - <b>models</b>
-    - <b>routes</b>
-    - <b>helpers</b>
-    - <b>app.js</b>. Entry point.
-- <b>package.json</b>.
-- <b>.env</b>. Environment descriptor. See [dotenv doc](https://www.npmjs.com/package/dotenv).
+## Requeriments
 
-Extras:
-- <b>.eslintrc</b>. Linter JS, static code analyzer. See [EsLint Docs](https://eslint.org/docs/user-guide/configuring/configuration-files).
-- <b>.prettierignore</b>. Code formatter. See [Prettier Config](https://prettier.io/docs/en/configuration.html) and [Prettier Ignore](https://prettier.io/docs/en/ignore.html).
-- <b>.ecosystem.config.js</b>. Process Manage at runtime. See [PM2 Docs](https://pm2.keymetrics.io/).
+Per a poder usar el xat cal tenir instal·lat a l'ordinador:
 
-### Import project for use with Visual Studio Code
+* NodeJS (https://nodejs.org/ca/)
+* Servidor MySQL (https://www.mysql.com/)
 
-Follow the steps below:
-* Clone the project from the Github Platform. Execute:
-  ```
-  git clone [url project]
-  ```
-* Open the project downloaded.
-  ![Open Project](img/VSC_open.png)
+O bé
+
+* Docker (https://www.docker.com/)
+
+## Descarrega el repositori
+
+Descarrega't aquesta branca _sprint5_ del repositori al teu ordinador local. Si tens GIT instal·lat ho pots fer des d'un terminal amb l'ordre
+
+    git clone -b sprint5 https://github.com/oriolsastre/nodeInitialDemo --single-branch
+
+## Instal·lació amb Docker
+
+Obre una terminal a la carpeta que t'acabes de descarregar i executa l'ordre:
+
+    docker compose up
+
+Assegura't que els ports 3000, 5000 i sobretot 3306 no estiguin ocupats. El 3306 és el que usa MySQL per defecte i si el tens instal·lat a l'ordinador podria estar ocupat. Atura el servei de MySQL que tinguis corrents, si és el cas, abans d'iniciar el xat usant Docker.
+
+Qualsevol canvi a les variables d'entorn que consideris necessari l'hauràs de fer al fitxer `docker-compose.yml` que trobaràs a la carpeta arrel.
+
+## Instal·lació estàndard
+
+### Configura les variables d'entorn
+
+A la carpeta que t'acabes de descarregar hi trobaràs un fitxer anomenat "_.env-template_". Fes-ne una còpia, anomena-la "_.env_" i completa els camps de l'interior que pertanyin al teu sistema. Sobretot configura les credencials del teu servidor MySQL.
+
+Els valors del port i host tant del client com del server (fa referència al backend) no els hauries de canviar si no és absolutament necessari. En cas de canviar algun valor, tenir en compte que potser s'ha de canviar també en alguna part tant del servidor client (per connectar amb l'API del back) com al backend (per habilitar CORS).
+
+_CHAT-ADMIN-PSWD_ fa referència a la contrassenya que tindrà l'usuari Admin que es crea per defecte en iniciar el xat. Triar a lliure per disposició. Per defecte o absència serà '1234'.
+
+_JWT-SECRET_ triar lliurement. S'usa en generar els JWT que es fan servir per a l'autentificació.
+
+### Instal·lar dependències
+
+Per instal·lar les dependències cal instal·lar tant les del client com les del backend. Des d'un terminal en situem a la carpeta _client_ i _server_ i executem, respectivament, l'ordre
+
+    npm install
 
 
-### Import project for use with WebStorm
+Un cop instal·lades, per separat també, aixecarem els dos servidors executant respectivament l'ordre.
 
-Follow the steps below:
-* Clone the project from the Github Platform. Execute:
-  ```
-  git clone [url project]
-  ```
-* Open the project downloaded.
-![Open Project](img/webstorm_open.png)
+    npm start
 
+Per la consola del client veurem en quina direcció està el servidor i ens hi podrem connectar des d'un navegador.
 
-### Utilities
+## Característiques
 
-* [Node Developers Guide](https://nodejs.dev/learn)
-* **.gitignore file** configuration. See [Official Docs](https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files).
-* **Git branches**. See [Official Docs](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell)
+Xan on xatejar amb altres usuaris. Es poden crear sales adicionals on mantenir-hi converses. En tot moment pots veure qui està connectat al xat. També s'anuncia sí un usuari entra o surt del xat, o si entra o surt de la sala on ets. A més, pots veure en quina sala tens missatges nour per llegir (per sessió).
+
+## BACKEND
+
+Per a més informació sobre el servidor de backend mira: [SERVER README](./server/README.md)
+
+## FRONTEND
+
+Per a més informació sobre el servidor de front mira: [CLIENT README](./client/README.md)
