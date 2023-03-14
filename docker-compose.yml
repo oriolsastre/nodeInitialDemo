@@ -1,15 +1,18 @@
 version: '3.4'
 
 services:
-  mysql:
+  xatdb:
     image: mysql:5.7
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: 'xat-osr'
+      MYSQL_ROOT_PASSWORD: '1234'
     ports:
-      - 6033:3306
+      - '3306:3306'
+    expose:
+      - '3306'
     volumes:
-      - xatserver:/var/lib/mysql
+      - xatdb:/var/lib/mysql
   xatclient:
     image: xatclient
     build:
@@ -28,11 +31,14 @@ services:
     environment:
       NODE_ENV: production
       MYSQL_USER: root
-      MYSQL_HOST: localhost
+      MYSQL_PASSWORD: 1234
+      MYSQL_HOST: xatdb
       MYSQL_PORT: 3306
+      MYSQL_NAME: xat-osr
+      CHAT_ADMIN_PSWD: 1234
     ports:
       - 3000:3000
     depends_on:
-      - mysql
+      - xatdb
 volumes:
-  xatserver:
+  xatdb:
