@@ -1,4 +1,4 @@
-# SERVER
+# BACKEND
 
 ## Dependències
 

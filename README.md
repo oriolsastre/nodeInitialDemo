@@ -42,19 +42,12 @@ Per la consola del client veurem en quina direcció està el servidor i ens hi p
 
 ## Característiques
 
-Xan on xatejar amb altres usuaris. Es poden crear sales adicionals on mantenir-hi converses. En tot moment pots veure qui està connectat al xat. També s'anuncia sí un usuari entra o surt del xat, o si entra o surt de la sala on ets.
+Xan on xatejar amb altres usuaris. Es poden crear sales adicionals on mantenir-hi converses. En tot moment pots veure qui està connectat al xat. També s'anuncia sí un usuari entra o surt del xat, o si entra o surt de la sala on ets. A més, pots veure en quina sala tens missatges nour per llegir (per sessió).
 
-A més, pots veure en quina sala tens missatges nour per llegir (per sessió).
+## BACKEND
 
-### Restriccions
+Per a més informació sobre el servidor de backend mira: [SERVER README](./server/README.md)
 
- * __Usuari__ El nom d'usuari ha de constar únicament de caràcters alfanumèrics. No pot tenir més de 20 caràcters
+## FRONTEND
 
- * __Sala__ El nom de les sales, també únicament caràcters alfanumèrics i un màxim de 10 caràcters.
-
-
-
-
-## Coses a tenir en compte?
-https://stackoverflow.com/questions/3391242/should-i-hash-the-password-before-sending-it-to-the-server-side
-https://stackoverflow.com/questions/44133536/is-it-safe-to-store-a-jwt-in-localstorage-with-reactjs
+Per a més informació sobre el servidor de front mira: [CLIENT README](./client/README.md)
