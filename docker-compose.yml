@@ -1,0 +1,38 @@
+version: '3.4'
+
+services:
+  mysql:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+    ports:
+      - 6033:3306
+    volumes:
+      - xatserver:/var/lib/mysql
+  xatclient:
+    image: xatclient
+    build:
+      context: client
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+      CLIENT_PORT: 5000
+    ports:
+      - 5000:5000
+  xatserver:
+    image: xatserver
+    build:
+      context: server
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+      MYSQL_USER: root
+      MYSQL_HOST: localhost
+      MYSQL_PORT: 3306
+    ports:
+      - 3000:3000
+    depends_on:
+      - mysql
+volumes:
+  xatserver:
