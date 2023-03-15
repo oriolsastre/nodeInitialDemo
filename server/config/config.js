@@ -10,6 +10,8 @@ const clientConfig = {
   port: process.env.CLIENT_PORT || 5000,
 };
 
+const dbLang = proces.env.DB_LANG || 'mysql';
+
 const mysqlConfig = {
   host: process.env.MYSQL_HOST || "localhost",
   port: process.env.MYSQL_PORT || 3306,
@@ -22,4 +24,4 @@ const chatAdminPswd = process.env.CHAT_ADMIN_PSWD || 1234;
 
 const JWT_Secret = process.env.JWT_SECRET || 'chatOSR'
 
-module.exports = { serverConfig, clientConfig, mysqlConfig, chatAdminPswd, JWT_Secret };
+module.exports = { serverConfig, clientConfig, dbLang, mysqlConfig, chatAdminPswd, JWT_Secret };
