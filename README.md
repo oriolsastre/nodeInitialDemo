@@ -1,6 +1,16 @@
-# Sprint 5 - Chat
+# Sprint 5 - Xat
 
 Xat usant _[socket.io](https://socket.io/)_ separant el client i back-end en dos servidors diferents.
+
+## Tecnologia usada
+
+<div align="center">
+<a href="https://nodejs.org/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/nodejs-original-wordmark.svg" alt="Node.js" height="50" /></a>
+<a href="https://expressjs.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/express-original-wordmark.svg" alt="Express.js" height="50" /></a>
+<a href="https://socket.io/" target="_blank"><img style="margin: 10px" src="https://socket.io/images/logo.svg" alt="Socket.io" height="50" /></a>
+<a href="https://www.mysql.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/mysql-original-wordmark.svg" alt="MySQL" height="50" /></a>
+<a href="https://www.docker.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/docker-original-wordmark.svg" alt="Docker" height="50" /></a>
+</div>
 
 ## Requeriments
 
@@ -9,19 +19,33 @@ Per a poder usar el xat cal tenir instal·lat a l'ordinador:
 * NodeJS (https://nodejs.org/ca/)
 * Servidor MySQL (https://www.mysql.com/)
 
-## Instal·lació
+O bé
 
-### Descarrega el repositori
+* Docker (https://www.docker.com/)
+
+## Descarrega el repositori
 
 Descarrega't aquesta branca _sprint5_ del repositori al teu ordinador local. Si tens GIT instal·lat ho pots fer des d'un terminal amb l'ordre
 
     git clone -b sprint5 https://github.com/oriolsastre/nodeInitialDemo --single-branch
 
+## Instal·lació amb Docker
+
+Obre una terminal a la carpeta que t'acabes de descarregar i executa l'ordre:
+
+    docker compose up
+
+Assegura't que els ports 3000, 5000 i sobretot 3306 no estiguin ocupats. El 3306 és el que usa MySQL per defecte i si el tens instal·lat a l'ordinador podria estar ocupat. Atura el servei de MySQL que tinguis corrents, si és el cas, abans d'iniciar el xat usant Docker.
+
+Qualsevol canvi a les variables d'entorn que consideris necessari l'hauràs de fer al fitxer `docker-compose.yml` que trobaràs a la carpeta arrel.
+
+## Instal·lació estàndard
+
 ### Configura les variables d'entorn
 
 A la carpeta que t'acabes de descarregar hi trobaràs un fitxer anomenat "_.env-template_". Fes-ne una còpia, anomena-la "_.env_" i completa els camps de l'interior que pertanyin al teu sistema. Sobretot configura les credencials del teu servidor MySQL.
 
-Els valors del port i host tant del client com del server (fa referència al backend) no els hauries de canviar si no és absolutament necessari. En cas de canviar algun valor, tenir en compte que potser s'ha de canviar també en alguna part del servidor client.
+Els valors del port i host tant del client com del server (fa referència al backend) no els hauries de canviar si no és absolutament necessari. En cas de canviar algun valor, tenir en compte que potser s'ha de canviar també en alguna part tant del servidor client (per connectar amb l'API del back) com al backend (per habilitar CORS).
 
 _CHAT-ADMIN-PSWD_ fa referència a la contrassenya que tindrà l'usuari Admin que es crea per defecte en iniciar el xat. Triar a lliure per disposició. Per defecte o absència serà '1234'.
 
@@ -42,19 +66,12 @@ Per la consola del client veurem en quina direcció està el servidor i ens hi p
 
 ## Característiques
 
-Xan on xatejar amb altres usuaris. Es poden crear sales adicionals on mantenir-hi converses. En tot moment pots veure qui està connectat al xat. També s'anuncia sí un usuari entra o surt del xat, o si entra o surt de la sala on ets.
+Xan on xatejar amb altres usuaris. Es poden crear sales adicionals on mantenir-hi converses. En tot moment pots veure qui està connectat al xat. També s'anuncia sí un usuari entra o surt del xat, o si entra o surt de la sala on ets. A més, pots veure en quina sala tens missatges nour per llegir (per sessió).
 
-A més, pots veure en quina sala tens missatges nour per llegir (per sessió).
+## BACKEND
 
-### Restriccions
+Per a més informació sobre el servidor de backend mira: [SERVER README](./server/README.md)
 
- * __Usuari__ El nom d'usuari ha de constar únicament de caràcters alfanumèrics. No pot tenir més de 20 caràcters
+## FRONTEND
 
- * __Sala__ El nom de les sales, també únicament caràcters alfanumèrics i un màxim de 10 caràcters.
-
-
-
-
-## Coses a tenir en compte?
-https://stackoverflow.com/questions/3391242/should-i-hash-the-password-before-sending-it-to-the-server-side
-https://stackoverflow.com/questions/44133536/is-it-safe-to-store-a-jwt-in-localstorage-with-reactjs
+Per a més informació sobre el servidor de front mira: [CLIENT README](./client/README.md)
