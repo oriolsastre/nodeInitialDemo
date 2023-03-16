@@ -26,9 +26,7 @@ const newRoom = async (io, socket, name, usuari) => {
       return socket.emit('user-roomCreated', room)
     }
     return socket.emit('user-roomCreated', existsRoom)
-    
   } catch (error) {
-    //socket.emit('error-create-room')
     console.error(error)
   } 
 }

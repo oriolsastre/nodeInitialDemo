@@ -4,7 +4,7 @@ if (userData && userData.token) {
   window.location.assign('./index.html')
 }
 
-const api = `http://localhost:3000/api`
+const api = `http://10.116.102.74:3000/api`
 
 /********** SIGNUP FORM **********/
 let signupForm = document.getElementById('signupForm')

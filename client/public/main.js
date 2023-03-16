@@ -1,13 +1,13 @@
 let userData = JSON.parse(localStorage.getItem('userData'))
 let currentRoom = localStorage.getItem('currentRoom') || 1
 let lastMessageTime = new Date()
-const api = `http://localhost:3000/api`
+const api = `http://10.116.102.74:3000/api`
 
 if(userData===null || !userData.token){
   window.location.assign('./login.html')
 }
 
-const socket = io(`http://localhost:3000`, {
+const socket = io(`http://10.116.102.74:3000`, {
   query: { 
     name: userData.name,
     id: userData.id,

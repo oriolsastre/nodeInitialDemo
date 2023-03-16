@@ -26,11 +26,7 @@ module.exports = (io, socket) => {
     newRoom(io, socket, name, usuari)
   })
 
-  socket.on('disconnect', data => {
-    //refrescar pàgina/tancar pestanya -> transport close
-    //logout -> client namespace disconnect
-    //altres -> transport error
-    
+  socket.on('disconnect', data => {    
     connectedUsers.splice(connectedUsers.findIndex(user => user.id==usuari.id),1)
     io.emit('user-disconnected', usuari)
   })

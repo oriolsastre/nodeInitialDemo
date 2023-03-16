@@ -1,17 +1,17 @@
-const { serverConfig, clientConfig } = require("./config/config");
+const { serverConfig } = require("./config/config");
 const express = require("express");
 const cors = require("cors")
 const app = express();
 const server = require("http").createServer(app);
 const io = require("socket.io")(server, {
-  cors: { origin: [`http://${clientConfig.host}:${clientConfig.port}`] }
+  cors: { origin: `*` }
 });
 const { initDB } = require('./database/initModels')
 const socketController = require('./sockets/sockets')
 
 initDB()
 
-app.use(cors({origin:`http://${clientConfig.host}:${clientConfig.port}`}))
+app.use(cors({origin:`*`}))
 app.use(express.json(), express.urlencoded({ extended: true }));
 app.use('/', require('./routes'))
 

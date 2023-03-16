@@ -10,11 +10,8 @@ const connection = async (io, socket, data) => {
     chatRooms.shift();  //main ja la tenim.
     socket.emit('user-loadFirst', { chatRooms, connectedUsers: data.connectedUsers });
 
-
-
     /* Per defecte, en connectar-te al xat entres a la sala principal: 1 */
     await socket.join('1')
-    //socket.to('1').emit('user-joinedRoom', data.usuari.name)
     const roomMessages = await getMessages(1, 20)
     socket.emit('room-fetchMessages', roomMessages)
 }
